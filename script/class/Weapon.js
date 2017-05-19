@@ -1,5 +1,5 @@
 class Weapon {
-    constructor(sprite) {
+    constructor(sprite, color) {
 
         this.weapon = game.add.weapon(10, 'bullet');
 
@@ -10,11 +10,12 @@ class Weapon {
         this.weapon.bullets.setAll("collideWorldBounds", true);
 
 
-        this.weapon.bulletSpeed = 650;
+        this.weapon.bulletSpeed = 500;
 
         this.weapon.bullets.forEach(bullet => {
-            bullet.width = 16;
-            bullet.height = 16;
+            bullet.width = 14;
+            bullet.height = 14;
+            bullet.tint = color;
         }, this);
 
         // this.emitter = game.add.emitter(50, 50, 100);

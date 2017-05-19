@@ -1,8 +1,8 @@
 class Player {
-    constructor(name, angle) {
+    constructor(name, angle, color) {
 
         this.name = name || 'none';
-        this.color = 'none';
+        this.color = color || 0x555555;
 
         this.score = null;
         this.number = null;
@@ -10,41 +10,62 @@ class Player {
 
         this.angle = angle;
 
+        this.widthAngle = 8;
+
         this.canon = new Canon(new Vector(
             GLOBAL.HALFWIDTH,
             GLOBAL.HALFHEIGHT
-        ), angle);
+        ), angle, this.color);
     }
-    shoot(){
+
+    update() {
+        this.canon.update();
+    }
+
+    shoot() {
         this.canon.shoot();
     }
 
-    getAbsAngle(){
-        return Math.abs(this.canon.angle % 360)
+    getLeftAngle() {
+        return this.angle < 0 ? 360 + this.angle : this.angle;
     }
 
-    canMove(direction, players){
+    getRightAngle() {
+        return this.angle > 0 ? -360 + this.angle : this.angle;
+    }
 
-        let myAngle = this.getAbsAngle();
+    turn(direction) {
+        // if (this.canMove(direction)) {
+            this.canon.turn(direction)
+            this.angle = this.canon.angle;
+        // }
+    }
 
-        for(let key in players){
+    turnFinished() {
+        this.canon.turnFinished();
+    }
+
+    canMove(direction) {
+
+        let result = true;
+
+        for (let key in players) {
             let player = players[key];
-            if(this !== player){
-                console.log(myAngle);
+
+            if (player !== this) {
+                // console.log(this.name, this.getLeftAngle(), this.getRightAngle());
+                // console.log(player.name, player.getLeftAngle(), player.getRightAngle());
 
                 switch (direction.toLowerCase()) {
                     case 'left':
-                        return myAngle > player.getAbsAngle() - 10;
+                        result &= this.getLeftAngle() < player.getLeftAngle() - this.widthAngle || this.getLeftAngle() > player.getLeftAngle();
                         break;
                     case 'right':
-                        return myAngle < player.getAbsAngle() - 10;
+                        result &= this.getRightAngle() > player.getRightAngle() + this.widthAngle || this.getRightAngle() < player.getRightAngle();
                         break;
                 }
-
-
             }
         }
-
-        return true;
+        return result;
     }
 }

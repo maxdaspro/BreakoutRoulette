@@ -4,7 +4,6 @@ body{
 h1{
 	text-align: center;
 }
-#game{
-	margin-top: 50px;
-	margin-left: 200px;
+#game canvas{
+	margin:auto;
 }

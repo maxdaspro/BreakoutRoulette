@@ -1,12 +1,9 @@
-/**
- * Classe pour créer les canons des différentes bases
- */
 class Canon {
-    constructor(position, angle) {
+    constructor(position, angle, color) {
 
         this.position = position;
 
-        this.sprite = game.add.sprite(this.position.x, this.position.y, 'canon');
+        this.sprite = game.add.sprite(0, 0, 'canon');
 
         game.physics.arcade.enable(this.sprite);
 
@@ -14,46 +11,71 @@ class Canon {
         this.sprite.width = 48;
         this.sprite.height = 48;
 
+        this.sprite.tint = color;
+
         this.sprite.body.immovable = true;
 
-        this.angle = angle + 0.0000001;
-        // this.minAngle = this.angle + 80;
-        // this.maxAngle = this.angle - 80;
-        this.speed = 1;
+        this.angle = angle;
 
-        this.sprite.pivot.x = 364;
+        this.sprite.x = this.position.x;
+        this.sprite.y = this.position.y;
+        this.sprite.pivot.x = 375;
         this.sprite.pivot.y = 0;
         this.sprite.angle = this.angle;
 
-        this.weapon = new Weapon(this.sprite);
+        this.velocity = 0;
+        this.acceleration = 0;
+        this.friction = 1;
+        this.speed = 0.2;
+        this.maxSpeed = 3;
+        this.drag = 0.85;
+
+        this.weapon = new Weapon(this.sprite, color);
+    }
+
+    update(){
+
+        this.weapon.update();
+        
+        console.log(this.velocity);
+
+        if(Math.abs(this.velocity) < this.maxSpeed) {
+            //Apply acceleration by adding the acceleration to the sprite's velocity
+            this.velocity += this.acceleration;
+        }
+
+        //Apply friction by multiplying sprite's velocity by the friction
+        this.velocity *= this.friction;
+        
+        this.setAngle(this.angle + this.velocity)
     }
 
     turn(direction) {
         switch (direction.toLowerCase()) {
             case 'left':
-                this.setAngle(this.angle - this.speed);
+                // this.setAngle(this.angle + this.speed);
+                this.acceleration = this.speed;
+                this.friction = 1;
                 break;
             case 'right':
-                this.setAngle(this.angle + this.speed);
+                // this.setAngle(this.angle - this.speed);
+                this.acceleration = -this.speed;
+                this.friction = 1;
                 break;
         }
-        this.sprite.angle = this.angle;
+    }
+
+    turnFinished() {
+        this.acceleration = 0;
+        this.friction = this.drag;
     }
 
     setAngle(angle) {
-        // if (angle < this.maxAngle || angle > this.minAngle) {
-        //      return;
-        // }
-        this.angle = angle;
+        this.angle = angle % 360;
         this.sprite.angle = this.angle;
     }
 
     shoot() {
         this.weapon.fire();
-    }
-
-
-    update() {
-        this.weapon.update();
     }
 }

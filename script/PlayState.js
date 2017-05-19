@@ -48,46 +48,39 @@ PlayState.create = function () {
         GLOBAL.HALFHEIGHT
     ))
 
-    players['maxime'] = new Player('maxime', 0);
-    players['olivier'] = new Player('maxime', 180);
+    players['maxime'] = new Player('maxime', 45, 0xC64191);
+    players['olivier'] = new Player('olivier', 90, 0xD00BFB2);
+    players['gaspard'] = new Player('gaspard', -50, 0xE0A890);
 }
 
 PlayState.update = function () {
 
-    if (cursors.left.isDown && players['maxime'].canMove('right', players)) {
-        players['maxime'].canon.turn('right')
+    for(let key in players){
+        let player = players[key];
+
+        player.update();
     }
-    if (cursors.right.isDown && players['maxime'].canMove('left', players)) {
-        players['maxime'].canon.turn('left')
+
+    if (cursors.left.isDown && !cursors.right.isDown) {
+        players['maxime'].turn('left');
+    }
+    else if(!cursors.right.isDown){
+        players['maxime'].turnFinished();
+    }
+
+    if (cursors.right.isDown && !cursors.left.isDown) {
+        players['maxime'].turn('right');
+    }
+    else if(!cursors.left.isDown){
+        players['maxime'].turnFinished();
     }
 
     if (spacebar.justDown) {
-        players['maxime'].canon.shoot();
+        players['maxime'].shoot();
     }
 }
 
 PlayState.render = function () {
-
-    // let towers = centres['centre'].towers;
-
-    // for (let key in towers) {
-    //     let sprite = towers[key].sprite;
-    //     game.debug.body(sprite);
-    // }
-
-    // for (let key in bases) {
-    //     let base = bases[key];
-    //     let bullets = base.canon.weapon.getBullets();
-    //
-    //     for (let key in bullets) {
-    //         game.debug.body(bullets[key]);
-    //     }
-    // }
-
-    // for (let key in bases) {
-    //     let base = bases[key];
-    //     game.debug.body(base.sprite);
-    // }
 
     // game.debug.body(bases['base2'].canon.sprite);
     // game.debug.cameraInfo(game.camera, 32, 32);
