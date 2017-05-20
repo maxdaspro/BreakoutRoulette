@@ -55,28 +55,28 @@ PlayState.create = function () {
 
 PlayState.update = function () {
 
-    for(let key in players){
+    for (let key in players) {
         let player = players[key];
 
         player.update();
     }
 
     if (cursors.left.isDown && !cursors.right.isDown) {
-        players['maxime'].turn('left');
+        players['olivier'].turn('left');
     }
-    else if(!cursors.right.isDown){
-        players['maxime'].turnFinished();
+    else if (!cursors.right.isDown) {
+        players['olivier'].turnFinished();
     }
 
     if (cursors.right.isDown && !cursors.left.isDown) {
-        players['maxime'].turn('right');
+        players['olivier'].turn('right');
     }
-    else if(!cursors.left.isDown){
-        players['maxime'].turnFinished();
+    else if (!cursors.left.isDown) {
+        players['olivier'].turnFinished();
     }
 
     if (spacebar.justDown) {
-        players['maxime'].shoot();
+        players['olivier'].shoot();
     }
 }
 

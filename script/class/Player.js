@@ -19,7 +19,20 @@ class Player {
     }
 
     update() {
+
         this.canon.update();
+
+        for (let key in players) {
+            let player = players[key];
+
+            if (player !== this) {
+                game.physics.arcade.collide(player.canon.sprite, this.canon.sprite, this.collideCanon.bind(this, player));
+            }
+        }
+    }
+
+    collideCanon(player1, player2) {
+        console.log('collide');
     }
 
     shoot() {
@@ -36,8 +49,8 @@ class Player {
 
     turn(direction) {
         // if (this.canMove(direction)) {
-            this.canon.turn(direction)
-            this.angle = this.canon.angle;
+        this.canon.turn(direction)
+        this.angle = this.canon.angle;
         // }
     }
 

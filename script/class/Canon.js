@@ -3,7 +3,7 @@ class Canon {
 
         this.position = position;
 
-        this.sprite = game.add.sprite(0, 0, 'canon');
+        this.sprite = game.add.sprite(-1000, -1000, 'canon');
 
         game.physics.arcade.enable(this.sprite);
 
@@ -13,7 +13,7 @@ class Canon {
 
         this.sprite.tint = color;
 
-        this.sprite.body.immovable = true;
+        // this.sprite.body.immovable = true;
 
         this.angle = angle;
 
@@ -22,6 +22,8 @@ class Canon {
         this.sprite.pivot.x = 375;
         this.sprite.pivot.y = 0;
         this.sprite.angle = this.angle;
+
+        this.sprite.body.bounce.setTo(1, 1);
 
         this.velocity = 0;
         this.acceleration = 0;
@@ -33,21 +35,17 @@ class Canon {
         this.weapon = new Weapon(this.sprite, color);
     }
 
-    update(){
+    update() {
 
         this.weapon.update();
-        
-        console.log(this.velocity);
 
-        if(Math.abs(this.velocity) < this.maxSpeed) {
-            //Apply acceleration by adding the acceleration to the sprite's velocity
+        if (Math.abs(this.velocity) < this.maxSpeed) {
             this.velocity += this.acceleration;
         }
 
-        //Apply friction by multiplying sprite's velocity by the friction
         this.velocity *= this.friction;
-        
-        this.setAngle(this.angle + this.velocity)
+
+        this.setAngle(this.angle + this.velocity);
     }
 
     turn(direction) {

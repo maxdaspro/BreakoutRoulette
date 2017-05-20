@@ -9,8 +9,8 @@ class Weapon {
 
         this.weapon.bullets.setAll("collideWorldBounds", true);
 
-
         this.weapon.bulletSpeed = 500;
+        this.weapon.fireRate = 150;
 
         this.weapon.bullets.forEach(bullet => {
             bullet.width = 14;
@@ -43,10 +43,6 @@ class Weapon {
     //     this.emitter.destroy();
     // }
 
-    /**
-     * Retourne les balles tirées par l'arme
-     * @return {[type]} [description]
-     */
     getBullets() {
         return this.weapon.bullets.children;
     }
