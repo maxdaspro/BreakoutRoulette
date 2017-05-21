@@ -31,7 +31,7 @@ class Player {
         }
     }
 
-    collideCanon(player1, player2) {
+    collideCanon(player1, player2, cSprite1, cSprite2) {
         console.log('collide');
     }
 
