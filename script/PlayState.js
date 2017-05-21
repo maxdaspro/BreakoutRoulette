@@ -12,7 +12,7 @@ let players = {};
 PlayState.preload = function () {
     // game.load.tilemap("map2", GLOBAL.DIR.IMAGE + "map2.json", null, Phaser.Tilemap.TILED_JSON);
     // game.load.image("tileset", GLOBAL.DIR.IMAGE + "tileset.png");
-    game.load.image("background", GLOBAL.DIR.IMAGE + "background.png");
+    game.load.image("map", GLOBAL.DIR.IMAGE + "map.png");
     game.load.image("r1", GLOBAL.DIR.IMAGE + "r1.png");
     game.load.image("r2", GLOBAL.DIR.IMAGE + "r2.png");
     game.load.image("r3", GLOBAL.DIR.IMAGE + "r3.png");
@@ -30,7 +30,7 @@ PlayState.create = function () {
 
     spacebar = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-    game.add.sprite(0, 0, 'background');
+    game.add.sprite(0, 0, 'map');
 
     // map = game.add.tilemap('map2');
     // map.addTilesetImage('tileset');
@@ -48,9 +48,10 @@ PlayState.create = function () {
         GLOBAL.HALFHEIGHT
     ))
 
-    players['maxime'] = new Player('maxime', 45, 0xC64191);
-    players['olivier'] = new Player('olivier', 90, 0xD00BFB2);
-    players['gaspard'] = new Player('gaspard', -50, 0xE0A890);
+    players['bernard'] = new Player('bernard', 45, 0xffa800);
+    players['maxime'] = new Player('maxime', 135, 0xC64191);
+    players['olivier'] = new Player('olivier', -45, 0x00BFB2);
+    players['gaspard'] = new Player('gaspard', -135, 0xE0A890);
 }
 
 PlayState.update = function () {
