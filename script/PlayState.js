@@ -13,9 +13,6 @@ PlayState.preload = function () {
     // game.load.tilemap("map2", GLOBAL.DIR.IMAGE + "map2.json", null, Phaser.Tilemap.TILED_JSON);
     // game.load.image("tileset", GLOBAL.DIR.IMAGE + "tileset.png");
     game.load.image("map", GLOBAL.DIR.IMAGE + "map.png");
-    game.load.image("r1", GLOBAL.DIR.IMAGE + "r1.png");
-    game.load.image("r2", GLOBAL.DIR.IMAGE + "r2.png");
-    game.load.image("r3", GLOBAL.DIR.IMAGE + "r3.png");
     game.load.image("canon", GLOBAL.DIR.IMAGE + "canon.png");
     game.load.image("bullet", GLOBAL.DIR.IMAGE + "bullet.png");
 }

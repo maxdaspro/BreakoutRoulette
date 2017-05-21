@@ -3,7 +3,7 @@ class Canon {
 
         this.position = position;
 
-        this.sprite = game.add.sprite(-1000, -1000, 'canon');
+        this.sprite = game.add.sprite(0, 0, 'canon');
 
         game.physics.arcade.enable(this.sprite);
 
