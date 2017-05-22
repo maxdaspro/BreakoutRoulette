@@ -241,6 +241,12 @@ var Helper = {
                 graphics.drawCircle(0, 0, radius * 2);
 
                 return graphics;
+            },
+            setCircle: function (sprite, radius) {
+                sprite.body.setCircle(radius,
+                    (-radius + (0.5 * sprite.width) / sprite.scale.x),
+                    (-radius + (0.5 * sprite.height) / sprite.scale.y)
+                );
             }
         }
     }

@@ -16,11 +16,13 @@ class Roulette {
         this.clickBefore = {
             body: null,
             content: 'cliquez pour lancer le jeu',
-            style: {font: "50px Arial",
+            style: {
+                font: "50px Arial",
                 fill: "#1C2ADD",
                 align: "center",
                 boundsAlignH: "top",
-                boundsAlignV: "top"},
+                boundsAlignV: "top"
+            },
             x: this.position.x - 265,
             y: this.position.y - 350
         };
@@ -36,33 +38,72 @@ class Roulette {
 
         /*************/
 
+        this.lines = 4;
+        this.amount = 16;
         this.min = 1;
         this.max = 9;
-        this.amountCase = 16;
-        this.angleCase = 360 / this.amountCase;
+        this.stepAngle = 360 / this.amount;
 
-        this.items = this.generateCases();
+        this.items = [];
 
-        this.showCases();
+        this.generateItems()
     }
 
-    generateCases() {
+    generateItems() {
 
-        let circles = [];
+        for (let i = 0; i < this.lines; i++) {
 
-        for (let i = 0; i < 4; i++) {
+            this.items[i] = [];
 
-            circles[i] = [];
+            for (let j = 0; j < this.amount; j++) {
 
-            for (let j = 0; j < this.amountCase; j++) {
-                circles[i][j] = {};
-                circles[i][j].index = j;
-                circles[i][j].angle = this.angleCase * j;
-                circles[i][j].number = Helper.randomValueIncl(this.min, this.max)
+                let index = (i + 1);
+
+                this.items[i][j] = new Item(
+                    index,                                          //line
+                    Helper.randomValueIncl(this.min, this.max), //number
+                    'case' + index,                             //sprite name
+                    this.position,                              //position
+                    new Vector(53 * index, 0),                  //pivot
+                    this.stepAngle,                             //stepAngle
+                    this.stepAngle * j,                         //angle
+                );
             }
         }
 
-        return circles;
+        // for (let i = 0; i < this.amount; i++) {
+        //
+        //     this.items[i] = [];
+        //
+        //     for (let j = 0; j < this.lines; j++) {
+        //
+        //         let index = (j + 1);
+        //
+        //         this.items[i][j] = new Item(
+        //             Helper.randomValueIncl(this.min, this.max),
+        //             'case' + index,
+        //             this.position,
+        //             new Vector(53 * index, 0),
+        //             this.stepAngle,
+        //             this.stepAngle * i,
+        //         );
+        //     }
+        // }
+
+        // for (let i = 1; i <= this.amount; i++) {
+        //
+        //     for (let j = 0; j <= this.lines; j++) {
+        //
+        //         this.items[i * j] = new Item(
+        //             Helper.randomValueIncl(this.min, this.max),
+        //             'case' + j,
+        //             this.position,
+        //             new Vector(53 * j, 0),
+        //             this.stepAngle,
+        //             this.stepAngle * i,
+        //         );
+        //     }
+        // }
     }
 
     showCases() {
@@ -157,13 +198,14 @@ class Roulette {
             }
         }
     }
-    removeText(){
+
+    removeText() {
         this.clickBefore.destroy();
         this.chrono.start();
-    }   
-    
-    update(){
-    	this.chrono.update();
     }
-    
+
+    update() {
+        this.chrono.update();
+    }
+
 }

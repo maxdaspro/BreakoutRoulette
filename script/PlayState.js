@@ -54,7 +54,6 @@ PlayState.create = function () {
     players['maxime'] = new Player('maxime', 135, 0xC64191);
     players['olivier'] = new Player('olivier', -45, 0x00BFB2);
     players['gaspard'] = new Player('gaspard', -135, 0xE0A890);
-    console.log(players)
 
 /*    for (var i = 0; i < players.length; i++) {
         players[i].displayScore()
@@ -102,25 +101,33 @@ PlayState.update = function () {
 
 PlayState.render = function () {
 
-    for (let j = 0; j < roulette.items.length; j++) {
-
-        let cases = roulette.items[j];
-
-        for (let k = 0; k < cases.length; k++) {
-            let hitCircles = cases[k].hitCircles;
-
-            for (let l = 0; l < hitCircles.length; l++) {
-
-                for (let m = 0; m < hitCircles[l].length; m++) {
-
-                    let hitCircle = hitCircles[l][m];
-
-                    game.debug.body(hitCircle);
-                }
-            }
-        }
-
-    }
+    // for (let j = 0; j < roulette.items.length; j++) {
+    //
+    //     let cases = roulette.items[j];
+    //
+    //     for (let k = 0; k < cases.length; k++) {
+    //         let hitCircles = cases[k].hitCircles;
+    //
+    //         for (let l = 0; l < hitCircles.length; l++) {
+    //
+    //             for (let m = 0; m < hitCircles[l].length; m++) {
+    //
+    //                 let hitCircle = hitCircles[l][m];
+    //
+    //                 game.debug.body(hitCircle);
+    //             }
+    //         }
+    //     }
+    //
+    // }
+    // for(let key in players){
+    //     let player = players[key];
+    //     let bullets = player.canon.weapon.getBullets();
+    //
+    //     for(let i=0; i < bullets.length; i++){
+    //         game.debug.body(bullets[i])
+    //     }
+    // }
 
     // game.debug.body(bases['base2'].canon.sprite);
     // game.debug.cameraInfo(game.camera, 32, 32);

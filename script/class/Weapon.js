@@ -16,6 +16,8 @@ class Weapon {
             bullet.width = 14;
             bullet.height = 14;
             bullet.tint = color;
+
+            Helper.Phaser.setCircle(bullet, 2);
         }, this);
 
         // this.emitter = game.add.emitter(50, 50, 100);
@@ -52,31 +54,16 @@ class Weapon {
         let bullets = this.getBullets();
 
         for (let i = 0; i < bullets.length; i++) {
-            let bullet = bullets[i];
-
-            // game.physics.arcade.collide(bullet, layers.contour, this.hitBounds.bind(this));
 
             for (let j = 0; j < roulette.items.length; j++) {
 
-                let cases = roulette.items[j];
+                let line = roulette.items[j];
 
-                for (let k = 0; k < cases.length; k++) {
+                for (let k = 0; k < line.length; k++) {
 
-                    let item = cases[k];
+                    let item = line[k];
 
-                    // let sprite = cases[k].sprite;
-                    let hitCircles = cases[k].hitCircles;
-
-                    // console.log(hitCircles);
-                    // debugger
-
-                    for (let l = 0; l < hitCircles.length; l++) {
-
-                        let hitCircle = hitCircles[l];
-
-                        game.physics.arcade.overlap(bullet, hitCircle, this.hitItem.bind(this, item));
-
-                    }
+                    game.physics.arcade.overlap(bullets[i], item.hitbox, this.hitItem.bind(this, item));
                 }
             }
         }
@@ -86,7 +73,7 @@ class Weapon {
         // console.log(item.number);
         bulletSprite.kill();
         item.destroy();
-        console.log('merde', item.number);
+        console.log('number :', item.number);
     }
 
     hitBounds(bullet) {
