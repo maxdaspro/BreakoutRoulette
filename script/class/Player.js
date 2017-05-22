@@ -15,7 +15,7 @@ class Player {
         this.level;
         this.score = 0;
         this.scoreText;
-        this.scoreStyle = { font: "60px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
+        this.scoreStyle = { font: "70px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
 
         this.numberText;
         this.numberStyle = { font: "30px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};

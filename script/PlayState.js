@@ -54,10 +54,10 @@ PlayState.create = function () {
 /*    for (var i = 0; i < players.length; i++) {
         players[i].displayScore()
     }*/
-    players['bernard'].displayNumber(80,120);
-    players['maxime'].displayNumber(780,120);
-    players['olivier'].displayNumber(80,810);
-    players['gaspard'].displayNumber(780,810);
+    players['bernard'].displayNumber(80,125);
+    players['maxime'].displayNumber(780,125);
+    players['olivier'].displayNumber(80,815);
+    players['gaspard'].displayNumber(780,815);
 
     players['bernard'].displayScore(80,80);
     players['maxime'].displayScore(780,80);
