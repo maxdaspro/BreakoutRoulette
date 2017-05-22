@@ -121,7 +121,6 @@ class Player {
             this.numberStyle
         );
         this.numberText.anchor.set( .5, .5);
-        this.numberText.rotation *= this.angle;
     }
 
     displayScore(x,y){ 
@@ -132,7 +131,6 @@ class Player {
             this.scoreStyle
         );
         this.scoreText.anchor.set( .5, .5);
-        this.scoreText.rotation *= this.angle;
     }
 
 
