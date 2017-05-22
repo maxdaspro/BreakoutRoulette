@@ -9,7 +9,7 @@ class Weapon {
 
         this.weapon.bullets.setAll("collideWorldBounds", true);
 
-        this.weapon.bulletSpeed = 850;
+        this.weapon.bulletSpeed = 500;
         this.weapon.fireRate = 150;
 
         this.weapon.bullets.forEach(bullet => {
@@ -54,9 +54,39 @@ class Weapon {
         for (let i = 0; i < bullets.length; i++) {
             let bullet = bullets[i];
 
-            game.physics.arcade.collide(bullet, layers.contour, this.hitBounds.bind(this));
+            // game.physics.arcade.collide(bullet, layers.contour, this.hitBounds.bind(this));
 
+            for (let j = 0; j < roulette.items.length; j++) {
+
+                let cases = roulette.items[j];
+
+                for (let k = 0; k < cases.length; k++) {
+
+                    let item = cases[k];
+
+                    // let sprite = cases[k].sprite;
+                    let hitCircles = cases[k].hitCircles;
+
+                    // console.log(hitCircles);
+                    // debugger
+
+                    for (let l = 0; l < hitCircles.length; l++) {
+
+                        let hitCircle = hitCircles[l];
+
+                        game.physics.arcade.overlap(bullet, hitCircle, this.hitItem.bind(this, item));
+
+                    }
+                }
+            }
         }
+    }
+
+    hitItem(item, bulletSprite, circleSprite) {
+        // console.log(item.number);
+        bulletSprite.kill();
+        item.destroy();
+        console.log('merde', item.number);
     }
 
     hitBounds(bullet) {

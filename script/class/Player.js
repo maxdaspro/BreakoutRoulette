@@ -22,13 +22,13 @@ class Player {
 
         this.canon.update();
 
-        for (let key in players) {
-            let player = players[key];
-
-            if (player !== this) {
-                game.physics.arcade.collide(player.canon.sprite, this.canon.sprite, this.collideCanon.bind(this, player));
-            }
-        }
+        // for (let key in players) {
+        //     let player = players[key];
+        //
+        //     if (player !== this) {
+        //         game.physics.arcade.collide(player.canon.sprite, this.canon.sprite, this.collideCanon.bind(this, player));
+        //     }
+        // }
     }
 
     collideCanon(player1, player2, cSprite1, cSprite2) {
