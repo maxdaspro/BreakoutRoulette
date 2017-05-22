@@ -115,7 +115,6 @@ class Player {
         );
         this.scoreText.anchor.set( .5, .5);
         this.scoreText.rotation *= this.angle;
-        console.log('score')
     }
 
 }
