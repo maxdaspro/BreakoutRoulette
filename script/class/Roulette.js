@@ -4,12 +4,37 @@ class Roulette {
 
         this.position = position;
 
-<<<<<<< HEAD
-        // this.center = Helper.Phaser.drawPoint(position, 0xA6AAB0, 160);
-        // this.center.alpha = 0;
+        /*MAXIME*/
+        this.center = Helper.Phaser.drawPoint(position, 0xA6AAB0, 160);
+        this.center.alpha = 0;
+        this.chrono = new Chrono(new Vector(
+            GLOBAL.HALFWIDTH,
+            GLOBAL.HALFHEIGHT
+        ))
 
-        // let graph = Helper.Phaser.drawPoint(position, 0xFFFFFF, 288);
-        // graph.alpha = 0.4;
+        // Helper.Phaser.drawPoint(position, 0xFF0000, 1);
+        this.clickBefore = {
+            body: null,
+            content: 'cliquez pour lancer le jeu',
+            style: {font: "50px Arial",
+                fill: "#1C2ADD",
+                align: "center",
+                boundsAlignH: "top",
+                boundsAlignV: "top"},
+            x: this.position.x - 265,
+            y: this.position.y - 350
+        };
+
+        this.clickBefore = game.add.text(
+            this.clickBefore.x,
+            this.clickBefore.y,
+            this.clickBefore.content,
+            this.clickBefore.style
+        );
+
+        game.input.onDown.addOnce(this.removeText, this);
+
+        /*************/
 
         this.min = 1;
         this.max = 9;
@@ -44,7 +69,7 @@ class Roulette {
 
         for (let i = 0; i < this.items.length; i++) {
             let cases = this.items[i];
-            
+
 
             for (let j = 0; j < cases.length; j++) {
 
@@ -91,8 +116,8 @@ class Roulette {
 
                 item.hitCircles = [];
 
-                for (let k = 0, z=1; k < 2; k++, z+=2) {
-                    let graph = game.add.graphics(0,0);
+                for (let k = 0, z = 1; k < 2; k++, z += 2) {
+                    let graph = game.add.graphics(0, 0);
                     graph.beginFill(0xFF3300);
                     graph.lineStyle(0);
                     graph.beginFill(0xFFFF0B, 0.5);
@@ -108,7 +133,7 @@ class Roulette {
                     sprite.anchor.setTo(0.5);
                     sprite.pivot.x = 53 * (i + 1) + 44;
                     sprite.pivot.y = 0;
-                    sprite.angle = item.angle + this.angleCase * (0.25*z);
+                    sprite.angle = item.angle + this.angleCase * (0.25 * z);
 
                     sprite.alpha = 0;
 
@@ -118,11 +143,11 @@ class Roulette {
                         (-sprite.radius + (0.5 * sprite.height) / sprite.scale.y)
                     );
 
-                    item.hitCircles[k]= sprite;
+                    item.hitCircles[k] = sprite;
                 }
 
                 item.destroy = function () {
-                    for(let i=0; i < item.hitCircles.length; i++){
+                    for (let i = 0; i < item.hitCircles.length; i++) {
                         let circle = item.hitCircles[i];
                         circle.destroy()
                     }
@@ -131,35 +156,6 @@ class Roulette {
                 }
             }
         }
-=======
-        this.center = Helper.Phaser.drawPoint(position, 0xA6AAB0, 160);
-        this.center.alpha = 0;
-        this.chrono = new Chrono(new Vector(
-	        		GLOBAL.HALFWIDTH,
-	        		GLOBAL.HALFHEIGHT
-    				))
-
-        // Helper.Phaser.drawPoint(position, 0xFF0000, 1);
-         this.clickBefore = {
-            body: null,
-            content: 'cliquez pour lancer le jeu',
-            style: {font: "50px Arial",
-            		fill: "#1C2ADD",
-            		align: "center",
-            		boundsAlignH: "top",
-            		boundsAlignV: "top"},
-            x: this.position.x - 265,
-            y: this.position.y - 350
-        };
-
-        this.clickBefore = game.add.text(
-            this.clickBefore.x,
-            this.clickBefore.y,
-            this.clickBefore.content,
-            this.clickBefore.style
-        );
-
-        game.input.onDown.addOnce(this.removeText, this);
     }
     removeText(){
         this.clickBefore.destroy();
@@ -167,9 +163,7 @@ class Roulette {
     }   
     
     update(){
-
     	this.chrono.update();
->>>>>>> chrono
     }
     
 }
