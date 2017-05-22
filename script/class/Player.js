@@ -12,6 +12,14 @@ class Player {
 
         this.widthAngle = 8;
 
+        this.level;
+        this.score = 0;
+        this.scoreText;
+        this.scoreStyle = { font: "70px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
+
+        this.numberText;
+        this.numberStyle = { font: "30px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
+
         this.canon = new Canon(new Vector(
             GLOBAL.HALFWIDTH,
             GLOBAL.HALFHEIGHT
@@ -81,4 +89,50 @@ class Player {
         }
         return result;
     }
+
+    getNumber(){
+        switch (this.level) {
+            case 1:
+                return Helper.randomValue(10,25)
+                break;
+            case 2:
+                return Helper.randomValue(20,45)
+                break;
+            case 3:
+                return Helper.randomValue(30,60)
+                break;
+            case 4:
+                return Helper.randomValue(40,80)
+                break;
+            case 5:
+                return Helper.randomValue(50,100)
+                break;
+            default:
+                return Helper.randomValue(1,15)
+                break;
+        }
+    }
+
+    displayNumber(x,y){
+        this.numberText = game.add.text(
+            x,
+            y,
+            this.getNumber(), 
+            this.numberStyle
+        );
+        this.numberText.anchor.set( .5, .5);
+    }
+
+    displayScore(x,y){ 
+        this.scoreText = game.add.text(
+            x,
+            y,
+            this.score, 
+            this.scoreStyle
+        );
+        this.scoreText.anchor.set( .5, .5);
+    }
+
+
+
 }

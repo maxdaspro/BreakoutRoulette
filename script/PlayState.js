@@ -53,6 +53,21 @@ PlayState.create = function () {
     players['maxime'] = new Player('maxime', 135, 0xC64191);
     players['olivier'] = new Player('olivier', -45, 0x00BFB2);
     players['gaspard'] = new Player('gaspard', -135, 0xE0A890);
+    console.log(players)
+
+/*    for (var i = 0; i < players.length; i++) {
+        players[i].displayScore()
+    }*/
+    players['bernard'].displayNumber(80,125);
+    players['maxime'].displayNumber(780,125);
+    players['olivier'].displayNumber(80,815);
+    players['gaspard'].displayNumber(780,815);
+
+    players['bernard'].displayScore(80,80);
+    players['maxime'].displayScore(780,80);
+    players['olivier'].displayScore(80,770);
+    players['gaspard'].displayScore(780,770);
+
 }
 
 PlayState.update = function () {
