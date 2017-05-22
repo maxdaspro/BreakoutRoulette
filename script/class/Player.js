@@ -12,6 +12,13 @@ class Player {
 
         this.widthAngle = 8;
 
+        this.score = 0;
+        this.scoreText;
+        this.scoreStyle = { font: "55px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
+
+        this.numberText;
+        this.numberStyle = { font: "30px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
+
         this.canon = new Canon(new Vector(
             GLOBAL.HALFWIDTH,
             GLOBAL.HALFHEIGHT
@@ -81,4 +88,34 @@ class Player {
         }
         return result;
     }
+
+/*    displayScore(){ 
+        this.text = game.add.text(this.position.x, this.position.y, this.score, this.style);
+        this.text.anchor.set( .5, .5);
+        this.text.rotation *= this.angle;
+    }*/
+
+    displayNumber(x,y){
+        this.numberText = game.add.text(
+            x,
+            y,
+            Helper.randomValue(1,100), 
+            this.numberStyle
+        );
+        this.numberText.anchor.set( .5, .5);
+        this.numberText.rotation *= this.angle;
+    }
+
+    displayScore(x,y){ 
+        this.scoreText = game.add.text(
+            x,
+            y,
+            this.score, 
+            this.scoreStyle
+        );
+        this.scoreText.anchor.set( .5, .5);
+        this.scoreText.rotation *= this.angle;
+        console.log('score')
+    }
+
 }
