@@ -12,6 +12,7 @@ class Player {
 
         this.widthAngle = 8;
 
+        this.level;
         this.score = 0;
         this.scoreText;
         this.scoreStyle = { font: "60px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
@@ -89,17 +90,34 @@ class Player {
         return result;
     }
 
-/*    displayScore(){ 
-        this.text = game.add.text(this.position.x, this.position.y, this.score, this.style);
-        this.text.anchor.set( .5, .5);
-        this.text.rotation *= this.angle;
-    }*/
+    getNumber(){
+        switch (this.level) {
+            case 1:
+                return Helper.randomValue(10,25)
+                break;
+            case 2:
+                return Helper.randomValue(20,45)
+                break;
+            case 3:
+                return Helper.randomValue(30,60)
+                break;
+            case 4:
+                return Helper.randomValue(40,80)
+                break;
+            case 5:
+                return Helper.randomValue(50,100)
+                break;
+            default:
+                return Helper.randomValue(1,15)
+                break;
+        }
+    }
 
     displayNumber(x,y){
         this.numberText = game.add.text(
             x,
             y,
-            Helper.randomValue(15,50), 
+            this.getNumber(), 
             this.numberStyle
         );
         this.numberText.anchor.set( .5, .5);
@@ -116,5 +134,7 @@ class Player {
         this.scoreText.anchor.set( .5, .5);
         this.scoreText.rotation *= this.angle;
     }
+
+
 
 }
