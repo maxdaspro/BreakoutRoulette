@@ -15,6 +15,7 @@ PlayState.preload = function () {
     game.load.image("map", GLOBAL.DIR.IMAGE + "map.png");
     game.load.image("canon", GLOBAL.DIR.IMAGE + "canon.png");
     game.load.image("bullet", GLOBAL.DIR.IMAGE + "bullet.png");
+    game.load.image("chronom", GLOBAL.DIR.IMAGE + "chrono.png");
 }
 
 PlayState.create = function () {
@@ -39,7 +40,7 @@ PlayState.create = function () {
     // layers = {
     //     contour: map.createLayer('contour')
     // };
-
+    
     roulette = new Roulette(new Vector(
         GLOBAL.HALFWIDTH,
         GLOBAL.HALFHEIGHT
@@ -52,6 +53,8 @@ PlayState.create = function () {
 }
 
 PlayState.update = function () {
+
+    roulette.update();
 
     for (let key in players) {
         let player = players[key];
