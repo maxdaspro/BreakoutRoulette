@@ -99,7 +99,7 @@ class Player {
         this.numberText = game.add.text(
             x,
             y,
-            Helper.randomValue(1,100), 
+            Helper.randomValue(15,50), 
             this.numberStyle
         );
         this.numberText.anchor.set( .5, .5);
