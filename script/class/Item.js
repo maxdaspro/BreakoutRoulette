@@ -45,14 +45,14 @@ class Item {
         this.container.angle = this.angle + this.stepAngle / 2.2;
 
         this.hitbox = game.add.group();
+        this.hitbox.enableBody = true;
+        this.hitbox.physicsBodyType = Phaser.Physics.ARCADE;
 
         for (let i = 0, j = 1; i < 2; i++, j += 2) {
 
             let hitSprite = game.add.sprite(0, 0);
 
             hitSprite.addChild(Helper.Phaser.drawPoint(new Vector(0, 0), 0x69C641, (this.sprite.width * 0.07) * this.line));
-
-            game.physics.arcade.enable(hitSprite);
 
             hitSprite.x = this.position.x;
             hitSprite.y = this.position.y;
@@ -61,7 +61,7 @@ class Item {
             hitSprite.pivot.y = this.pivot.y;
             hitSprite.angle = this.angle + this.stepAngle * (0.235 * j);
 
-            // hitSprite.alpha = 0;
+            hitSprite.alpha = 0;
 
             // Helper.Phaser.setCircle(hitSprite, hitSprite.width * 0.5);
 
