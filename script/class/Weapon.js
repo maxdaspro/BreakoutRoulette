@@ -1,5 +1,7 @@
 class Weapon {
-    constructor(sprite, color) {
+    constructor(sprite, color, player) {
+
+        this.player = player;
 
         this.weapon = game.add.weapon(10, 'bullet');
 
@@ -19,8 +21,6 @@ class Weapon {
 
             Helper.Phaser.setCircle(bullet, 2);
         }, this);
-
-        this.valueItem;
 
         // this.emitter = game.add.emitter(50, 50, 100);
         //
@@ -75,9 +75,8 @@ class Weapon {
         // console.log(item.number);
         bulletSprite.kill();
         item.destroy();
-        //console.log('number :', item.number);
-        this.valueItem = item.number;
-        
+        console.log('number :', item.number);
+        this.player.setScore(item.number)   
     }
 
     hitBounds(bullet) {
