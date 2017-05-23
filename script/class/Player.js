@@ -1,11 +1,13 @@
 class Player {
-    constructor(name, angle, color) {
+    constructor(name, angle, color, position) {
 
         this.name = name || 'none';
         this.color = color || 0x555555;
 
         this.score = 0;
         this.number = null;
+        this.position = position;
+
         this.findNumbers = [];
 
         this.angle = angle;
@@ -23,12 +25,18 @@ class Player {
         this.canon = new Canon(new Vector(
             GLOBAL.HALFWIDTH,
             GLOBAL.HALFHEIGHT
-        ), angle, this.color);
+        ), angle, this.color, this);
+
+
+        this.displayScore();
+        this.displayNumber();
+
     }
 
     update() {
 
         this.canon.update();
+        this.displayScore();
 
         // for (let key in players) {
         //     let player = players[key];
@@ -123,10 +131,10 @@ class Player {
      * @param  {[type]} y position en y du nombre
      * @return {[type]}   [description]
      */
-    displayNumber(x,y){
+    displayNumber(){
         this.numberText = game.add.text(
-            x,
-            y,
+            this.position.x,
+            this.position.y + 45,
             this.getNumber(), 
             this.numberStyle
         );
@@ -149,14 +157,18 @@ class Player {
      * @param  {[type]} y position en y du score
      * @return {[type]}   [description]
      */
-    displayScore(x,y){ 
+    displayScore(){ 
         this.scoreText = game.add.text(
-            x,
-            y,
+            this.position.x,
+            this.position.y,
             this.score, 
             this.scoreStyle
         );
         this.scoreText.anchor.set( .5, .5);
+    }
+
+    removeScore(){
+        this.scoreText.destroy();
     }
 
 

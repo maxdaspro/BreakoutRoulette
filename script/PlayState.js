@@ -50,27 +50,11 @@ PlayState.create = function () {
         GLOBAL.HALFHEIGHT
     ))
 
-    players['bernard'] = new Player('bernard', 45, 0xffa800);
-    players['maxime'] = new Player('maxime', 135, 0xC64191);
-    players['olivier'] = new Player('olivier', -45, 0x00BFB2);
-    players['gaspard'] = new Player('gaspard', -135, 0xE0A890);
+    players['bernard'] = new Player('bernard', 45, 0xffa800, new Vector(80,80));
+    players['maxime'] = new Player('maxime', 135, 0xC64191, new Vector(780,80));
+    players['olivier'] = new Player('olivier', -45, 0x00BFB2, new Vector(80,770));
+    players['gaspard'] = new Player('gaspard', -135, 0xE0A890, new Vector(780,770));
 
-    /*    for (var i = 0; i < players.length; i++) {
-     players[i].displayScore()
-     }*/
-    players['bernard'].displayNumber(80, 125);
-    players['maxime'].displayNumber(780, 125);
-    players['olivier'].displayNumber(80, 815);
-    players['gaspard'].displayNumber(780, 815);
-
-    players['bernard'].displayScore(80,80);
-    players['maxime'].displayScore(780,80);
-    players['olivier'].displayScore(80,770)
-    players['gaspard'].displayScore(780,770);
-
-    console.log(players['olivier'].score)
-
-    console.log(players['olivier'].getScore(2));
 }
 
 PlayState.update = function () {
@@ -100,13 +84,6 @@ PlayState.update = function () {
     if (spacebar.justDown) {
         players['olivier'].shoot();
     }
-
-    /********************* Scores **********************************/
-    console.log(players['olivier'].canon.weapon.valueItem)
-   
-    //let test = players['olivier'].getScore(players['olivier'].canon.weapon.valueItem);
-
-
     
 }
 
