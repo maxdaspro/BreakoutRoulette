@@ -10,32 +10,6 @@ class Roulette {
         /*MAXIME*/
         this.chrono = new Chrono(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
 
-        // Helper.Phaser.drawPoint(position, 0xFF0000, 1);
-        // this.clickBefore = {
-        //     body: null,
-        //     content: 'cliquez pour lancer le jeu',
-        //     style: {
-        //         font: "50px Arial",
-        //         fill: "#1C2ADD",
-        //         align: "center",
-        //         boundsAlignH: "top",
-        //         boundsAlignV: "top"
-        //     },
-        //     x: this.position.x - 265,
-        //     y: this.position.y - 350
-        // };
-
-        // this.clickBefore = game.add.text(
-        //     this.clickBefore.x,
-        //     this.clickBefore.y,
-        //     this.clickBefore.content,
-        //     this.clickBefore.style
-        // );
-        //
-        // game.input.onDown.addOnce(this.removeText, this);
-
-        /*************/
-
         this.lines = 4;
         this.amount = 16;
         this.min = 1;
@@ -61,10 +35,37 @@ class Roulette {
         this.chrono.update();
     }
 
-    // removeText() {
-    //     this.clickBefore.destroy();
-    //     this.chrono.start();
-    // }
+    showInfo() {
+        // Helper.Phaser.drawPoint(position, 0xFF0000, 1);
+        // this.clickBefore = {
+        //     body: null,
+        //     content: 'cliquez pour lancer le jeu',
+        //     style: {
+        //         font: "50px Arial",
+        //         fill: "#1C2ADD",
+        //         align: "center",
+        //         boundsAlignH: "top",
+        //         boundsAlignV: "top"
+        //     },
+        //     x: this.position.x - 265,
+        //     y: this.position.y - 350
+        // };
+
+        // this.clickBefore = game.add.text(
+        //     this.clickBefore.x,
+        //     this.clickBefore.y,
+        //     this.clickBefore.content,
+        //     this.clickBefore.style
+        // );
+        //
+        // game.input.onDown.addOnce(this.removeText, this);
+
+        /*************/
+    }
+
+    removeInfo() {
+        
+    }
 
     generateItems() {
 
