@@ -6,7 +6,11 @@ class Roulette {
 
         this.centerSprite = game.add.sprite(this.position.x, this.position.y, 'chronom');
         this.centerSprite.anchor.setTo(0.5);
+
         game.physics.arcade.enable(this.centerSprite);
+
+        this.centerSprite.body.immovable = true;
+
         Helper.Phaser.setCircle(this.centerSprite, this.centerSprite.width * 0.5)
 
         /*MAXIME*/
