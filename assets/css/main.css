@@ -7,3 +7,26 @@ h1{
 #game canvas{
 	margin:auto;
 }
+
+#menu{
+	position: absolute;
+	top:100px;
+	left:50%;
+	transform: translateX(-50%);
+	border: 1px solid red;
+	width: 600px;
+	height: 600px;
+	background-color: #444;
+	opacity: .95;
+}
+.button{
+	display: block;
+	width:200px;
+	text-align: center;
+	padding: 2em;
+	background-color: #b7ff0e;
+	text-decoration: none;
+	font-family: tahoma;
+	font-size: 20px;
+	font-weight: bold;
+}
