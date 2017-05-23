@@ -1,34 +1,46 @@
 class Player {
-    constructor(name, angle, color) {
+    constructor(name, angle, stepAngle, color, position) {
 
         this.name = name || 'none';
         this.color = color || 0x555555;
 
-        this.score = null;
+        this.score = 0;
         this.number = null;
+        this.position = position;
+
         this.findNumbers = [];
 
         this.angle = angle;
+        this.stepAngle = stepAngle;
 
         this.widthAngle = 8;
 
         this.level;
         this.score = 0;
-        this.scoreText;
-        this.scoreStyle = { font: "70px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
+        this.scoreStyle = { font: "50px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
+        this.scoreText = game.add.text(
+            this.position.x,
+            this.position.y,
+            this.score,
+            this.scoreStyle
+        );
 
         this.numberText;
-        this.numberStyle = { font: "30px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
+        this.numberStyle = { font: "20px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
 
         this.canon = new Canon(new Vector(
             GLOBAL.HALFWIDTH,
             GLOBAL.HALFHEIGHT
-        ), angle, this.color);
+        ), this.angle, this.stepAngle, this.color, this);
+
+        this.displayScore();
+        this.displayNumber();
     }
 
     update() {
 
         this.canon.update();
+        this.displayScore();
 
         // for (let key in players) {
         //     let player = players[key];
@@ -90,6 +102,10 @@ class Player {
         return result;
     }
 
+    /**
+     * Génère un nombre suivant le niveau
+     * @return {[type]} [description]
+     */
     getNumber(){
         switch (this.level) {
             case 1:
@@ -113,26 +129,44 @@ class Player {
         }
     }
 
-    displayNumber(x,y){
+    /**
+     * affiche le nombre à atteindre
+     * @param  {[type]} x position en x du nombre
+     * @param  {[type]} y position en y du nombre
+     * @return {[type]}   [description]
+     */
+    displayNumber(){
         this.numberText = game.add.text(
-            x,
-            y,
+            this.position.x,
+            this.position.y + 45,
             this.getNumber(), 
             this.numberStyle
         );
         this.numberText.anchor.set( .5, .5);
     }
 
-    displayScore(x,y){ 
-        this.scoreText = game.add.text(
-            x,
-            y,
-            this.score, 
-            this.scoreStyle
-        );
+    /**
+     * calcul du score
+     * @param  {[type]} score [description]
+     * @return {[type]}       [description]
+     */
+    setScore(score){
+        this.score += score;
+        return this.score;
+    }
+
+    /**
+     * affiche le score du joueur
+     * @param  {[type]} x position en x du score
+     * @param  {[type]} y position en y du score
+     * @return {[type]}   [description]
+     */
+    displayScore(){
+        this.scoreText.setText(this.score);
         this.scoreText.anchor.set( .5, .5);
     }
 
-
-
+    removeScore(){
+        this.scoreText.destroy();
+    }
 }

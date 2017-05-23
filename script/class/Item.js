@@ -8,8 +8,8 @@ class Item {
         this.type = type;
         this.position = position;
         this.pivot = pivot;
-        this.angle = angle;
         this.stepAngle = stepAngle;
+        this.angle = angle + (this.stepAngle * 0.5);
 
         this.sprite = game.add.sprite(this.position.x, this.position.y, type);
 
@@ -20,7 +20,7 @@ class Item {
         this.sprite.anchor.setTo(1);
         this.sprite.pivot.x = this.pivot.x;
         this.sprite.pivot.y = this.pivot.y;
-        this.sprite.angle = angle;
+        this.sprite.angle = this.angle;
 
         // cases[j].sprite.alpha = 0;
 
@@ -48,18 +48,20 @@ class Item {
         this.hitbox.enableBody = true;
         this.hitbox.physicsBodyType = Phaser.Physics.ARCADE;
 
+        let color = Helper.randomHexNumber();
+
         for (let i = 0, j = 1; i < 2; i++, j += 2) {
 
             let hitSprite = game.add.sprite(0, 0);
 
-            hitSprite.addChild(Helper.Phaser.drawPoint(new Vector(0, 0), 0x69C641, (this.sprite.width * 0.07) * this.line));
+            hitSprite.addChild(Helper.Phaser.drawPoint(new Vector(0, 0), color, (this.sprite.width * 0.1) * this.line));
 
             hitSprite.x = this.position.x;
             hitSprite.y = this.position.y;
             hitSprite.anchor.setTo(0.5);
             hitSprite.pivot.x = this.pivot.x + this.sprite.width / 2;
             hitSprite.pivot.y = this.pivot.y;
-            hitSprite.angle = this.angle + this.stepAngle * (0.235 * j);
+            hitSprite.angle = this.angle + this.stepAngle * (0.2 * j) + 2;
 
             hitSprite.alpha = 0;
 

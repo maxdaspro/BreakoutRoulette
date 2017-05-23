@@ -1,5 +1,7 @@
 class Weapon {
-    constructor(sprite, color) {
+    constructor(sprite, color, player) {
+
+        this.player = player;
 
         this.weapon = game.add.weapon(10, 'bullet');
 
@@ -13,11 +15,11 @@ class Weapon {
         this.weapon.fireRate = 150;
 
         this.weapon.bullets.forEach(bullet => {
-            bullet.width = 14;
-            bullet.height = 14;
+            bullet.width = 12;
+            bullet.height = 12;
             bullet.tint = color;
 
-            Helper.Phaser.setCircle(bullet, 2);
+            Helper.Phaser.setCircle(bullet, 4);
         }, this);
 
         // this.emitter = game.add.emitter(50, 50, 100);
@@ -55,6 +57,8 @@ class Weapon {
 
         for (let i = 0; i < bullets.length; i++) {
 
+            game.physics.arcade.collide(bullets[i], roulette.centerSprite, this.hitCenter.bind(this, roulette));
+
             for (let j = 0; j < roulette.items.length; j++) {
 
                 let line = roulette.items[j];
@@ -63,7 +67,7 @@ class Weapon {
 
                     let item = line[k];
 
-                    game.physics.arcade.overlap(bullets[i], item.hitbox, this.hitItem.bind(this, item));
+                    game.physics.arcade.collide(bullets[i], item.hitbox, this.hitItem.bind(this, item));
                 }
             }
         }
@@ -73,15 +77,12 @@ class Weapon {
         // console.log(item.number);
         bulletSprite.kill();
         item.destroy();
-        console.log('number :', item.number);
+        // console.log('number :', item.number);
+        this.player.setScore(item.number)   
     }
-
-    hitBounds(bullet) {
-        bullet.rebond++;
-        if (bullet.rebond > bullet.maxRebond) {
-            this.particleBurst(bullet.position);
-            bullet.kill();
-            bullet.rebond = 0;
-        }
+    hitCenter(roulette, bulletSprite) {
+        console.log('hit center');
+        bulletSprite.kill();
+        roulette.end()
     }
 } 

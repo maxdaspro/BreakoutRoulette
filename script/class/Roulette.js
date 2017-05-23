@@ -6,6 +6,8 @@ class Roulette {
 
         this.centerSprite = game.add.sprite(this.position.x, this.position.y, 'chronom');
         this.centerSprite.anchor.setTo(0.5);
+        game.physics.arcade.enable(this.centerSprite);
+        Helper.Phaser.setCircle(this.centerSprite, this.centerSprite.width * 0.5)
 
         /*MAXIME*/
         this.chrono = new Chrono(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
@@ -23,12 +25,12 @@ class Roulette {
     }
 
     start(){
-        this.chrono.start(2, this.end.bind(this));
+        this.chrono.start(20, this.end.bind(this));
     }
     
     end(){
         this.centerSprite.tint = 0xF70404;
-        console.log('end');
+        this.chrono.stop();
     }
 
     update() {

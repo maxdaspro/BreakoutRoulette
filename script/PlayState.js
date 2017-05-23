@@ -48,26 +48,24 @@ PlayState.create = function () {
     roulette = new Roulette(new Vector(
         GLOBAL.HALFWIDTH,
         GLOBAL.HALFHEIGHT
-    ))
+    ));
 
-    players['bernard'] = new Player('bernard', 45, 0xffa800);
-    players['maxime'] = new Player('maxime', 135, 0xC64191);
-    players['olivier'] = new Player('olivier', -45, 0x00BFB2);
-    players['gaspard'] = new Player('gaspard', -135, 0xE0A890);
+    let stepAngle = 22.5;
+    let step = stepAngle * 0.5;
 
-    /*    for (var i = 0; i < players.length; i++) {
-     players[i].displayScore()
-     }*/
-    players['bernard'].displayNumber(80, 125);
-    players['maxime'].displayNumber(780, 125);
-    players['olivier'].displayNumber(80, 815);
-    players['gaspard'].displayNumber(780, 815);
+    players['bernard'] = new Player('bernard', step * 4, stepAngle, 0xffa800, new Vector(80,80));
+    players['maxime'] = new Player('maxime', step * 12, stepAngle, 0xC64191, new Vector(780,80));
+    players['olivier'] = new Player('olivier', step * -4, stepAngle, 0x00BFB2, new Vector(80,770));
+    players['gaspard'] = new Player('gaspard', step * -12, stepAngle, 0xE0A890, new Vector(780,770));
 
-    players['bernard'].displayScore(80, 80);
-    players['maxime'].displayScore(780, 80);
-    players['olivier'].displayScore(80, 770);
-    players['gaspard'].displayScore(780, 770);
-
+    let left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    let right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+    left.onDown.add(() => {
+        players['olivier'].turn('left');
+    });
+    right.onDown.add(() => {
+        players['olivier'].turn('right');
+    });
 }
 
 PlayState.update = function () {
@@ -80,45 +78,50 @@ PlayState.update = function () {
         player.update();
     }
 
-    if (cursors.left.isDown && !cursors.right.isDown) {
-        players['olivier'].turn('left');
-    }
-    else if (!cursors.right.isDown) {
-        players['olivier'].turnFinished();
-    }
 
-    if (cursors.right.isDown && !cursors.left.isDown) {
-        players['olivier'].turn('right');
-    }
-    else if (!cursors.left.isDown) {
-        players['olivier'].turnFinished();
-    }
+    // if (cursors.left.isDown && !cursors.right.isDown) {
+    //     players['olivier'].turn('left');
+    // }
+    // else if (!cursors.right.isDown) {
+    //     players['olivier'].turnFinished();
+    // }
+    //
+    // if (cursors.right.isDown && !cursors.left.isDown) {
+    //     players['olivier'].turn('right');
+    // }
+    // else if (!cursors.left.isDown) {
+    //     players['olivier'].turnFinished();
+    // }
 
     if (spacebar.justDown) {
         players['olivier'].shoot();
     }
+    
 }
 
 PlayState.render = function () {
 
-    for (let j = 0; j < roulette.items.length; j++) {
+    // for (let j = 0; j < roulette.items.length; j++) {
+    //
+    //     let lines = roulette.items[j];
+    //
+    //     for (let k = 0; k < lines.length; k++) {
+    //         let item = lines[k];
+    //         game.debug.body(item.hitbox.children);
+    //     }
+    //
+    // }
+    // for (let key in players) {
+    //     let player = players[key];
+    //     let bullets = player.canon.weapon.getBullets();
+    //
+    //     for (let i = 0; i < bullets.length; i++) {
+    //         game.debug.body(bullets[i])
+    //     }
+    // }
 
-        let lines = roulette.items[j];
+    // game.debug.body(roulette.centerSprite)
 
-        for (let k = 0; k < lines.length; k++) {
-            let hitbox = lines[k];
-            game.debug.body(hitbox);
-        }
-
-    }
-    for (let key in players) {
-        let player = players[key];
-        let bullets = player.canon.weapon.getBullets();
-
-        for (let i = 0; i < bullets.length; i++) {
-            game.debug.body(bullets[i])
-        }
-    }
 
     // game.debug.body(bases['base2'].canon.sprite);
     // game.debug.cameraInfo(game.camera, 32, 32);

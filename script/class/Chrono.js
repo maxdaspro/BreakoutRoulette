@@ -69,6 +69,8 @@ class Chrono {
         this.callback = callback;
         this.isStarted = true;
         this.startTime = Date.now();
-
+    }
+    stop() {
+        this.pause();
     }
 }
