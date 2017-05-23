@@ -1,5 +1,5 @@
 class Canon {
-    constructor(position, angle, color) {
+    constructor(position, angle, stepAngle, color) {
 
         this.position = position;
 
@@ -10,12 +10,12 @@ class Canon {
         this.sprite.anchor.set(0.5, 0.5);
         this.sprite.width = 48;
         this.sprite.height = 48;
-
         this.sprite.tint = color;
 
         // this.sprite.body.immovable = true;
 
         this.angle = angle;
+        this.stepAngle = stepAngle;
 
         this.sprite.x = this.position.x;
         this.sprite.y = this.position.y;
@@ -25,12 +25,12 @@ class Canon {
 
         this.sprite.body.bounce.setTo(1, 1);
 
-        this.velocity = 0;
-        this.acceleration = 0;
-        this.friction = 1;
-        this.speed = 0.2;
-        this.maxSpeed = 3;
-        this.drag = 0.85;
+        // this.velocity = 0;
+        // this.acceleration = 0;
+        // this.friction = 1;
+        // this.speed = 0.2;
+        // this.maxSpeed = 3;
+        // this.drag = 0.85;
 
         this.weapon = new Weapon(this.sprite, color);
     }
@@ -39,26 +39,26 @@ class Canon {
 
         this.weapon.update();
 
-        if (Math.abs(this.velocity) < this.maxSpeed) {
-            this.velocity += this.acceleration;
-        }
-
-        this.velocity *= this.friction;
-
-        this.setAngle(this.angle + this.velocity);
+        // if (Math.abs(this.velocity) < this.maxSpeed) {
+        //     this.velocity += this.acceleration;
+        // }
+        //
+        // this.velocity *= this.friction;
+        //
+        // this.setAngle(this.angle + this.velocity);
     }
 
     turn(direction) {
         switch (direction.toLowerCase()) {
             case 'left':
-                // this.setAngle(this.angle + this.speed);
-                this.acceleration = this.speed;
-                this.friction = 1;
+                this.setAngle(this.angle + this.stepAngle);
+                // this.acceleration = this.speed;
+                // this.friction = 1;
                 break;
             case 'right':
-                // this.setAngle(this.angle - this.speed);
-                this.acceleration = -this.speed;
-                this.friction = 1;
+                this.setAngle(this.angle - this.stepAngle);
+                // this.acceleration = -this.speed;
+                // this.friction = 1;
                 break;
         }
     }
@@ -70,7 +70,7 @@ class Canon {
 
     setAngle(angle) {
         this.angle = angle % 360;
-        this.sprite.angle = this.angle;
+        this.sprite.angle = this.angle + 0.0000001;
     }
 
     shoot() {

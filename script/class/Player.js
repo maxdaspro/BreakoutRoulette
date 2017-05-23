@@ -1,5 +1,5 @@
 class Player {
-    constructor(name, angle, color) {
+    constructor(name, angle, stepAngle, color) {
 
         this.name = name || 'none';
         this.color = color || 0x555555;
@@ -9,6 +9,7 @@ class Player {
         this.findNumbers = [];
 
         this.angle = angle;
+        this.stepAngle = stepAngle;
 
         this.widthAngle = 8;
 
@@ -23,7 +24,7 @@ class Player {
         this.canon = new Canon(new Vector(
             GLOBAL.HALFWIDTH,
             GLOBAL.HALFHEIGHT
-        ), angle, this.color);
+        ), this.angle, this.stepAngle, this.color);
     }
 
     update() {
