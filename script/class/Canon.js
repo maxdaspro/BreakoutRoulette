@@ -1,6 +1,7 @@
 class Canon {
-    constructor(position, angle, stepAngle, color) {
+    constructor(position, angle, stepAngle, color, player) {
 
+        this.player = player;
         this.position = position;
 
         this.sprite = game.add.sprite(0, 0, 'canon');
@@ -32,7 +33,7 @@ class Canon {
         // this.maxSpeed = 3;
         // this.drag = 0.85;
 
-        this.weapon = new Weapon(this.sprite, color);
+        this.weapon = new Weapon(this.sprite, color, this.player);
     }
 
     update() {
@@ -64,7 +65,7 @@ class Canon {
     }
 
     turnFinished() {
-        this.acceleration = 0;
+        // this.acceleration = 0;
         this.friction = this.drag;
     }
 

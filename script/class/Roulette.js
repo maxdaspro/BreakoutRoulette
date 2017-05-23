@@ -28,7 +28,6 @@ class Roulette {
     
     end(){
         this.centerSprite.tint = 0xF70404;
-        console.log('end');
     }
 
     update() {

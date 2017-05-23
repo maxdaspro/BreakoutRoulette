@@ -53,23 +53,10 @@ PlayState.create = function () {
     let stepAngle = 22.5;
     let step = stepAngle * 0.5;
 
-    players['bernard'] = new Player('bernard', step * 4, stepAngle, 0xffa800);
-    players['maxime'] = new Player('maxime', step * 12, stepAngle, 0xC64191);
-    players['olivier'] = new Player('olivier', step * -4, stepAngle, 0x00BFB2);
-    players['gaspard'] = new Player('gaspard', step * -12, stepAngle, 0xE0A890);
-
-    /*    for (var i = 0; i < players.length; i++) {
-     players[i].displayScore()
-     }*/
-    players['bernard'].displayNumber(80, 125);
-    players['maxime'].displayNumber(780, 125);
-    players['olivier'].displayNumber(80, 815);
-    players['gaspard'].displayNumber(780, 815);
-
-    players['bernard'].displayScore(80, 80);
-    players['maxime'].displayScore(780, 80);
-    players['olivier'].displayScore(80, 770);
-    players['gaspard'].displayScore(780, 770);
+    players['bernard'] = new Player('bernard', step * 4, stepAngle, 0xffa800, new Vector(80,80));
+    players['maxime'] = new Player('maxime', step * 12, stepAngle, 0xC64191, new Vector(780,80));
+    players['olivier'] = new Player('olivier', step * -4, stepAngle, 0x00BFB2, new Vector(80,770));
+    players['gaspard'] = new Player('gaspard', step * -12, stepAngle, 0xE0A890, new Vector(780,770));
 
     let left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     let right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
@@ -109,6 +96,7 @@ PlayState.update = function () {
     if (spacebar.justDown) {
         players['olivier'].shoot();
     }
+    
 }
 
 PlayState.render = function () {
