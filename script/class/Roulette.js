@@ -33,8 +33,10 @@ class Roulette {
     }
     
     end(){
-        this.centerSprite.tint = 0xF70404;
-        this.chrono.stop();
+
+        // this.centerSprite.tint = 0xF70404;
+        // this.chrono.stop();
+        this.start()
         PlayState.end();
     }
 

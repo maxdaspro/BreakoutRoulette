@@ -58,10 +58,10 @@ PlayState.create = function () {
     let left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     let right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
     left.onDown.add(() => {
-        players['olivier'].turn('left');
+        players['maxime'].turn('left');
     });
     right.onDown.add(() => {
-        players['olivier'].turn('right');
+        players['maxime'].turn('right');
     });
 }
 
@@ -91,7 +91,7 @@ PlayState.update = function () {
     // }
 
     if (spacebar.justDown) {
-        players['olivier'].shoot();
+        players['maxime'].shoot();
     }
 
 }
