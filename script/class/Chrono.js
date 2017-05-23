@@ -3,7 +3,7 @@ class Chrono {
 
         this.startTime = Date.now();
         this.runTime;
-        this.max =10;
+        this.max = 10;
         this.secLeft = 0;
         this.endTime = false;
         this.isPaused = false
@@ -11,76 +11,64 @@ class Chrono {
         this.pauseTime = 0;
         this.isStarted = false;
         this.position = position;
-    	this.sprite = game.add.sprite(this.position.x - 56, this.position.y - 56, 'chronom');
-    	this.sprite.alpha = 1;
+        this.precision = 1;
 
-        let text = {
-            body: null,
-            content: '',
-            style: {font: "40px Arial",
-            		fill: "#ffffff",
-            		align: "center",
-            		boundsAlignH: "top",
-            		boundsAlignV: "top"},
-            x: this.position.x -30,
-            y: this.position.y - 26
+        this.style = {
+            font: "40px Arial",
+            fill: "#ffffff",
+            align: "center",
+            boundsAlignH: "center",
+            boundsAlignV: "middle"
         };
 
-        text.body = game.add.text(
-            text.x,
-            text.y,
-            text.content,
-            text.style
-        );
-        text.body.fixedToCamera = true;
+        this.content = '';
+        this.text = game.add.text(0, 0, this.content, this.style);
+    }
 
-        this.text = text;
-
-       }
     update() {
-   
+
+        if (this.endTime) {
+            let endValue = 0;
+            this.text.setText(endValue.toFixed(this.precision));
+            this.callback();
+            return;
+        }
+
         if (!this.isPaused && this.isStarted) {
 
-        	//Compte à rebourd
             let currentTime = Date.now();
             this.runTime = currentTime - this.startTime;
-            this.secLeft =  this.max - this.runTime / 1000 ;
-            this.text.body.setText(this.secLeft.toFixed(1));
+            this.secLeft = this.max - this.runTime / 1000;
+            this.text.setText(this.secLeft.toFixed(this.precision));
 
-            //si égale à 0
-            if((this.max - this.runTime / 1000) <= 0){
-
-            	this.endTime = true;
-            }
-            // if((this.max - this.runTime / 1000) <= 10){
-
-            // }
-            if(this.endTime == true){
-
-            	this.text.body.setText('0.0');
-        		this.sprite.tint = 0xF70404;
-        		game.add.text(
-        			this.text.x,
-        			this.text.y,
-        			this.text.content,
-        			this.text.style
-        			);
+            if ((this.max - this.runTime / 1000) <= 0) {
+                this.endTime = true;
             }
         }
     }
+
     pause() {
         this.isPaused = true;
         this.startPauseTime = Date.now();
     }
+
     resume() {
         this.isPaused = false;
         let currentTime = Date.now();
         this.pauseTime = (currentTime - this.startPauseTime);
         this.startTime += this.pauseTime;
     }
-    start(){
+
+    start(sec, callback = null, precision = 1) {
+        this.max = sec;
+        this.text.setText(this.max.toFixed(precision));
+        this.text.x = this.position.x - (this.text.width / 2);
+        this.text.y = this.position.y - (this.text.height / 2) + 3;
+        this.precision = precision;
+        this.endTime = false;
+        this.callback = callback;
         this.isStarted = true;
         this.startTime = Date.now();
-        
-    } 
+
+    }
 }
