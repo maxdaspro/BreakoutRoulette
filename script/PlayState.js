@@ -48,7 +48,7 @@ PlayState.create = function () {
     roulette = new Roulette(new Vector(
         GLOBAL.HALFWIDTH,
         GLOBAL.HALFHEIGHT
-    ))
+    ));
 
     let stepAngle = 22.5;
     let step = stepAngle * 0.5;
@@ -119,6 +119,9 @@ PlayState.render = function () {
     //         game.debug.body(bullets[i])
     //     }
     // }
+
+    // game.debug.body(roulette.centerSprite)
+
 
     // game.debug.body(bases['base2'].canon.sprite);
     // game.debug.cameraInfo(game.camera, 32, 32);
