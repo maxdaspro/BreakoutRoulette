@@ -17,11 +17,16 @@ class Player {
 
         this.level;
         this.score = 0;
-        this.scoreText;
-        this.scoreStyle = { font: "70px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
+        this.scoreStyle = { font: "50px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
+        this.scoreText = game.add.text(
+            this.position.x,
+            this.position.y,
+            this.score,
+            this.scoreStyle
+        );
 
         this.numberText;
-        this.numberStyle = { font: "30px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
+        this.numberStyle = { font: "20px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
 
         this.canon = new Canon(new Vector(
             GLOBAL.HALFWIDTH,
@@ -156,13 +161,8 @@ class Player {
      * @param  {[type]} y position en y du score
      * @return {[type]}   [description]
      */
-    displayScore(){ 
-        this.scoreText = game.add.text(
-            this.position.x,
-            this.position.y,
-            this.score, 
-            this.scoreStyle
-        );
+    displayScore(){
+        this.scoreText.setText(this.score);
         this.scoreText.anchor.set( .5, .5);
     }
 
