@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>BreakoutRoulette Game</title>
     <link rel="stylesheet" href="assets/css/main.css">
+    <script src="lib/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 
@@ -25,38 +26,15 @@
         </a>
     </nav>
 </div> -->
-
-<div id="menu-2joueurs" class="menu ">
-	<h1><span class="hidden">Breakout Roulette</span></h1>
-    <nav>
-
-
-    	<form action="post" id="formulaire">
-	    	<div id="un-deux-player">    		
-	    	  <label class="name-player">Joueur 1</label>
-			  <input type="text" name="player-1" autofocus="true" required><br>
-			  <label class="name-player">Joueur 2</label>
-			  <input type="text" name="player-2" disabled><br><br>
-	    	</div>
-		  <div id="trois-quatre-player">    		
-	    	  <label class="name-player">Joueur 3</label>
-			  <input type="text" name="player-3" disabled><br>
-			  <label class="name-player">Joueur 4</label>
-			  <input type="text" name="player-4" disabled><br><br>
-	    	</div>
-		  <input type="button" value="Play" class="valider">
-    	</form>
-
-        <a href="#" class="button btn-blue-green">
-            options
-        </a>
-        <a href="#" class="button btn-pink">
-            exit
-        </a>
-    </nav>
-</div>
 <div id="game">
 </div>
+<div id="interface">
+    <div id="modal">
+        <h1><span class="hidden">Breakout Roulette</span></h1>
+        <div id="content"></div>
+    </div>
+</div>
+
 <script src="lib/phaser.min.js"></script>
 <script src="script/class/Vector.js"></script>
 <script src="script/class/Helper.js"></script>

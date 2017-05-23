@@ -11,5 +11,3 @@ GLOBAL.HALFHEIGHT = GLOBAL.HEIGHT / 2;
 var game = new Phaser.Game(GLOBAL.WIDTH, GLOBAL.HEIGHT, Phaser.AUTO, 'game');
 
 game.state.add('play', PlayState);
-game.state.start('play');
-

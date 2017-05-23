@@ -25,7 +25,7 @@ class Roulette {
         this.items = [];
 
         this.generateItems()
-        this.chrono.start(1, this.start.bind(this), 0);
+        this.chrono.start(6, this.start.bind(this), 0);
     }
 
     start(){
@@ -35,6 +35,7 @@ class Roulette {
     end(){
         this.centerSprite.tint = 0xF70404;
         this.chrono.stop();
+        PlayState.end();
     }
 
     update() {

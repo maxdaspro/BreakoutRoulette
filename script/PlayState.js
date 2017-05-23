@@ -8,6 +8,7 @@ let cursors;
 let spacebar;
 let roulette;
 let players = {};
+let playerNames = [];
 
 PlayState.preload = function () {
     // game.load.tilemap("map2", GLOBAL.DIR.IMAGE + "map2.json", null, Phaser.Tilemap.TILED_JSON);
@@ -34,17 +35,6 @@ PlayState.create = function () {
 
     game.add.sprite(0, 0, 'map');
 
-    // map = game.add.tilemap('map2');
-    // map.addTilesetImage('tileset');
-
-    // map.setCollisionBetween(1, 2000, true, layers.contour);
-
-    // Groups.bases = Helper.Phaser.addGroups(['base1', 'base2'], 'objectLayer', map);
-    // Groups.centres = Helper.Phaser.addGroups(['centre'], 'objectLayer', map);
-    // layers = {
-    //     contour: map.createLayer('contour')
-    // };
-
     roulette = new Roulette(new Vector(
         GLOBAL.HALFWIDTH,
         GLOBAL.HALFHEIGHT
@@ -52,11 +42,18 @@ PlayState.create = function () {
 
     let stepAngle = 22.5;
     let step = stepAngle * 0.5;
+    let angles = [45, 135, -45, -135]
+    let colors = [0xffa800, 0xC64191, 0x00BFB2, 0xE0A890]
+    let scorePositions = [new Vector(80, 80), new Vector(780, 80), new Vector(80, 770), new Vector(780, 770)];
 
-    players['bernard'] = new Player('bernard', step * 4, stepAngle, 0xffa800, new Vector(80,80));
-    players['maxime'] = new Player('maxime', step * 12, stepAngle, 0xC64191, new Vector(780,80));
-    players['olivier'] = new Player('olivier', step * -4, stepAngle, 0x00BFB2, new Vector(80,770));
-    players['gaspard'] = new Player('gaspard', step * -12, stepAngle, 0xE0A890, new Vector(780,770));
+    playerNames.forEach((name, index) => {
+        players[name] = new Player(name, angles[index], stepAngle, colors[index], scorePositions[index]);
+    })
+
+    // players['bernard'] = new Player('bernard', step * 4, stepAngle, 0xffa800, new Vector(80,80));
+    // players['maxime'] = new Player('maxime', step * 12, stepAngle, 0xC64191, new Vector(780,80));
+    // players['olivier'] = new Player('olivier', step * -4, stepAngle, 0x00BFB2, new Vector(80,770));
+    // players['gaspard'] = new Player('gaspard', step * -12, stepAngle, 0xE0A890, new Vector(780,770));
 
     let left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     let right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
@@ -96,7 +93,7 @@ PlayState.update = function () {
     if (spacebar.justDown) {
         players['olivier'].shoot();
     }
-    
+
 }
 
 PlayState.render = function () {
@@ -126,5 +123,9 @@ PlayState.render = function () {
     // game.debug.body(bases['base2'].canon.sprite);
     // game.debug.cameraInfo(game.camera, 32, 32);
     //game.debug.text('Elapsed seconds: ' + this.game.time.totalElapsedSeconds(), 32, 32);
+}
+
+PlayState.end = function () {
+    
 }
 
