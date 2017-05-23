@@ -7,6 +7,7 @@ class Player {
         this.score = 0;
         this.number = null;
         this.position = position;
+        this.findNumber = 0;
 
         this.findNumbers = [];
 
@@ -15,7 +16,7 @@ class Player {
 
         this.widthAngle = 8;
 
-        this.level;
+        this.level = 0;
         this.score = 0;
         this.scoreStyle = { font: "50px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
         this.scoreText = game.add.text(
@@ -25,8 +26,13 @@ class Player {
             this.scoreStyle
         );
 
-        this.numberText;
         this.numberStyle = { font: "20px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
+        this.numberText = game.add.text(
+            this.position.x,
+            this.position.y + 45,
+            this.findNumber, 
+            this.numberStyle
+        );
 
         this.canon = new Canon(new Vector(
             GLOBAL.HALFWIDTH,
@@ -35,12 +41,16 @@ class Player {
 
         this.displayScore();
         this.displayNumber();
+
     }
 
     update() {
 
         this.canon.update();
         this.displayScore();
+        this.setLevel(this.findNumber);
+
+
 
         // for (let key in players) {
         //     let player = players[key];
@@ -109,22 +119,28 @@ class Player {
     getNumber(){
         switch (this.level) {
             case 1:
-                return Helper.randomValue(10,25)
+                this.findNumber = Helper.randomValue(10,25)
+                return this.findNumber
                 break;
             case 2:
-                return Helper.randomValue(20,45)
+                this.findNumber = Helper.randomValue(20,45)
+                return this.findNumber
                 break;
             case 3:
-                return Helper.randomValue(30,60)
+                this.findNumber = Helper.randomValue(30,60)
+                return this.findNumber
                 break;
             case 4:
-                return Helper.randomValue(40,80)
+                this.findNumber = Helper.randomValue(40,80)
+                return this.findNumber
                 break;
             case 5:
-                return Helper.randomValue(50,100)
+                this.findNumber = Helper.randomValue(50,100)
+                return this.findNumber
                 break;
             default:
-                return Helper.randomValue(1,15)
+                this.findNumber = Helper.randomValue(1,15)
+                return this.findNumber
                 break;
         }
     }
@@ -136,12 +152,8 @@ class Player {
      * @return {[type]}   [description]
      */
     displayNumber(){
-        this.numberText = game.add.text(
-            this.position.x,
-            this.position.y + 45,
-            this.getNumber(), 
-            this.numberStyle
-        );
+        this.findNumber = this.getNumber();
+        this.numberText.setText(this.findNumber);
         this.numberText.anchor.set( .5, .5);
     }
 
@@ -166,7 +178,12 @@ class Player {
         this.scoreText.anchor.set( .5, .5);
     }
 
-    removeScore(){
-        this.scoreText.destroy();
+    setLevel(number){
+        if (this.score === number) {
+            this.level++;
+            this.displayNumber();
+            this.score = 0;
+            console.log(this.level)
+        }
     }
 }
