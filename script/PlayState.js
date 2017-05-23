@@ -65,9 +65,12 @@ PlayState.create = function () {
 
     players['bernard'].displayScore(80,80);
     players['maxime'].displayScore(780,80);
-    players['olivier'].displayScore(80,770);
+    players['olivier'].displayScore(80,770)
     players['gaspard'].displayScore(780,770);
 
+    console.log(players['olivier'].score)
+
+    console.log(players['olivier'].getScore(2));
 }
 
 PlayState.update = function () {
@@ -97,6 +100,14 @@ PlayState.update = function () {
     if (spacebar.justDown) {
         players['olivier'].shoot();
     }
+
+    /********************* Scores **********************************/
+    console.log(players['olivier'].canon.weapon.valueItem)
+   
+    //let test = players['olivier'].getScore(players['olivier'].canon.weapon.valueItem);
+
+
+    
 }
 
 PlayState.render = function () {

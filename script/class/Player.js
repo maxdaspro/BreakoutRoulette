@@ -4,7 +4,7 @@ class Player {
         this.name = name || 'none';
         this.color = color || 0x555555;
 
-        this.score = null;
+        this.score = 0;
         this.number = null;
         this.findNumbers = [];
 
@@ -90,6 +90,10 @@ class Player {
         return result;
     }
 
+    /**
+     * Génère un nombre suivant le niveau
+     * @return {[type]} [description]
+     */
     getNumber(){
         switch (this.level) {
             case 1:
@@ -113,6 +117,12 @@ class Player {
         }
     }
 
+    /**
+     * affiche le nombre à atteindre
+     * @param  {[type]} x position en x du nombre
+     * @param  {[type]} y position en y du nombre
+     * @return {[type]}   [description]
+     */
     displayNumber(x,y){
         this.numberText = game.add.text(
             x,
@@ -123,6 +133,22 @@ class Player {
         this.numberText.anchor.set( .5, .5);
     }
 
+    /**
+     * calcul du score
+     * @param  {[type]} score [description]
+     * @return {[type]}       [description]
+     */
+    setScore(score){
+        this.score += score;
+        return this.score;
+    }
+
+    /**
+     * affiche le score du joueur
+     * @param  {[type]} x position en x du score
+     * @param  {[type]} y position en y du score
+     * @return {[type]}   [description]
+     */
     displayScore(x,y){ 
         this.scoreText = game.add.text(
             x,
@@ -132,6 +158,8 @@ class Player {
         );
         this.scoreText.anchor.set( .5, .5);
     }
+
+
 
 
 
