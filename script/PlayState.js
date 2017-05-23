@@ -126,6 +126,6 @@ PlayState.render = function () {
 }
 
 PlayState.end = function () {
-    
+
 }
 
