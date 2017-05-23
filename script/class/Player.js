@@ -57,8 +57,6 @@ class Player {
         this.displayScore();
         this.setLevel(this.findNumber);
 
-
-
         // for (let key in players) {
         //     let player = players[key];
         //
@@ -96,9 +94,7 @@ class Player {
     }
 
     canMove(direction) {
-
         let result = true;
-
         for (let key in players) {
             let player = players[key];
 
@@ -120,7 +116,7 @@ class Player {
     }
 
     /**
-     * Génère un nombre suivant le niveau
+     * Génère un nombre aléatoirement selon le niveau
      * @return {[type]} [description]
      */
     getNumber(){
@@ -154,19 +150,17 @@ class Player {
 
     /**
      * affiche le nombre à atteindre
-     * @param  {[type]} x position en x du nombre
-     * @param  {[type]} y position en y du nombre
-     * @return {[type]}   [description]
+     * @return {[type]} [description]
      */
     displayNumber(){
-        this.findNumber = this.getNumber();
+        
         this.numberText.setText(this.findNumber);
         this.numberText.anchor.set( .5, .5);
     }
 
     /**
      * calcul du score
-     * @param  {[type]} score [description]
+     * @param  {[int]} score [description]
      * @return {[type]}       [description]
      */
     setScore(score){
@@ -175,10 +169,8 @@ class Player {
     }
 
     /**
-     * affiche le score du joueur
-     * @param  {[type]} x position en x du score
-     * @param  {[type]} y position en y du score
-     * @return {[type]}   [description]
+     * affiche le score
+     * @return {[type]} [description]
      */
     displayScore(){
         this.scoreText.setText(this.score);
@@ -191,6 +183,7 @@ class Player {
      */
     setLevel(number){
         if (this.score === number) {
+            this.findNumber = this.getNumber();
             this.level++;
             this.displayNumber();
             this.score = 0;
@@ -198,8 +191,13 @@ class Player {
         }
     }
 
+    /**
+     * affiche le niveau
+     * @return {[type]} [description]
+     */
     displayLevel(){
         this.levelText.setText(this.level);
         this.levelText.anchor.set( .5, .5);
     }
+
 }
