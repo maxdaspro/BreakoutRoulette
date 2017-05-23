@@ -26,6 +26,13 @@ class Player {
             this.scoreStyle
         );
 
+        this.levelText = game.add.text(
+            this.position.x + 15,
+            this.position.y + 15,
+            this.level,
+            this.scoreStyle
+        );
+
         this.numberStyle = { font: "20px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
         this.numberText = game.add.text(
             this.position.x,
@@ -178,12 +185,21 @@ class Player {
         this.scoreText.anchor.set( .5, .5);
     }
 
+    /**
+     * augmente le niveau, efface le score, affiche un nouveau numéro
+     * @param {[type]} number [description]
+     */
     setLevel(number){
         if (this.score === number) {
             this.level++;
             this.displayNumber();
             this.score = 0;
-            console.log(this.level)
+            this.displayLevel();
         }
+    }
+
+    displayLevel(){
+        this.levelText.setText(this.level);
+        this.levelText.anchor.set( .5, .5);
     }
 }
