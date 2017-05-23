@@ -3,13 +3,10 @@ class Player {
 
         this.name = name || 'none';
         this.color = color || 0x555555;
-        console.log(angle);
-
 
         this.score = 0;
         this.number = null;
         this.position = position;
-
 
         this.findNumbers = [];
 
@@ -29,6 +26,7 @@ class Player {
             GLOBAL.HALFWIDTH,
             GLOBAL.HALFHEIGHT
         ), angle, this.color, this);
+
 
         this.displayScore();
         this.displayNumber();
@@ -167,6 +165,10 @@ class Player {
             this.scoreStyle
         );
         this.scoreText.anchor.set( .5, .5);
+    }
+
+    removeScore(){
+        this.scoreText.destroy();
     }
 
 
