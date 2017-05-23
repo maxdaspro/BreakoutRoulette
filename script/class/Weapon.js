@@ -20,6 +20,8 @@ class Weapon {
             Helper.Phaser.setCircle(bullet, 2);
         }, this);
 
+        this.valueItem;
+
         // this.emitter = game.add.emitter(50, 50, 100);
         //
         // this.emitter.makeParticles('explosion');
@@ -73,7 +75,9 @@ class Weapon {
         // console.log(item.number);
         bulletSprite.kill();
         item.destroy();
-        console.log('number :', item.number);
+        //console.log('number :', item.number);
+        this.valueItem = item.number;
+        
     }
 
     hitBounds(bullet) {
