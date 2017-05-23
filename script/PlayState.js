@@ -8,7 +8,6 @@ let cursors;
 let spacebar;
 let roulette;
 let players = {};
-let playerNames = [];
 
 PlayState.preload = function () {
     // game.load.tilemap("map2", GLOBAL.DIR.IMAGE + "map2.json", null, Phaser.Tilemap.TILED_JSON);

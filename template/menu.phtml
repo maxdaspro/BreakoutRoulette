@@ -1,20 +1,19 @@
 <nav>
     <form action="post" id="formulaire">
-        <div id="un-deux-player">
-            <label class="name-player">Joueur 1</label>
-            <input type="text" name="player-1" autofocus="true" required value="bernard"><br>
-            <label class="name-player">Joueur 2</label>
-            <input type="text" name="player-2" disabled value="maxime"><br><br>
+        <div class="block">
+            <label>Joueur 1</label>
+            <input type="text" name="player-1" autofocus="true" value="bernard" required>
+            <label>Joueur 2</label>
+            <input type="text" name="player-2" value="maxime" required>
         </div>
-        <div id="trois-quatre-player">
-            <label class="name-player">Joueur 3</label>
-            <input type="text" name="player-3" disabled><br>
-            <label class="name-player">Joueur 4</label>
-            <input type="text" name="player-4" disabled><br><br>
+        <div class="block">
+            <label>Joueur 3</label>
+            <input type="text" name="player-3" disabled required>
+            <label>Joueur 4</label>
+            <input type="text" name="player-4" disabled required>
         </div>
+        <p>
+            <input type="button" class="button gradian-blue" id="play" value="Lancer"/>
+        </p>
     </form>
-
-    <a href="#" class="button valider" id="play">
-        PLAY
-    </a>
 </nav>
