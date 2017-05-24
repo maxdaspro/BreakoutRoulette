@@ -49,6 +49,7 @@ class Player {
     }
 
     shoot() {
+        if(this.paused) return;
         this.canon.shoot();
     }
 
