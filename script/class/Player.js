@@ -1,12 +1,17 @@
 class Player {
-    constructor(name, angle, stepAngle, color, position) {
+    constructor(name, angle, stepAngle, color, position, scoreOutput, statsOutput) {
 
         this.name = name || 'none';
         this.color = color || 0x555555;
 
+        this.scoreOutput = scoreOutput;
+        this.statsOutput = statsOutput;
+
+        scoreOutput.name = this.name;
+
         this.score = 0;
-        this.level = 0;
-        this.number = null;
+        this.level = 1;
+        this.number = 0;
         this.findNumber = 0;
         this.position = position;
 
@@ -19,9 +24,25 @@ class Player {
             GLOBAL.HALFWIDTH,
             GLOBAL.HALFHEIGHT
         ), this.angle, this.stepAngle, this.color, this);
+
+        this.timer = 0;
+        this.speed = 1000;
+        this.canMove = false;
     }
 
     update() {
+
+        this.timer += game.time.physicsElapsed * 1000;
+
+        if (this.timer >= this.speed) {
+            this.timer = 0;
+            this.canMove = true;
+        }else{
+            this.canMove = false;
+        }
+
+        console.log(this.canMove);
+
 
         this.canon.update();
         this.displayScore();
@@ -77,25 +98,25 @@ class Player {
      * Génère un nombre aléatoirement selon le niveau
      * @return {[type]} [description]
      */
-    getNumber(){
+    getNumber() {
         switch (this.level) {
             case 1:
-                this.findNumber = Helper.randomValue(100,120)
+                this.findNumber = Helper.randomValue(100, 120)
                 break;
             case 2:
-                this.findNumber = Helper.randomValue(120,140)
+                this.findNumber = Helper.randomValue(120, 140)
                 break;
             case 3:
-                this.findNumber = Helper.randomValue(140,160)
+                this.findNumber = Helper.randomValue(140, 160)
                 break;
             case 4:
-                this.findNumber = Helper.randomValue(160,180)
+                this.findNumber = Helper.randomValue(160, 180)
                 break;
             case 5:
-                this.findNumber = Helper.randomValue(180,200)
+                this.findNumber = Helper.randomValue(180, 200)
                 break;
             default:
-                this.findNumber = Helper.randomValue(200,300)
+                this.findNumber = Helper.randomValue(200, 300)
                 break;
         }
     }
@@ -104,15 +125,18 @@ class Player {
      * affiche le score
      * @return {[type]} [description]
      */
-    displayScore(){
+    displayScore() {
 
+        this.scoreOutput.number.innerText = this.number;
+        this.scoreOutput.findNumber.innerText = this.findNumber;
+        this.scoreOutput.level.innerText = this.level;
     }
 
     /**
      * affiche le nombre à atteindre
      * @return {[type]} [description]
      */
-    displayStats(){
+    displayStats() {
 
     }
 
@@ -120,7 +144,7 @@ class Player {
      * augmente le niveau, efface le score, affiche un nouveau numéro
      * @param {[type]} number [description]
      */
-    checkScore(number){
+    checkScore(number) {
 
         this.number += number;
 

@@ -6,14 +6,193 @@ body {
 }
 
 #game canvas {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
     margin: auto;
 }
 
+/*SCORES*/
+#scores{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width:864px;
+    height:864px;
+    z-index: 2;
+    font-family:  Arial, sans-serif;
+    color:rgba(0,0,0,0.8);
+}
+#scores #p1,
+#scores #p2,
+#scores #p3,
+#scores #p4{
+    width: 150px;
+    height: 150px;
+}
+#scores #p1{
+    position: absolute;
+    left:32px;
+    top:32px;
+    /*border: 1px solid red;*/
+}
+#scores #p2{
+    position: absolute;
+    right:32px;
+    top:32px;
+    /*border: 1px solid green;*/
+}
+#scores #p3{
+    position: absolute;
+    left:32px;
+    bottom:32px;
+    /*border: 1px solid blue;*/
+}
+#scores #p4{
+    position: absolute;
+    right:32px;
+    bottom:32px;
+    /*border: 1px solid black;*/
+}
+
+#scores #p1 .name,
+#scores #p2 .name,
+#scores #p3 .name,
+#scores #p4 .name{
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+#scores #p1 .number,
+#scores #p2 .number,
+#scores #p3 .number,
+#scores #p4 .number{
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+}
+#scores #p1 .findNumber,
+#scores #p2 .findNumber,
+#scores #p3 .findNumber,
+#scores #p4 .findNumber{
+    display: block;
+    font-size: 2em;
+    width:32px;
+    line-height:32px;
+}
+#scores #p1 .level,
+#scores #p2 .level,
+#scores #p3 .level,
+#scores #p4 .level{
+    display: block;
+    font-size: 1em;
+    width:32px;
+    line-height:32px;
+    text-align: center;
+    background-color: rgba(44,44,44,0.5);
+    color:white
+}
+
+#scores #p1 .name{
+    position: absolute;
+    left:0;
+    top:0;
+}
+#scores #p1 .number{
+    position: absolute;
+    left:0px;
+    top:60px;
+    width:80px;
+    text-align: right;
+}
+#scores #p1 .findNumber{
+    position: absolute;
+    right:30px;
+    top:5px;
+}
+#scores #p1 .level{
+    position: absolute;
+    top:20px;
+}
+
+#scores #p2 .name{
+    position: absolute;
+    right:0;
+    top:0;
+}
+#scores #p2 .number{
+    position: absolute;
+    right:0px;
+    top:60px;
+    width:80px;
+    text-align: left;
+}
+#scores #p2 .findNumber{
+    position: absolute;
+    left:30px;
+    top:5px;
+}
+#scores #p2 .level{
+    position: absolute;
+    right:0;
+    top:20px;
+}
+
+#scores #p3 .name{
+    position: absolute;
+    left:0;
+    bottom:0;
+}
+#scores #p3 .number{
+    position: absolute;
+    left:0px;
+    top:60px;
+    width:80px;
+    text-align: right;
+}
+#scores #p3 .findNumber{
+    position: absolute;
+    right:30px;
+    bottom:5px;
+}
+#scores #p3 .level{
+    position: absolute;
+    bottom:20px;
+}
+
+#scores #p4 .name{
+    position: absolute;
+    right:0;
+    bottom:0;
+}
+#scores #p4 .number{
+    position: absolute;
+    right:0px;
+    top:60px;
+    width:80px;
+    text-align: left;
+}
+#scores #p4 .findNumber{
+    position: absolute;
+    left:30px;
+    bottom:5px;
+}
+#scores #p4 .level{
+    position: absolute;
+    right:0;
+    bottom:20px;
+}
+
+/*INTERFACE */
 #interface{
     background: url("../img/map.png");
     position: absolute;
     top: 0;
     left: 50%;
+    z-index: 8;
     transform: translateX(-50%);
     width:864px;
     height:864px;

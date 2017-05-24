@@ -46,7 +46,7 @@ PlayState.create = function () {
     let scorePositions = [new Vector(80, 80), new Vector(780, 80), new Vector(80, 770), new Vector(780, 770)];
 
     playerNames.forEach((name, index) => {
-        players[name] = new Player(name, angles[index], stepAngle, colors[index], scorePositions[index]);
+        players[name] = new Player(name, angles[index], stepAngle, colors[index], scorePositions[index], scoreOutPuts[index], statsOutputs[index]);
     })
 
     // players['bernard'] = new Player('bernard', step * 4, stepAngle, 0xffa800, new Vector(80,80));
