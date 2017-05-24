@@ -7,15 +7,14 @@ class Player {
         this.scoreOutput = scoreOutput;
         this.statsOutput = statsOutput;
 
-        scoreOutput.name = this.name;
+        this.scoreOutput.name = this.name;
+        this.statsOutput.name.innerText = this.name;
 
         this.score = 0;
         this.level = 1;
         this.number = 0;
         this.findNumber = 0;
         this.position = position;
-
-        this.findNumbers = [];
 
         this.angle = angle;
         this.stepAngle = stepAngle;
@@ -29,6 +28,8 @@ class Player {
         this.speed = 100;
         this.canMove = false;
         this.shortMove = false;
+
+        this.paused = false;
     }
 
     update() {
@@ -60,6 +61,8 @@ class Player {
     }
 
     turn(direction, longPress) {
+        if(this.paused) return;
+
         if(longPress && this.canMove){
             console.log('long')
             this.canon.turn(direction)
@@ -104,27 +107,8 @@ class Player {
      * Génère un nombre aléatoirement selon le niveau
      * @return {[type]} [description]
      */
-    getNumber() {
-        switch (this.level) {
-            case 1:
-                this.findNumber = Helper.randomValue(100, 120)
-                break;
-            case 2:
-                this.findNumber = Helper.randomValue(120, 140)
-                break;
-            case 3:
-                this.findNumber = Helper.randomValue(140, 160)
-                break;
-            case 4:
-                this.findNumber = Helper.randomValue(160, 180)
-                break;
-            case 5:
-                this.findNumber = Helper.randomValue(180, 200)
-                break;
-            default:
-                this.findNumber = Helper.randomValue(200, 300)
-                break;
-        }
+    generateNumber() {
+        this.findNumber = Helper.randomValue(20, 50)
     }
 
     /**
@@ -143,7 +127,9 @@ class Player {
      * @return {[type]} [description]
      */
     displayStats() {
-
+        this.statsOutput.level.innerText = this.level;
+        this.statsOutput.score.innerText = this.score;
+        this.statsOutput.stats.innerText = '...';
     }
 
     /**
@@ -155,9 +141,8 @@ class Player {
         this.number += number;
 
         if (this.number === this.findNumber) {
-            this.level++;
             this.score++;
-            this.getNumber();
+            this.paused = true;
         }
     }
 }
