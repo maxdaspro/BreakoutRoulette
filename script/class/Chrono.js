@@ -17,7 +17,7 @@ class Chrono {
             font: "40px Arial",
             fill: "#ffffff",
             align: "center",
-            boundsAlignH: "center",
+            boundsAlignH: "middle",
             boundsAlignV: "center"
         };
         
@@ -45,6 +45,8 @@ class Chrono {
             }
 
             this.text.setText(this.secLeft);
+            this.text.x = this.position.x - this.text.width / 2;
+            this.text.y = this.position.y - (this.text.height / 2) + 3;
         }
     }
 
@@ -64,8 +66,6 @@ class Chrono {
         this.max = sec;
         let value = this.max.toFixed(precision);
         this.text.setText(value);
-        this.text.x = this.position.x - this.text.width / 2;
-        this.text.y = this.position.y - (this.text.height / 2) + 3;
         this.precision = precision;
         this.endTime = false;
         this.callback = callback;
