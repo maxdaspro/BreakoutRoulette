@@ -10,9 +10,6 @@ let roulette;
 let players = {};
 let inputs = {};
 
-let pad1;
-let rightTriggerGfx;
-
 PlayState.preload = function () {
     // game.load.tilemap("map2", GLOBAL.DIR.IMAGE + "map2.json", null, Phaser.Tilemap.TILED_JSON);
     // game.load.image("tileset", GLOBAL.DIR.IMAGE + "tileset.png");
@@ -53,6 +50,7 @@ PlayState.create = function () {
 
     playerNames.forEach((name, index) => {
         players[name] = new Player(name, angles[index], stepAngle, colors[index], scorePositions[index], scoreOutPuts[index], statsOutputs[index]);
+
         inputs[name] = game.input.gamepad._gamepads[index];
     });
 
@@ -91,46 +89,37 @@ PlayState.update = function () {
         player.update();
     }
 
+
     for (let key in inputs) {
 
         let pad = inputs[key];
 
-        //GAUCHE
-        if (pad.justPressed(Phaser.Gamepad.XBOX360_DPAD_LEFT, 250) || pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1) {
-            players[key].turn('left', false);
-        } else if (pad.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) || pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1) {
-            players[key].turn('left', true);
-        } else if (pad.justReleased(Phaser.Gamepad.XBOX360_DPAD_LEFT, 40)) {
-            players[key].shortMove = false;
-        }
+        if (game.input.gamepad.supported && game.input.gamepad.active && pad.connected) {
 
-        //DROIT
-        if (pad.justPressed(Phaser.Gamepad.XBOX360_DPAD_RIGHT, 250) || pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) < -0.1) {
-            players[key].turn('right', false);
-        } else if (pad.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) || pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) < -0.1) {
-            players[key].turn('right', true);
-        } else if (pad.justReleased(Phaser.Gamepad.XBOX360_DPAD_RIGHT, 40)) {
-            players[key].shortMove = false;
-        }
-        //TIRE
-        if (pad.isDown(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER)) {
-            players[key].shoot();
+            //GAUCHE
+            if (pad.justPressed(Phaser.Gamepad.XBOX360_DPAD_LEFT, 250) || pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1) {
+                players[key].turn('left', false);
+            } else if (pad.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) || pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1) {
+                players[key].turn('left', true);
+            } else if (pad.justReleased(Phaser.Gamepad.XBOX360_DPAD_LEFT, 40)) {
+                players[key].shortMove = false;
+            }
+
+            //DROIT
+            if (pad.justPressed(Phaser.Gamepad.XBOX360_DPAD_RIGHT, 250) || pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) < -0.1) {
+                players[key].turn('right', false);
+            } else if (pad.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) || pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) < -0.1) {
+                players[key].turn('right', true);
+            } else if (pad.justReleased(Phaser.Gamepad.XBOX360_DPAD_RIGHT, 40)) {
+                players[key].shortMove = false;
+            }
+            //TIRE
+            if (pad.isDown(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER)) {
+                players[key].shoot();
+            }
         }
     }
 
-    // if (cursors.left.isDown && !cursors.right.isDown) {
-    //     players['bernard'].turn('left', false);
-    // }
-    // else if (!cursors.right.isDown) {
-    //     players['bernard'].turnFinished();
-    // }
-
-    // if (cursors.right.isDown && !cursors.left.isDown) {
-    //     players['bernard'].turn('right', fa);
-    // }
-    // else if (!cursors.left.isDown) {
-    //     players['bernard'].turnFinished();
-    // }
     if (spacebar.justDown) {
         players['maxime'].shoot();
     }

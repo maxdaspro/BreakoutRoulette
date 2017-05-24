@@ -11,7 +11,7 @@ class Player {
         this.statsOutput.name.innerText = this.name;
 
         this.score = 0;
-        this.level = 1;
+        this.level = 0;
         this.number = 0;
         this.findNumber = 0;
         this.position = position;
@@ -39,7 +39,7 @@ class Player {
         if (this.timer >= this.speed) {
             this.timer = 0;
             this.canMove = true;
-        }else{
+        } else {
             this.canMove = false;
         }
 
@@ -49,7 +49,7 @@ class Player {
     }
 
     shoot() {
-        if(this.paused) return;
+        if (this.paused) return;
         this.canon.shoot();
     }
 
@@ -62,15 +62,15 @@ class Player {
     }
 
     turn(direction, longPress) {
-        if(this.paused) return;
+        if (this.paused) return;
 
-        if(longPress && this.canMove){
+        if (longPress && this.canMove) {
             console.log('long')
             this.canon.turn(direction)
             this.angle = this.canon.angle;
             return;
         }
-        if(!this.shortMove){
+        if (!this.shortMove) {
             console.log('short')
             this.shortMove = true;
             this.canon.turn(direction)
@@ -145,7 +145,7 @@ class Player {
         if (this.number === this.findNumber) {
             this.score++;
             this.paused = true;
-        }else if(this.number > this.findNumber) {
+        } else if (this.number > this.findNumber) {
             this.paused = true;
             this.score--;
         }

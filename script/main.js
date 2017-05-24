@@ -16,7 +16,7 @@ let playerNames = [];
 let scoreOutPuts = [];
 let statsOutputs = [];
 
-for (let i = 1; i < 4; i++) {
+for (let i = 1; i <= 4; i++) {
     scoreOutPuts.push(
         {
             name: document.querySelector('#scores #scores-p' + i + ' .name'),

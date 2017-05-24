@@ -18,11 +18,10 @@ class Chrono {
             fill: "#ffffff",
             align: "center",
             boundsAlignH: "center",
-            boundsAlignV: "middle"
+            boundsAlignV: "center"
         };
-
-        this.content = '';
-        this.text = game.add.text(0, 0, this.content, this.style);
+        
+        this.text = game.add.text(0, 0, '', this.style);
     }
 
     update() {
@@ -39,11 +38,13 @@ class Chrono {
             let currentTime = Date.now();
             this.runTime = currentTime - this.startTime;
             this.secLeft = (this.max - this.runTime / 1000).toFixed(this.precision);
-            this.text.setText(this.secLeft < 10 ? ' ' + this.secLeft : this.secLeft);
 
-            if ((this.max - this.runTime / 1000) <= 0) {
+            if (this.secLeft  <= 0) {
                 this.endTime = true;
+                return;
             }
+
+            this.text.setText(this.secLeft);
         }
     }
 
@@ -61,8 +62,9 @@ class Chrono {
 
     start(sec, callback = null, precision = 1) {
         this.max = sec;
-        this.text.setText(this.max.toFixed(precision));
-        this.text.x = this.position.x - (this.text.width / 2);
+        let value = this.max.toFixed(precision);
+        this.text.setText(value);
+        this.text.x = this.position.x - this.text.width / 2;
         this.text.y = this.position.y - (this.text.height / 2) + 3;
         this.precision = precision;
         this.endTime = false;
