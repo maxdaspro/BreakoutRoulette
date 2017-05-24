@@ -34,7 +34,7 @@ class Roulette {
             players[key].level++;
             players[key].generateNumber();
         }
-        this.chrono.start(3, this.end.bind(this));
+        this.chrono.start(Helper.randomValue(20, 60), this.end.bind(this));
     }
 
     start(){
