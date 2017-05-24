@@ -33,6 +33,7 @@ class Roulette {
         for(let key in players){
             players[key].level++;
             players[key].generateNumber();
+            players[key].paused = false;
         }
         this.chrono.start(Helper.randomValue(20, 60), this.end.bind(this));
     }
