@@ -38,7 +38,6 @@ class Roulette {
         }
         if (!this.paused && playersOut === Object.keys(players).length) {
             this.paused = true;
-            this.generateItems()
             this.chrono.start(5, this.start.bind(this), 0);
         }
     }
@@ -49,10 +48,12 @@ class Roulette {
 
     end() {
         this.destroyItems();
-        this.newRound();
+        this.chrono.start(5, this.start.bind(this), 0);
     }
 
     newRound() {
+
+        this.generateItems()
 
         this.paused = false;
 
@@ -62,7 +63,7 @@ class Roulette {
             players[key].generateNumber();
             players[key].paused = false;
         }
-        this.chrono.start(Helper.randomValue(20, 60), this.end.bind(this), 0);
+        this.chrono.start(15, this.end.bind(this), 0);
     }
 
     destroyItems() {
