@@ -26,18 +26,23 @@ class Roulette {
 
         this.generateItems()
         this.chrono.start(2, this.start.bind(this), 0);
+
+    }
+
+    newRound(){
+        for(let key in players){
+            players[key].level++;
+            players[key].generateNumber();
+        }
+        this.chrono.start(3, this.end.bind(this));
     }
 
     start(){
-        this.chrono.start(11, this.end.bind(this));
+        this.newRound();
     }
     
     end(){
-
-        // this.centerSprite.tint = 0xF70404;
-        // this.chrono.stop();
-        this.start()
-        PlayState.end();
+        this.newRound();
     }
 
     update() {
@@ -98,6 +103,4 @@ class Roulette {
             }
         }
     }
-
-
 }

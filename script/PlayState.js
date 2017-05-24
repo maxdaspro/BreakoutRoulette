@@ -70,7 +70,7 @@ PlayState.create = function () {
     game.input.gamepad.start();
     pad1 = game.input.gamepad.pad1;
 
-    console.log(pad1)
+    // console.log(pad1)
     // console.log(Phaser.Gamepad.XBOX360_DPAD_RIGHT)
     // console.log(Phaser.Gamepad.XBOX360_DPAD_LEFT)
 }
