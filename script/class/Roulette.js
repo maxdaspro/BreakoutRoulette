@@ -24,13 +24,17 @@ class Roulette {
 
         this.items = [];
 
-        this.generateItems()
-        this.chrono.start(2, this.start.bind(this), 0);
+        this.paused = true;
+        this.chrono.start(3, this.start.bind(this), 0);
 
     }
 
-    newRound(){
-        for(let key in players){
+    newRound() {
+        this.paused = false;
+        this.destroyItems();
+        this.generateItems()
+        for (let key in players) {
+            players[key].number = 0;
             players[key].level++;
             players[key].generateNumber();
             players[key].paused = false;
@@ -38,16 +42,29 @@ class Roulette {
         this.chrono.start(Helper.randomValue(20, 60), this.end.bind(this));
     }
 
-    start(){
+    start() {
         this.newRound();
     }
-    
-    end(){
+
+    end() {
         this.newRound();
     }
 
     update() {
         this.chrono.update();
+
+        let playersOut = 0;
+        for (let key in players) {
+            let player = players[key];
+
+            if (player.paused) {
+                playersOut++;
+            }
+        }
+        if (!this.paused && playersOut === Object.keys(players).length) {
+            this.paused = true;
+            this.chrono.start(3, this.start.bind(this), 0);
+        }
     }
 
     showInfo() {
@@ -82,7 +99,18 @@ class Roulette {
 
     }
 
+    destroyItems() {
+
+        for (let i = 0; i < this.items.length; i++) {
+            for (let j = 0; j < this.items[i].length; j++) {
+                this.items[i][j].destroy();
+            }
+        }
+    }
+
     generateItems() {
+
+        this.items = [];
 
         for (let i = 0; i < this.lines; i++) {
 

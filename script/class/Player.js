@@ -7,7 +7,7 @@ class Player {
         this.scoreOutput = scoreOutput;
         this.statsOutput = statsOutput;
 
-        this.scoreOutput.name = this.name;
+        this.scoreOutput.name.innerText = this.name;
         this.statsOutput.name.innerText = this.name;
 
         this.score = 0;
@@ -29,7 +29,7 @@ class Player {
         this.canMove = false;
         this.shortMove = false;
 
-        this.paused = false;
+        this.paused = true;
     }
 
     update() {
@@ -109,6 +109,7 @@ class Player {
      * @return {[type]} [description]
      */
     generateNumber() {
+        this.number = 0
         this.findNumber = Helper.randomValue(20, 50)
     }
 
@@ -144,6 +145,9 @@ class Player {
         if (this.number === this.findNumber) {
             this.score++;
             this.paused = true;
+        }else if(this.number > this.findNumber) {
+            this.paused = true;
+            this.score--;
         }
     }
 }
