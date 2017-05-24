@@ -70,7 +70,7 @@ PlayState.create = function () {
     game.input.gamepad.start();
     pad1 = game.input.gamepad.pad1;
 
-
+    console.log(pad1)
     // console.log(Phaser.Gamepad.XBOX360_DPAD_RIGHT)
     // console.log(Phaser.Gamepad.XBOX360_DPAD_LEFT)
 }
@@ -87,13 +87,15 @@ PlayState.update = function () {
 
 
     if (pad1.justPressed(Phaser.Gamepad.XBOX360_DPAD_LEFT, 250) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1) {
-        console.log('short press');
+        // console.log('short press');
         players['maxime'].turn('left', false);
     }else if (pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1) {
-        console.log('long press');
+        // console.log('long press');
         players['maxime'].turn('left', true);
+    }else if (pad1.justReleased(Phaser.Gamepad.XBOX360_DPAD_LEFT, 800)){
+        console.log("just released")
+        players['maxime'].shortMove = false;
     }
-
 
     if (pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1) {
         players['maxime'].turn('right');

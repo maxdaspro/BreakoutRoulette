@@ -28,7 +28,7 @@ class Player {
         this.timer = 0;
         this.speed = 100;
         this.canMove = false;
-        this.canShortMove = false;
+        this.shortMove = false;
     }
 
     update() {
@@ -60,11 +60,16 @@ class Player {
     }
 
     turn(direction, longPress) {
-        if(longPress && !this.canMove){
+        if(longPress && this.canMove){
+            this.canon.turn(direction)
+            this.angle = this.canon.angle;
             return;
         }
-        this.canon.turn(direction)
-        this.angle = this.canon.angle;
+        if(!this.shortMove){
+            this.shortMove = true;
+            this.canon.turn(direction)
+            this.angle = this.canon.angle;
+        }
     }
 
     turnFinished() {

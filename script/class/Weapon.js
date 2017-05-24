@@ -3,7 +3,7 @@ class Weapon {
 
         this.player = player;
 
-        this.weapon = game.add.weapon(10, 'bullet');
+        this.weapon = game.add.weapon(1, 'bullet');
 
         game.physics.arcade.enable(this.weapon);
 
@@ -12,7 +12,7 @@ class Weapon {
         this.weapon.bullets.setAll("collideWorldBounds", true);
 
         this.weapon.bulletSpeed = 500;
-        this.weapon.fireRate = 150;
+        this.weapon.fireRate = 300;
 
         this.weapon.bullets.forEach(bullet => {
             bullet.width = 12;
