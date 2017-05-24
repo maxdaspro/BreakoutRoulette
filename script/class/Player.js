@@ -61,11 +61,13 @@ class Player {
 
     turn(direction, longPress) {
         if(longPress && this.canMove){
+            console.log('long')
             this.canon.turn(direction)
             this.angle = this.canon.angle;
             return;
         }
         if(!this.shortMove){
+            console.log('short')
             this.shortMove = true;
             this.canon.turn(direction)
             this.angle = this.canon.angle;

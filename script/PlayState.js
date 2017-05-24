@@ -60,10 +60,20 @@ PlayState.create = function () {
     let left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     let right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
     left.onDown.add(() => {
-        players['maxime'].turn('left');
+        players['maxime'].turn('left', true);
     });
     right.onDown.add(() => {
-        players['maxime'].turn('right');
+        players['maxime'].turn('right', true);
+    });
+
+     left.onUp.add(() => {
+        
+         players['maxime'].shortMove = false;
+
+    });
+    right.onUp.add(() => {
+        
+         players['maxime'].shortMove = false;
     });
 
 
@@ -85,37 +95,43 @@ PlayState.update = function () {
         player.update();
     }
 
-
+    //GAUCHE
     if (pad1.justPressed(Phaser.Gamepad.XBOX360_DPAD_LEFT, 250) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1) {
-        // console.log('short press');
         players['maxime'].turn('left', false);
     }else if (pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1) {
-        // console.log('long press');
         players['maxime'].turn('left', true);
-    }else if (pad1.justReleased(Phaser.Gamepad.XBOX360_DPAD_LEFT, 800)){
-        console.log("just released")
+    }else if (pad1.justReleased(Phaser.Gamepad.XBOX360_DPAD_LEFT, 40)){
         players['maxime'].shortMove = false;
+        console.log('release')
     }
 
-    if (pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1) {
-        players['maxime'].turn('right');
+    //DROIT
+    if (pad1.justPressed(Phaser.Gamepad.XBOX360_DPAD_RIGHT, 250) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) < -0.1) {
+        players['maxime'].turn('right', false);
+    }else if (pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) < -0.1) {
+        players['maxime'].turn('right', true);
+    }else if (pad1.justReleased(Phaser.Gamepad.XBOX360_DPAD_RIGHT, 40)){
+        players['maxime'].shortMove = false;
+        console.log('release')
+
     }
-    if (pad1.isDown(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER)) {
+    //TIRE
+    else if (pad1.isDown(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER)) {
         players['maxime'].shoot();
     }
 
     // if (cursors.left.isDown && !cursors.right.isDown) {
-    //     players['olivier'].turn('left');
+    //     players['bernard'].turn('left', false);
     // }
     // else if (!cursors.right.isDown) {
-    //     players['olivier'].turnFinished();
+    //     players['bernard'].turnFinished();
     // }
-    //
+    
     // if (cursors.right.isDown && !cursors.left.isDown) {
-    //     players['olivier'].turn('right');
+    //     players['bernard'].turn('right', fa);
     // }
     // else if (!cursors.left.isDown) {
-    //     players['olivier'].turnFinished();
+    //     players['bernard'].turnFinished();
     // }
 
     if (spacebar.justDown) {
