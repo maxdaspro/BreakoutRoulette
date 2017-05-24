@@ -5,69 +5,27 @@ class Player {
         this.color = color || 0x555555;
 
         this.score = 0;
+        this.level = 0;
         this.number = null;
-        this.position = position;
         this.findNumber = 0;
+        this.position = position;
 
         this.findNumbers = [];
 
         this.angle = angle;
         this.stepAngle = stepAngle;
 
-        this.widthAngle = 8;
-
-        this.level = 0;
-        this.score = 0;
-        this.scoreStyle = { font: "50px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
-        this.scoreText = game.add.text(
-            this.position.x,
-            this.position.y,
-            this.score,
-            this.scoreStyle
-        );
-
-        this.levelText = game.add.text(
-            this.position.x + 15,
-            this.position.y + 15,
-            this.level,
-            this.scoreStyle
-        );
-
-        this.numberStyle = { font: "20px Arial", fill: "white", align:"center",boundsAlignH: "top",boundsAlignV:"top"};
-        this.numberText = game.add.text(
-            this.position.x,
-            this.position.y + 45,
-            this.findNumber, 
-            this.numberStyle
-        );
-
         this.canon = new Canon(new Vector(
             GLOBAL.HALFWIDTH,
             GLOBAL.HALFHEIGHT
         ), this.angle, this.stepAngle, this.color, this);
-
-        this.displayScore();
-        this.displayNumber();
-
     }
 
     update() {
 
         this.canon.update();
         this.displayScore();
-        this.setLevel(this.findNumber);
-
-        // for (let key in players) {
-        //     let player = players[key];
-        //
-        //     if (player !== this) {
-        //         game.physics.arcade.collide(player.canon.sprite, this.canon.sprite, this.collideCanon.bind(this, player));
-        //     }
-        // }
-    }
-
-    collideCanon(player1, player2, cSprite1, cSprite2) {
-        console.log('collide');
+        this.displayStats();
     }
 
     shoot() {
@@ -122,50 +80,24 @@ class Player {
     getNumber(){
         switch (this.level) {
             case 1:
-                this.findNumber = Helper.randomValue(10,25)
-                return this.findNumber
+                this.findNumber = Helper.randomValue(100,120)
                 break;
             case 2:
-                this.findNumber = Helper.randomValue(20,45)
-                return this.findNumber
+                this.findNumber = Helper.randomValue(120,140)
                 break;
             case 3:
-                this.findNumber = Helper.randomValue(30,60)
-                return this.findNumber
+                this.findNumber = Helper.randomValue(140,160)
                 break;
             case 4:
-                this.findNumber = Helper.randomValue(40,80)
-                return this.findNumber
+                this.findNumber = Helper.randomValue(160,180)
                 break;
             case 5:
-                this.findNumber = Helper.randomValue(50,100)
-                return this.findNumber
+                this.findNumber = Helper.randomValue(180,200)
                 break;
             default:
-                this.findNumber = Helper.randomValue(1,15)
-                return this.findNumber
+                this.findNumber = Helper.randomValue(200,300)
                 break;
         }
-    }
-
-    /**
-     * affiche le nombre à atteindre
-     * @return {[type]} [description]
-     */
-    displayNumber(){
-        
-        this.numberText.setText(this.findNumber);
-        this.numberText.anchor.set( .5, .5);
-    }
-
-    /**
-     * calcul du score
-     * @param  {[int]} score [description]
-     * @return {[type]}       [description]
-     */
-    setScore(score){
-        this.score += score;
-        return this.score;
     }
 
     /**
@@ -173,31 +105,29 @@ class Player {
      * @return {[type]} [description]
      */
     displayScore(){
-        this.scoreText.setText(this.score);
-        this.scoreText.anchor.set( .5, .5);
+
+    }
+
+    /**
+     * affiche le nombre à atteindre
+     * @return {[type]} [description]
+     */
+    displayStats(){
+
     }
 
     /**
      * augmente le niveau, efface le score, affiche un nouveau numéro
      * @param {[type]} number [description]
      */
-    setLevel(number){
-        if (this.score === number) {
-            this.findNumber = this.getNumber();
+    checkScore(number){
+
+        this.number += number;
+
+        if (this.number === this.findNumber) {
             this.level++;
-            this.displayNumber();
-            this.score = 0;
-            this.displayLevel();
+            this.score++;
+            this.getNumber();
         }
     }
-
-    /**
-     * affiche le niveau
-     * @return {[type]} [description]
-     */
-    displayLevel(){
-        this.levelText.setText(this.level);
-        this.levelText.anchor.set( .5, .5);
-    }
-
 }

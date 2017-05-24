@@ -38,8 +38,8 @@ class Chrono {
 
             let currentTime = Date.now();
             this.runTime = currentTime - this.startTime;
-            this.secLeft = this.max - this.runTime / 1000;
-            this.text.setText(this.secLeft.toFixed(this.precision));
+            this.secLeft = (this.max - this.runTime / 1000).toFixed(this.precision);
+            this.text.setText(this.secLeft < 10 ? ' ' + this.secLeft : this.secLeft);
 
             if ((this.max - this.runTime / 1000) <= 0) {
                 this.endTime = true;

@@ -74,14 +74,11 @@ class Weapon {
     }
 
     hitItem(item, bulletSprite, circleSprite) {
-        // console.log(item.number);
         bulletSprite.kill();
         item.destroy();
-        // console.log('number :', item.number);
-        this.player.setScore(item.number)   
+        this.player.checkScore(item.number)
     }
     hitCenter(roulette, bulletSprite) {
-        console.log('hit center');
         bulletSprite.kill();
         roulette.end()
     }

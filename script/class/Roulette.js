@@ -25,11 +25,11 @@ class Roulette {
         this.items = [];
 
         this.generateItems()
-        this.chrono.start(6, this.start.bind(this), 0);
+        this.chrono.start(2, this.start.bind(this), 0);
     }
 
     start(){
-        this.chrono.start(20, this.end.bind(this));
+        this.chrono.start(11, this.end.bind(this));
     }
     
     end(){
