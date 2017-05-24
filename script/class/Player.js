@@ -26,8 +26,9 @@ class Player {
         ), this.angle, this.stepAngle, this.color, this);
 
         this.timer = 0;
-        this.speed = 1000;
+        this.speed = 100;
         this.canMove = false;
+        this.canShortMove = false;
     }
 
     update() {
@@ -40,9 +41,6 @@ class Player {
         }else{
             this.canMove = false;
         }
-
-        console.log(this.canMove);
-
 
         this.canon.update();
         this.displayScore();
@@ -61,11 +59,12 @@ class Player {
         return this.angle > 0 ? -360 + this.angle : this.angle;
     }
 
-    turn(direction) {
-        // if (this.canMove(direction)) {
+    turn(direction, longPress) {
+        if(longPress && !this.canMove){
+            return;
+        }
         this.canon.turn(direction)
         this.angle = this.canon.angle;
-        // }
     }
 
     turnFinished() {
