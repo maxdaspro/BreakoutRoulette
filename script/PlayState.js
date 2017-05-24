@@ -9,6 +9,9 @@ let spacebar;
 let roulette;
 let players = {};
 
+let pad1;
+let rightTriggerGfx;
+
 PlayState.preload = function () {
     // game.load.tilemap("map2", GLOBAL.DIR.IMAGE + "map2.json", null, Phaser.Tilemap.TILED_JSON);
     // game.load.image("tileset", GLOBAL.DIR.IMAGE + "tileset.png");
@@ -39,7 +42,8 @@ PlayState.create = function () {
         GLOBAL.HALFHEIGHT
     ));
 
-    let stepAngle = 22.5;
+    /*let stepAngle = 22.5;*/
+    let stepAngle = 3;
     let step = stepAngle * 0.5;
     let angles = [45, 135, -45, -135]
     let colors = [0xffa800, 0xC64191, 0x00BFB2, 0xE0A890]
@@ -62,6 +66,14 @@ PlayState.create = function () {
     right.onDown.add(() => {
         players['maxime'].turn('right');
     });
+
+
+     game.input.gamepad.start();
+     pad1 = game.input.gamepad.pad1;
+  
+     console.log(pad1)
+     console.log(Phaser.Gamepad.XBOX360_DPAD_RIGHT)
+     console.log(Phaser.Gamepad.XBOX360_DPAD_LEFT)
 }
 
 PlayState.update = function () {
@@ -74,6 +86,22 @@ PlayState.update = function () {
         player.update();
     }
 
+
+    if (pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1)
+    {
+        console.log('gauche');
+        players['maxime'].turn('left');
+    }
+    if (pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1)
+    {
+        console.log('droite');
+        players['maxime'].turn('right');
+    }
+    if (pad1.isDown(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER))
+    {
+        console.log('tir');
+        players['maxime'].shoot();
+    }
 
     // if (cursors.left.isDown && !cursors.right.isDown) {
     //     players['olivier'].turn('left');
