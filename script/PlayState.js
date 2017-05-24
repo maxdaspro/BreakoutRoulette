@@ -42,8 +42,7 @@ PlayState.create = function () {
         GLOBAL.HALFHEIGHT
     ));
 
-    /*let stepAngle = 22.5;*/
-    let stepAngle = 3;
+    let stepAngle = 22.5;
     let step = stepAngle * 0.5;
     let angles = [45, 135, -45, -135]
     let colors = [0xffa800, 0xC64191, 0x00BFB2, 0xE0A890]
