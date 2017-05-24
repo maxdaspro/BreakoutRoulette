@@ -94,7 +94,6 @@ PlayState.update = function () {
         players['maxime'].turn('left', true);
     }
 
-
     if (pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1) {
         players['maxime'].turn('right');
     }

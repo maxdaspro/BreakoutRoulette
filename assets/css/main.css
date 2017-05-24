@@ -8,8 +8,6 @@ body {
 #game canvas {
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     z-index: 0;
     margin: auto;
 }
@@ -18,8 +16,6 @@ body {
 #scores{
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     width:864px;
     height:864px;
     z-index: 2;
@@ -186,14 +182,21 @@ body {
     bottom:20px;
 }
 
+/*STATS*/
+#stats{
+    position: absolute;
+    left:864px;
+    top:0;
+    width:200px;
+    border: 1px solid red;
+}
+
 /*INTERFACE */
 #interface{
     background: url("../img/map.png");
     position: absolute;
     top: 0;
-    left: 50%;
     z-index: 8;
-    transform: translateX(-50%);
     width:864px;
     height:864px;
     font-family:  Arial, sans-serif;
