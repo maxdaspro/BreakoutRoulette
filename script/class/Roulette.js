@@ -42,7 +42,7 @@ class Roulette {
         }
         if (!this.paused && playersOut === Object.keys(players).length) {
             this.paused = true;
-            this.chrono.start(5, this.start.bind(this), 0);
+            this.chrono.start(2, this.start.bind(this), 0);
         }
     }
 
