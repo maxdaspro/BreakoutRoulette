@@ -26,7 +26,7 @@ class Player {
 
         this.timer = 0;
         this.speed = 100;
-        this.canMove = false;
+        this.locked = false;
         this.shortMove = false;
 
         this.paused = true;
@@ -38,9 +38,9 @@ class Player {
 
         if (this.timer >= this.speed) {
             this.timer = 0;
-            this.canMove = true;
+            this.locked = true;
         } else {
-            this.canMove = false;
+            this.locked = false;
         }
 
         this.canon.update();
@@ -62,41 +62,34 @@ class Player {
     }
 
     turn(direction, longPress) {
-        if (this.paused) return;
+        if (this.paused || !this.canMove(direction)) return;
 
-        if (longPress && this.canMove) {
-            console.log('long')
+        if (longPress && this.locked) {
             this.canon.turn(direction)
             this.angle = this.canon.angle;
             return;
         }
         if (!this.shortMove) {
-            console.log('short')
             this.shortMove = true;
             this.canon.turn(direction)
             this.angle = this.canon.angle;
         }
     }
 
-    turnFinished() {
-        this.canon.turnFinished();
-    }
-
     canMove(direction) {
         let result = true;
+
         for (let key in players) {
             let player = players[key];
 
             if (player !== this) {
-                // console.log(this.name, this.getLeftAngle(), this.getRightAngle());
-                // console.log(player.name, player.getLeftAngle(), player.getRightAngle());
 
                 switch (direction.toLowerCase()) {
                     case 'left':
-                        result &= this.getLeftAngle() < player.getLeftAngle() - this.widthAngle || this.getLeftAngle() > player.getLeftAngle();
+                        result &= this.getLeftAngle() + this.stepAngle !== player.getLeftAngle();
                         break;
                     case 'right':
-                        result &= this.getRightAngle() > player.getRightAngle() + this.widthAngle || this.getRightAngle() < player.getRightAngle();
+                        result &= this.getRightAngle() - this.stepAngle  !== player.getRightAngle();
                         break;
                 }
             }
