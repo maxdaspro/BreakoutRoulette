@@ -53,4 +53,9 @@ class Canon {
     shoot() {
         this.weapon.fire();
     }
+
+    locked(){
+        this.sprite.tint = 0xFF0000;
+        this.sprite.alpha = 0.5;
+    }
 }

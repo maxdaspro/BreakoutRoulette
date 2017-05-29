@@ -11,7 +11,7 @@ class Chrono {
         this.pauseTime = 0;
         this.isStarted = false;
         this.position = position;
-        this.precision = 1;
+        this.precision = 0;
 
         this.style = {
             font: "40px Arial",

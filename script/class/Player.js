@@ -16,6 +16,7 @@ class Player {
         this.findNumber = 0;
         this.position = position;
 
+        this.startAngle = angle;
         this.angle = angle;
         this.stepAngle = stepAngle;
 
@@ -82,7 +83,7 @@ class Player {
         for (let key in players) {
             let player = players[key];
 
-            if (player !== this) {
+            if (player !== this && !player.paused) {
 
                 switch (direction.toLowerCase()) {
                     case 'left':
@@ -95,6 +96,11 @@ class Player {
             }
         }
         return result;
+    }
+
+    resetStartPosition(){
+        this.canon.setAngle(this.startAngle)
+        this.angle = this.startAngle;
     }
 
     /**
@@ -137,10 +143,28 @@ class Player {
 
         if (this.number === this.findNumber) {
             this.score++;
-            this.paused = true;
+            this.disable();
         } else if (this.number > this.findNumber) {
-            this.paused = true;
             this.score--;
+            this.disable();
         }
+    }
+
+    show(){
+        this.canon.sprite.alpha = 1;
+    }
+
+    hide(){
+        this.canon.sprite.alpha = 0;
+    }
+
+    enable(){
+        this.paused = false;
+        this.show();
+    }
+
+    disable(){
+        this.paused = true;
+        this.canon.locked();
     }
 }
