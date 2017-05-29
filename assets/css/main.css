@@ -321,3 +321,12 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842',GradientType=0 ); /* IE6-9 */
 }
 
+
+#message {
+    position: absolute;
+    z-index: 9;
+    top: 200;
+    background: black;
+    color: white;
+    height: 200px;
+}
