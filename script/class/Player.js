@@ -11,7 +11,7 @@ class Player {
         this.statsOutput.name.innerText = this.name;
 
         this.score = 0;
-        this.level = 0;
+        this.level = 1;
         this.number = 0;
         this.findNumber = 0;
         this.position = position;
@@ -90,7 +90,7 @@ class Player {
                         result &= this.getLeftAngle() + this.stepAngle !== player.getLeftAngle();
                         break;
                     case 'right':
-                        result &= this.getRightAngle() - this.stepAngle  !== player.getRightAngle();
+                        result &= this.getRightAngle() - this.stepAngle !== player.getRightAngle();
                         break;
                 }
             }
@@ -98,7 +98,7 @@ class Player {
         return result;
     }
 
-    resetStartPosition(){
+    resetStartPosition() {
         this.canon.setAngle(this.startAngle)
         this.angle = this.startAngle;
     }
@@ -141,29 +141,30 @@ class Player {
 
         this.number += number;
 
-        if (this.number === this.findNumber) {
-            this.score++;
-            this.disable();
-        } else if (this.number > this.findNumber) {
-            this.score--;
-            this.disable();
+        if (this.number >= this.findNumber) {
+            if (this.number === this.findNumber) {
+                this.score++;
+            }
+            this.number = 0;
+            this.generateNumber();
         }
     }
 
-    show(){
+    show() {
         this.canon.sprite.alpha = 1;
     }
 
-    hide(){
+    hide() {
         this.canon.sprite.alpha = 0;
     }
 
-    enable(){
+    enable() {
         this.paused = false;
         this.show();
+        this.canon.sprite.tint = this.canon.color;
     }
 
-    disable(){
+    disable() {
         this.paused = true;
         this.canon.locked();
     }

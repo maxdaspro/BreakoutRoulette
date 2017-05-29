@@ -3,6 +3,7 @@ class Canon {
 
         this.player = player;
         this.position = position;
+        this.color = color;
 
         this.sprite = game.add.sprite(0, 0, 'canon');
 

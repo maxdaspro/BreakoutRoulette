@@ -80,6 +80,6 @@ class Weapon {
     }
     hitCenter(roulette, bulletSprite) {
         bulletSprite.kill();
-        roulette.end()
+        roulette.generateItems()
     }
 } 

@@ -27,9 +27,12 @@ class Chrono {
     update() {
 
         if (this.endTime) {
+            this.endTime = false;
             let endValue = 0;
-            this.text.setText(endValue.toFixed(this.precision));
-            this.callback();
+            this.text.setText('');
+            if(this.callback)
+                this.callback();
+            this.callback = null;
             return;
         }
 

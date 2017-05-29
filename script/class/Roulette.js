@@ -21,89 +21,65 @@ class Roulette {
         this.max = 9;
         this.stepAngle = 360 / this.amount;
 
+        this.level = 1;
+
         this.items = [];
-        this.paused = false;
 
-        this.style = {
-            font: "40px Arial",
-            fill: "#ffffff",
-            align: "center",
-            boundsAlignH: "middle",
-            boundsAlignV: "center"
-        };
+        this.message = new Message(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
 
-
-        this.msgBox = game.add.physicsGroup();
-
-        let graphics = game.add.graphics(0, 0);
-        graphics.beginFill(0x000);
-
-        this.text = game.add.text(0, 0, 'Prêts?', this.style);
-        this.text.setShadow(0, 0, 'rgba(100,100,100,0.8)', 20);
-        this.text.anchor.set(0.5);
-
-        // graphics.drawRect(-this.text.width / 2, -this.text.height / 2, this.text.width, this.text.height);
-        // graphics.alpha = 0.4;
-
-
-        this.msgBox.add(graphics);
-        this.msgBox.add(this.text);
-
-        console.log(graphics);
-
-        this.msgBox.x = GLOBAL.HALFWIDTH;
-        this.msgBox.y = GLOBAL.HALFHEIGHT;
-        this.msgBox.alpha = 0;
-
-        let twa = game.add.tween(this.msgBox).to({alpha: 1}, 500, Phaser.Easing.linear, true, 500);
-        let twb = game.add.tween(this.msgBox.scale).to({x: 3, y: 3}, 500, Phaser.Easing.Back.Out, true, 500);
+        this.message.alert('Prêts?', () => {
+            this.chrono.start(3, this.start.bind(this), 0);
+        });
     }
 
     update() {
-        game.world.bringToTop(this.msgBox);
-
         this.chrono.update();
-
-        let playersOut = 0;
-        for (let key in players) {
-            let player = players[key];
-
-            if (player.paused) {
-                playersOut++;
-            }
-        }
-        if (!this.paused && playersOut === Object.keys(players).length) {
-            this.paused = true;
-            this.chrono.start(2, this.start.bind(this), 0);
-        }
     }
 
     start() {
-        this.newRound();
+
+        this.message.alert('Level ' + this.level++, () => {
+
+            this.generateItems();
+
+            for (let key in players) {
+                players[key].number = 0;
+                players[key].level = this.level;
+                players[key].generateNumber();
+                players[key].enable()
+            }
+            this.chrono.start(18, this.end.bind(this), 0);
+        });
     }
 
     end() {
-        this.destroyItems();
-        this.chrono.start(5, this.start.bind(this), 0);
+        let winner = null;
+        let equal = 1;
         for (let key in players) {
-            players[key].show();
-            players[key].resetStartPosition();
 
+            players[key].paused = true;
+
+            if(!winner){
+                winner = players[key];
+            }
+            else if(players[key].score > winner.score){
+                winner = players[key];
+            }
+            else if(players[key].score === winner.score){
+                equal++;
+            }
         }
+
+        let msg = '';
+        if(Object.keys(players).length === equal){
+            msg = 'Egalité !';
+        }
+        else {
+            msg = winner.name + ' winner !';
+        }
+        this.message.alert(msg);
     }
 
-    newRound() {
-
-        this.generateItems()
-
-        for (let key in players) {
-            players[key].number = 0;
-            players[key].level++;
-            players[key].generateNumber();
-            players[key].enable()
-        }
-        this.chrono.start(15, this.end.bind(this), 0);
-    }
 
     destroyItems() {
 
@@ -115,6 +91,8 @@ class Roulette {
     }
 
     generateItems() {
+
+        this.destroyItems();
 
         this.items = [];
 
@@ -128,7 +106,7 @@ class Roulette {
 
                 this.items[i][j] = new Item(
                     index,                                      //line
-                    Helper.randomValueIncl(this.min, this.max), //number
+                    Helper.randomValueIncl(this.min + this.lines - index, this.max - (i * 2)), //number
                     'case' + index,                             //sprite name
                     this.position,                              //position
                     new Vector(53 * index, 0),                  //pivot
