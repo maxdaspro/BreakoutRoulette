@@ -14,7 +14,9 @@ class Roulette {
         Helper.Phaser.setCircle(this.centerSprite, this.centerSprite.width * 0.5)
 
         this.chrono = new Chrono(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
+        
         this.message = new Message(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
+        this.blocMessage = document.querySelector("#blocMessage");
 
         this.lines = 4;
         this.amount = 16;
@@ -24,6 +26,7 @@ class Roulette {
 
         this.items = [];
         this.paused = false;
+        
     }
 
     update() {
@@ -50,7 +53,8 @@ class Roulette {
     end() {
         this.destroyItems();
         this.chrono.start(5, this.start.bind(this), 0);
-        this.message.removeMessage();
+        this.message.removeMessage(this.blocMessage);
+
     }
 
     newRound() {
@@ -66,7 +70,7 @@ class Roulette {
             players[key].paused = false;
         }
         this.chrono.start(15, this.end.bind(this), 0);
-        this.message.viewMessage("un beau texte");
+        this.message.viewMessage("un beau texte", this.blocMessage);
     }
 
     destroyItems() {
