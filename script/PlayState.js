@@ -29,6 +29,9 @@ PlayState.preload = function () {
     game.load.audio('winner', 'assets/audio/Trancyvania_01.mp3');
     game.load.audio('decompte', 'assets/audio/unnecro__race-countdown2_01.mp3');
     game.load.audio('finTemps', 'assets/audio/russintheus__countdown-boom_01.mp3');
+    game.load.audio('error', 'assets/audio/samsterbirdies__8-bit-error_01.mp3');
+    game.load.audio('ok', 'assets/audio/rhodesmas__coins-purchase-4_01.mp3');
+    game.load.audio('reload', 'assets/audio/killkhan__reload-1_01.mp3');
 }
 
 PlayState.create = function () {
@@ -68,8 +71,21 @@ PlayState.create = function () {
     winnerSound = game.add.audio('winner');
     decompteSound = game.add.audio('decompte');
     finTempsSound = game.add.audio('finTemps');
+    errorSound = game.add.audio('error');
+    okSound = game.add.audio('ok');
+    reloadSound = game.add.audio('reload');
 
-    game.sound.setDecodedCallback([ startSound,tirSound, menuSound, winnerSound, decompteSound,finTempsSound ], PlayState.update, this);
+    game.sound.setDecodedCallback([ 
+        startSound,
+        tirSound, 
+        menuSound, 
+        winnerSound, 
+        decompteSound, 
+        finTempsSound, 
+        errorSound, 
+        okSound,
+        reloadSound ], 
+        PlayState.update, this);
     
     // players['bernard'] = new Player('bernard', step * 4, stepAngle, 0xffa800, new Vector(80,80));
     // players['maxime'] = new Player('maxime', step * 12, stepAngle, 0xC64191, new Vector(780,80));

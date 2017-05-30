@@ -143,14 +143,19 @@ class Player {
     checkScore(number) {
 
         this.number += number;
+        if (this.number > this.findNumber) {
+            errorSound.play();
+        }
 
         if (this.number >= this.findNumber) {
             if (this.number === this.findNumber) {
                 this.score++;
+                okSound.play();
             }
             this.number = 0;
             this.generateNumber();
         }
+
     }
 
     show() {
