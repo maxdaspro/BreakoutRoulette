@@ -28,18 +28,23 @@ class Roulette {
         this.message = new Message(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
 
         this.message.alert('Prêts?', () => {
+            decompteSound.play();
             this.chrono.start(3, this.start.bind(this), 0);
         });
     }
 
     update() {
         this.chrono.update();
+
     }
 
     start() {
         startsound.play();
         this.message.alert('Level ' + this.level, () => {
 
+        startSound.play();
+        menuSound.loopFull(0.6);
+        this.message.alert('Level ' + this.level++, () => {
 
 
             this.generateItems();
@@ -50,11 +55,22 @@ class Roulette {
                 players[key].generateNumber();
                 players[key].enable()
             }
-            this.chrono.start(180, this.end.bind(this), 0);
+
+            this.chrono.start(25, this.end.bind(this), 0, {
+                triggers:[{
+                    ms:20000,
+                    callback: function (){
+                        finTempsSound.play();
+                        console.log('reste 20 secondes');
+                    }
+                }]
+            });
         });
     }
 
     end() {
+        menuSound.stop();
+        
         let winner = null;
         let equal = 1;
         for (let key in players) {
@@ -78,6 +94,7 @@ class Roulette {
         }
         else {
             msg = winner.name + ' winner !';
+            winnerSound.play();
         }
         this.message.alert(msg);
     }

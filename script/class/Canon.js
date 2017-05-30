@@ -53,6 +53,7 @@ class Canon {
 
     shoot() {
         this.weapon.fire();
+        tirSound.play();
     }
 
     locked(){

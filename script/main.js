@@ -39,7 +39,7 @@ for (let i = 1; i <= 4; i++) {
 $(document).ready(function () {
 
     $('#interface #content').load('template/menu.phtml', () => {
-
+        
         let inputs = $('#interface #formulaire input[name*=player]');
 
         //Check inputs
