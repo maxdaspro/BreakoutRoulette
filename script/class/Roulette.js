@@ -21,7 +21,7 @@ class Roulette {
         this.max = 9;
         this.stepAngle = 360 / this.amount;
 
-        this.level = 1;
+        this.level = 0;
 
         this.items = [];
 
@@ -39,6 +39,7 @@ class Roulette {
     start() {
 
         this.message.alert('Level ' + this.level, () => {
+            startsound.play();
 
             this.generateItems();
 
@@ -59,19 +60,19 @@ class Roulette {
 
             players[key].paused = true;
 
-            if(!winner){
+            if (!winner) {
                 winner = players[key];
             }
-            else if(players[key].score > winner.score){
+            else if (players[key].score > winner.score) {
                 winner = players[key];
             }
-            else if(players[key].score === winner.score){
+            else if (players[key].score === winner.score) {
                 equal++;
             }
         }
 
         let msg = '';
-        if(Object.keys(players).length === equal){
+        if (Object.keys(players).length === equal) {
             msg = 'Egalité !';
         }
         else {
