@@ -27,8 +27,6 @@ class Chrono {
     }
 
     update() {
-        
-        console.log(this.msLeft);
 
         if (this.endTime) {
             this.endTime = false;
@@ -47,6 +45,7 @@ class Chrono {
             this.msLeft = this.max - this.runTime;
 
             if (this.msLeft  <= 0) {
+                console.log('end');
                 this.endTime = true;
                 return;
             }
@@ -61,7 +60,7 @@ class Chrono {
                     this.triggers.splice(i--, 1);
                 }
             }
-            
+
             this.text.setText((this.msLeft / 1000).toFixed(this.precision));
             this.text.x = this.position.x - this.text.width / 2;
             this.text.y = this.position.y - (this.text.height / 2) + 3;
