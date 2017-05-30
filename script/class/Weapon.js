@@ -11,7 +11,7 @@ class Weapon {
 
         this.weapon.bullets.setAll("collideWorldBounds", true);
 
-        this.weapon.bulletSpeed = 500;
+        this.weapon.bulletSpeed = 800;
         this.weapon.fireRate = 300;
 
         this.weapon.bullets.forEach(bullet => {
