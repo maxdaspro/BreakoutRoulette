@@ -2,13 +2,6 @@ class Roulette {
 
     constructor(position) {
 
-        let chars = [' '];
-        for(let i=65; i <= 90 ; i++){
-            chars.push(String.fromCharCode(i))
-        }
-        
-        console.log(chars);
-
         this.position = position;
 
         this.centerSprite = game.add.sprite(this.position.x, this.position.y, 'chronom');
@@ -34,10 +27,10 @@ class Roulette {
 
         this.message = new Message(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
 
-        // this.message.alert('Prêts?', () => {
-        //     this.chrono.start(3, this.start.bind(this), 0);
-        // });
-        this.generateItems();
+        this.message.alert('Prêts?', () => {
+            this.chrono.start(3, this.start.bind(this), 0);
+        });
+        // this.generateItems();
     }
 
     update() {
