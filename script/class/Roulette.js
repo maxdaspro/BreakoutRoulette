@@ -21,7 +21,7 @@ class Roulette {
         this.max = 9;
         this.stepAngle = 360 / this.amount;
 
-        this.level = 1;
+        this.level = 0;
 
         this.items = [];
 
