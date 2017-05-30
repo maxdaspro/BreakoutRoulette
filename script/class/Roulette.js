@@ -2,6 +2,13 @@ class Roulette {
 
     constructor(position) {
 
+        let chars = [' '];
+        for(let i=65; i <= 90 ; i++){
+            chars.push(String.fromCharCode(i))
+        }
+        
+        console.log(chars);
+
         this.position = position;
 
         this.centerSprite = game.add.sprite(this.position.x, this.position.y, 'chronom');
@@ -17,7 +24,7 @@ class Roulette {
 
         this.lines = 4;
         this.amount = 16;
-        this.min = 1;
+        this.min = -3;
         this.max = 9;
         this.stepAngle = 360 / this.amount;
 
@@ -27,9 +34,10 @@ class Roulette {
 
         this.message = new Message(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
 
-        this.message.alert('Prêts?', () => {
-            this.chrono.start(3, this.start.bind(this), 0);
-        });
+        // this.message.alert('Prêts?', () => {
+        //     this.chrono.start(3, this.start.bind(this), 0);
+        // });
+        this.generateItems();
     }
 
     update() {
@@ -37,10 +45,10 @@ class Roulette {
     }
 
     start() {
+
         startsound.play();
+
         this.message.alert('Level ' + this.level, () => {
-
-
 
             this.generateItems();
 
@@ -98,6 +106,8 @@ class Roulette {
 
         this.items = [];
 
+        let colors = [0xE0A890, 0x00BFB2, 0xC64191, 0xffa800];
+
         for (let i = 0; i < this.lines; i++) {
 
             this.items[i] = [];
@@ -114,6 +124,7 @@ class Roulette {
                     new Vector(53 * index, 0),                  //pivot
                     this.stepAngle,                             //stepAngle
                     this.stepAngle * j,                         //angle
+                    colors[i]                                   //color
                 );
             }
         }

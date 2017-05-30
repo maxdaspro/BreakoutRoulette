@@ -16,6 +16,9 @@ class Player {
         this.findNumber = 0;
         this.position = position;
 
+        this.min = 5;
+        this.max = 25;
+
         this.startAngle = angle;
         this.angle = angle;
         this.stepAngle = stepAngle;
@@ -109,7 +112,7 @@ class Player {
      */
     generateNumber() {
         this.number = 0
-        this.findNumber = Helper.randomValue(20, 50)
+        this.findNumber = Helper.randomValue(this.min, this.max)
     }
 
     /**
