@@ -9,6 +9,7 @@ let spacebar;
 let roulette;
 let players = {};
 let inputs = {};
+let startsound;
 
 PlayState.preload = function () {
     // game.load.tilemap("map2", GLOBAL.DIR.IMAGE + "map2.json", null, Phaser.Tilemap.TILED_JSON);
@@ -21,6 +22,7 @@ PlayState.preload = function () {
     game.load.image("case3", GLOBAL.DIR.IMAGE + "case3.png");
     game.load.image("case4", GLOBAL.DIR.IMAGE + "case4.png");
     game.load.image("chronom", GLOBAL.DIR.IMAGE + "chrono.png");
+    game.load.audio('start', 'assets/audio/Air-Horn-SoundBible.com-964603082.mp3');
 }
 
 PlayState.create = function () {
@@ -53,6 +55,10 @@ PlayState.create = function () {
 
         inputs[name] = game.input.gamepad._gamepads[index];
     });
+
+    startsound = game.add.audio('start');
+
+    game.sound.setDecodedCallback([ startsound ], PlayState.update, this);
 
     // players['bernard'] = new Player('bernard', step * 4, stepAngle, 0xffa800, new Vector(80,80));
     // players['maxime'] = new Player('maxime', step * 12, stepAngle, 0xC64191, new Vector(780,80));

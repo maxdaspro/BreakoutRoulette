@@ -37,7 +37,7 @@ class Roulette {
     }
 
     start() {
-
+        startsound.play();
         this.message.alert('Level ' + this.level++, () => {
 
             this.generateItems();
