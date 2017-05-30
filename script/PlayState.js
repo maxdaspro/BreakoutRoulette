@@ -48,7 +48,7 @@ PlayState.create = function () {
     let colors = [0xffa800, 0xC64191, 0x00BFB2, 0xE0A890]
     let scorePositions = [new Vector(80, 80), new Vector(780, 80), new Vector(80, 770), new Vector(780, 770)];
 
-    game.input.gamepad.start();
+    // game.input.gamepad.start();
 
     playerNames.forEach((name, index) => {
         players[name] = new Player(name, angles[index], stepAngle, colors[index], scorePositions[index], scoreOutPuts[index], statsOutputs[index]);
@@ -100,7 +100,7 @@ PlayState.update = function () {
 
         let pad = inputs[key];
 
-        if (game.input.gamepad.supported && game.input.gamepad.active && pad.connected) {
+        if (pad.connected) {
 
             //GAUCHE
             if (pad.justPressed(Phaser.Gamepad.XBOX360_DPAD_LEFT, 250) || pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1) {
