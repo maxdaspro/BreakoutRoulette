@@ -4,7 +4,7 @@ class Chrono {
         this.startTime = Date.now();
         this.runTime;
         this.max = 10;
-        this.secLeft = 0;
+        this.msLeft = 0;
         this.endTime = false;
         this.isPaused = false
         this.startPauseTime = 0;
@@ -27,6 +27,8 @@ class Chrono {
     }
 
     update() {
+        
+        console.log(this.msLeft);
 
         if (this.endTime) {
             this.endTime = false;
@@ -42,9 +44,9 @@ class Chrono {
 
             let currentTime = Date.now();
             this.runTime = currentTime - this.startTime;
-            this.secLeft = (this.max - this.runTime / 1000).toFixed(this.precision);
+            this.msLeft = this.max - this.runTime;
 
-            if (this.secLeft  <= 0) {
+            if (this.msLeft  <= 0) {
                 this.endTime = true;
                 return;
             }
@@ -53,15 +55,14 @@ class Chrono {
             for(let i=0; i < this.triggers.length; i++){
                 let trigger = this.triggers[i];
 
-                if(trigger.ms && this.secLeft <= trigger.msn){
+                if(trigger.ms && this.msLeft <= trigger.ms){
                     trigger.callback();
 
                     this.triggers.splice(i--, 1);
                 }
             }
             
-
-            this.text.setText(this.secLeft);
+            this.text.setText((this.msLeft / 1000).toFixed(this.precision));
             this.text.x = this.position.x - this.text.width / 2;
             this.text.y = this.position.y - (this.text.height / 2) + 3;
         }
@@ -80,7 +81,7 @@ class Chrono {
     }
 
     start(sec, callback = null, precision = 1, params = {}) {
-        this.max = sec;
+        this.max = sec * 1000;
         let value = this.max.toFixed(precision);
         this.text.setText(value);
         this.precision = precision;
@@ -90,6 +91,7 @@ class Chrono {
         this.startTime = Date.now();
 
         for(let key in params){
+            
             switch(key){
                 case 'triggers':
                     this.triggers = params[key];
