@@ -21,7 +21,7 @@ class Roulette {
         this.max = 9;
         this.stepAngle = 360 / this.amount;
 
-        this.level = 0;
+        this.level = 1;
 
         this.items = [];
 
@@ -37,9 +37,10 @@ class Roulette {
     }
 
     start() {
-
+        startsound.play();
         this.message.alert('Level ' + this.level, () => {
-            startsound.play();
+
+
 
             this.generateItems();
 
