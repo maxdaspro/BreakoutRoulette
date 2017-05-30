@@ -23,6 +23,10 @@ PlayState.preload = function () {
     game.load.image("case4", GLOBAL.DIR.IMAGE + "case4.png");
     game.load.image("chronom", GLOBAL.DIR.IMAGE + "chrono.png");
     game.load.audio('start', 'assets/audio/Air-Horn-SoundBible.com-964603082.mp3');
+    game.load.audio('tir', 'assets/audio/zag-canon_01.mp3');
+    game.load.audio('tir2', 'assets/audio/man__canon_05.mp3');
+    game.load.audio('menu', 'assets/audio/8-Bit-Mayhem.mp3');
+    game.load.audio('winner', 'assets/audio/Trancyvania_01.mp3');
 }
 
 PlayState.create = function () {
@@ -56,10 +60,13 @@ PlayState.create = function () {
         inputs[name] = game.input.gamepad._gamepads[index];
     });
 
-    startsound = game.add.audio('start');
+    startSound = game.add.audio('start');
+    tirSound = game.add.audio('tir2');
+    menuSound = game.add.audio('menu');
+    winnerSound = game.add.audio('winner');
 
-    game.sound.setDecodedCallback([ startsound ], PlayState.update, this);
-
+    game.sound.setDecodedCallback([ startSound,tirSound, menuSound, winnerSound ], PlayState.update, this);
+    
     // players['bernard'] = new Player('bernard', step * 4, stepAngle, 0xffa800, new Vector(80,80));
     // players['maxime'] = new Player('maxime', step * 12, stepAngle, 0xC64191, new Vector(780,80));
     // players['olivier'] = new Player('olivier', step * -4, stepAngle, 0x00BFB2, new Vector(80,770));

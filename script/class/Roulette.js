@@ -37,7 +37,8 @@ class Roulette {
     }
 
     start() {
-        startsound.play();
+        startSound.play();
+        menuSound.loopFull(0.6);
         this.message.alert('Level ' + this.level++, () => {
 
             this.generateItems();
@@ -48,11 +49,13 @@ class Roulette {
                 players[key].generateNumber();
                 players[key].enable()
             }
-            this.chrono.start(18, this.end.bind(this), 0);
+            this.chrono.start(180, this.end.bind(this), 0);
         });
     }
 
     end() {
+        menuSound.stop();
+        winnerSound.play();
         let winner = null;
         let equal = 1;
         for (let key in players) {
