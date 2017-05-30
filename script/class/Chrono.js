@@ -13,6 +13,8 @@ class Chrono {
         this.position = position;
         this.precision = 0;
 
+        this.triggers = [];
+
         this.style = {
             font: "40px Arial",
             fill: "#ffffff",
@@ -47,6 +49,18 @@ class Chrono {
                 return;
             }
 
+            /*triggers*/
+            for(let i=0; i < this.triggers.length; i++){
+                let trigger = this.triggers[i];
+
+                if(trigger.ms && this.secLeft <= trigger.msn){
+                    trigger.callback();
+
+                    this.triggers.splice(i--, 1);
+                }
+            }
+            
+
             this.text.setText(this.secLeft);
             this.text.x = this.position.x - this.text.width / 2;
             this.text.y = this.position.y - (this.text.height / 2) + 3;
@@ -65,7 +79,7 @@ class Chrono {
         this.startTime += this.pauseTime;
     }
 
-    start(sec, callback = null, precision = 1) {
+    start(sec, callback = null, precision = 1, params = {}) {
         this.max = sec;
         let value = this.max.toFixed(precision);
         this.text.setText(value);
@@ -74,6 +88,16 @@ class Chrono {
         this.callback = callback;
         this.isStarted = true;
         this.startTime = Date.now();
+
+        for(let key in params){
+            switch(key){
+                case 'triggers':
+                    this.triggers = params[key];
+                    break;
+                default:
+                    break;
+            }
+        }
     }
     stop() {
         this.pause();

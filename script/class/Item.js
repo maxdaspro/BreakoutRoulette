@@ -1,5 +1,5 @@
 class Item {
-    constructor(line, number, type, position, pivot, stepAngle, angle) {
+    constructor(line, number, type, position, pivot, stepAngle, angle, color) {
 
         // console.log(number, type, position, pivot, stepAngle, angle);
 
@@ -12,6 +12,8 @@ class Item {
         this.angle = angle + (this.stepAngle * 0.5);
 
         this.sprite = game.add.sprite(this.position.x, this.position.y, type);
+
+        this.sprite.tint = color;
 
         game.physics.arcade.enable(this.sprite);
 
@@ -40,7 +42,7 @@ class Item {
 
         this.container.x = this.position.x;
         this.container.y = this.position.y;
-        this.container.pivot.x = this.pivot.x + this.sprite.width / 2;
+        this.container.pivot.x = this.pivot.x + this.sprite.width * 0.6;
         this.container.pivot.y = this.pivot.y;
         this.container.angle = this.angle + this.stepAngle / 2.2;
 
@@ -48,13 +50,11 @@ class Item {
         this.hitbox.enableBody = true;
         this.hitbox.physicsBodyType = Phaser.Physics.ARCADE;
 
-        let color = Helper.randomHexNumber();
-
         for (let i = 0, j = 1; i < 2; i++, j += 2) {
 
             let hitSprite = game.add.sprite(0, 0);
 
-            hitSprite.addChild(Helper.Phaser.drawPoint(new Vector(0, 0), color, (this.sprite.width * 0.1) * this.line));
+            hitSprite.addChild(Helper.Phaser.drawPoint(new Vector(0, 0), 0xFF0000, (this.sprite.width * 0.1) * this.line));
 
             hitSprite.x = this.position.x;
             hitSprite.y = this.position.y;

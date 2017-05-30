@@ -17,7 +17,7 @@ class Roulette {
 
         this.lines = 4;
         this.amount = 16;
-        this.min = 1;
+        this.min = -3;
         this.max = 9;
         this.stepAngle = 360 / this.amount;
 
@@ -31,6 +31,7 @@ class Roulette {
             decompteSound.play();
             this.chrono.start(3, this.start.bind(this), 0);
         });
+        // this.generateItems();
     }
 
     update() {
@@ -117,6 +118,8 @@ class Roulette {
 
         this.items = [];
 
+        let colors = [0xE0A890, 0x00BFB2, 0xC64191, 0xffa800];
+
         for (let i = 0; i < this.lines; i++) {
 
             this.items[i] = [];
@@ -133,6 +136,7 @@ class Roulette {
                     new Vector(53 * index, 0),                  //pivot
                     this.stepAngle,                             //stepAngle
                     this.stepAngle * j,                         //angle
+                    colors[i]                                   //color
                 );
             }
         }
