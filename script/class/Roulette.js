@@ -38,7 +38,7 @@ class Roulette {
 
     start() {
 
-        this.message.alert('Level ' + this.level++, () => {
+        this.message.alert('Level ' + this.level, () => {
 
             this.generateItems();
 
@@ -48,7 +48,7 @@ class Roulette {
                 players[key].generateNumber();
                 players[key].enable()
             }
-            this.chrono.start(18, this.end.bind(this), 0);
+            this.chrono.start(180, this.end.bind(this), 0);
         });
     }
 
