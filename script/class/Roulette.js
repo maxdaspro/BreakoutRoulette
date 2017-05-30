@@ -39,38 +39,40 @@ class Roulette {
     }
 
     start() {
-        startsound.play();
-        this.message.alert('Level ' + this.level, () => {
 
         startSound.play();
-        menuSound.loopFull(0.6);
-        this.message.alert('Level ' + this.level++, () => {
+
+        this.message.alert('Level ' + this.level, () => {
+
+            menuSound.loopFull(0.6);
+            this.message.alert('Level ' + this.level++, () => {
 
 
-            this.generateItems();
+                this.generateItems();
 
-            for (let key in players) {
-                players[key].number = 0;
-                players[key].level = this.level;
-                players[key].generateNumber();
-                players[key].enable()
-            }
+                for (let key in players) {
+                    players[key].number = 0;
+                    players[key].level = this.level;
+                    players[key].generateNumber();
+                    players[key].enable()
+                }
 
-            this.chrono.start(25, this.end.bind(this), 0, {
-                triggers:[{
-                    ms:20000,
-                    callback: function (){
-                        finTempsSound.play();
-                        console.log('reste 20 secondes');
-                    }
-                }]
+                this.chrono.start(25, this.end.bind(this), 0, {
+                    triggers: [{
+                        ms: 20000,
+                        callback: function () {
+                            finTempsSound.play();
+                            console.log('reste 20 secondes');
+                        }
+                    }]
+                });
             });
         });
     }
 
     end() {
         menuSound.stop();
-        
+
         let winner = null;
         let equal = 1;
         for (let key in players) {
