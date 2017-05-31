@@ -55,12 +55,12 @@ class Roulette {
                 players[key].enable()
             }
 
-            this.chrono.start(21, this.end.bind(this), 0, {
+            this.chrono.start(180, this.end.bind(this), 0, {
                 triggers: [{
                     ms: 20000,
                     callback: function () {
+                        finTempsSound.volume = 0.1;
                         finTempsSound.play();
-                        console.log('reste 20 secondes');
                     }
                 }]
             });
