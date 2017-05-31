@@ -45,7 +45,7 @@ class Roulette {
 
         this.message.alert('Level ' + this.level, () => {
 
-            menuSound.loopFull(0.6);
+            menuSound.loopFull(0.4);
             this.generateItems();
 
             for (let key in players) {
@@ -55,7 +55,7 @@ class Roulette {
                 players[key].enable()
             }
 
-            this.chrono.start(100, this.end.bind(this), 0, {
+            this.chrono.start(21, this.end.bind(this), 0, {
                 triggers: [{
                     ms: 20000,
                     callback: function () {
@@ -91,6 +91,7 @@ class Roulette {
         let msg = '';
         if (Object.keys(players).length === equal) {
             msg = 'Egalité !';
+            egaliteSound.play();
         }
         else {
             msg = winner.name + ' winner !';
