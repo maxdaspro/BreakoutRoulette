@@ -65,10 +65,11 @@ class Roulette {
                 }]
             });
         });
-       
+
     }
 
     end() {
+
         menuSound.stop();
 
         let winner = null;
@@ -98,6 +99,13 @@ class Roulette {
             winnerSound.play();
         }
         this.message.alert(msg);
+
+        //Item explosion
+        for (let i = 0; i < this.items.length; i++) {
+            for (let j = 0; j < this.items[i].length; j++) {
+                this.items[i][j].destroy();
+            }
+        }
     }
 
 
@@ -113,6 +121,15 @@ class Roulette {
     generateItems() {
 
         this.destroyItems();
+
+        for (let key in players) {
+            let player = players[key];
+            let bullets = player.canon.weapon.getBullets();
+
+            for (let i = 0; i < bullets.length; i++) {
+                bullets[i].kill();
+            }
+        }
 
         this.items = [];
 
@@ -138,5 +155,25 @@ class Roulette {
                 );
             }
         }
+    }
+
+    highlight(){
+        this.tweenTint(this.centerSprite, 0x0095FF, 0xFFFFFF, 500);
+    }
+
+    tweenTint(obj, startColor, endColor, time) {
+
+        var colorBlend = {step: 0};
+
+        var colorTween = game.add.tween(colorBlend).to({step: 100}, time);
+
+        colorTween.onUpdateCallback(function () {
+
+            obj.tint = Phaser.Color.interpolateColor(startColor, endColor, 100, colorBlend.step);
+        });
+
+        obj.tint = startColor;
+
+        colorTween.start();
     }
 }

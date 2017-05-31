@@ -80,6 +80,7 @@ class Weapon {
     }
     hitCenter(roulette, bulletSprite) {
         bulletSprite.kill();
+        roulette.highlight()
         roulette.generateItems()
         reloadSound.play();
     }

@@ -111,7 +111,6 @@ PlayState.create = function () {
     //
     //      players['maxime'].shortMove = false;
     // });
-
 }
 
 PlayState.update = function () {
