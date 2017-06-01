@@ -40,7 +40,7 @@ class Roulette {
 
     start() {
 
-        startSound.volume = 0.5;
+        startSound.volume = 0.4;
         startSound.play();
 
         this.message.alert('Level ' + this.level, () => {

@@ -26,7 +26,7 @@ PlayState.preload = function () {
     game.load.audio('tir', 'assets/audio/jeckkech__projectile_01.mp3');
     game.load.audio('menu', 'assets/audio/8-Bit-Mayhem.mp3');
     game.load.audio('winner', 'assets/audio/Trancyvania_01.mp3');
-    game.load.audio('decompte', 'assets/audio/unnecro__race-countdown2_01.mp3');
+    game.load.audio('decompte', 'assets/audio/countdown.mp3');
     game.load.audio('finTemps', 'assets/audio/russintheus__countdown-boom_01.mp3');
     game.load.audio('error', 'assets/audio/samsterbirdies__8-bit-error_01.mp3');
     game.load.audio('ok', 'assets/audio/rhodesmas__coins-purchase-4_01.mp3');
