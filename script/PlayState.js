@@ -32,6 +32,8 @@ PlayState.preload = function () {
     game.load.audio('ok', 'assets/audio/rhodesmas__coins-purchase-4_01.mp3');
     game.load.audio('reload', 'assets/audio/killkhan__reload-1_01.mp3');
     game.load.audio('egalite', 'assets/audio/noirenex__wrong-selection_01.mp3');
+    game.load.audio('breaking', 'assets/audio/homejrande__earth-demolition-hammer_01.mp3');
+    game.load.audio('breaking2', 'assets/audio/brick-hitting-wall_01.mp3');
 }
 
 PlayState.create = function () {
@@ -75,6 +77,7 @@ PlayState.create = function () {
     reloadSound = game.add.audio('reload');
     egaliteSound = game.add.audio('egalite');
     finTempsSound = game.add.audio('finTemps');
+    breakingSound = game.add.audio('breaking');
 
     game.sound.setDecodedCallback([     
         startSound,
@@ -86,7 +89,8 @@ PlayState.create = function () {
         errorSound, 
         okSound,
         reloadSound,
-        egaliteSound
+        egaliteSound,
+        breakingSound
      ], PlayState.update, this);
     
     // players['bernard'] = new Player('bernard', step * 4, stepAngle, 0xffa800, new Vector(80,80));

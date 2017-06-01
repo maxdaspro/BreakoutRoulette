@@ -45,7 +45,6 @@ class Chrono {
             this.msLeft = this.max - this.runTime;
 
             if (this.msLeft  <= 0) {
-                console.log('end');
                 this.endTime = true;
                 return;
             }
