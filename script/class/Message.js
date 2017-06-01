@@ -6,7 +6,7 @@ class Message {
         this.box = game.add.physicsGroup();
 
         this.style = {
-            font: "120px Arial",
+            font: "100px Arial",
             fill: "#ffffff",
             align: "center",
             boundsAlignH: "middle",

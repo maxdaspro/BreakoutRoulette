@@ -11,13 +11,18 @@ class Player {
         this.statsOutput.name.innerText = this.name;
 
         this.score = 0;
+        this.scoreBase = 200;
+        this.hits = 0;
+        this.globalHits = 0;
+        this.stats = 0;
         this.level = 1;
         this.number = 0;
         this.findNumber = 0;
         this.position = position;
 
-        this.min = 5;
-        this.max = 25;
+
+        this.min = 9;
+        this.max = 27;
 
         this.startAngle = angle;
         this.angle = angle;
@@ -133,7 +138,7 @@ class Player {
     displayStats() {
         this.statsOutput.level.innerText = this.level;
         this.statsOutput.score.innerText = this.score;
-        this.statsOutput.stats.innerText = '...';
+        this.statsOutput.stats.innerText = this.stats + '%';
     }
 
     /**
@@ -142,9 +147,14 @@ class Player {
      */
     checkScore(number) {
 
+        this.hits++;
+        this.globalHits++;
+
+        console.log(this.globalHits);
+
         this.number += number;
 
-        if(this.number < 0){
+        if (this.number < 0) {
             this.number = 0;
         }
         if (this.number > this.findNumber) {
@@ -152,9 +162,14 @@ class Player {
         }
 
         if (this.number >= this.findNumber) {
+            this.level++;
             if (this.number === this.findNumber) {
-                this.score++;
+                this.score += Math.floor(this.scoreBase / this.hits);
+                this.hits = 0;
                 okSound.play();
+            }
+            if (this.score > 0) {
+                this.stats = Math.floor((1 - (this.level / this.score)) * 100);
             }
             this.number = 0;
             this.generateNumber();
