@@ -76,41 +76,19 @@ PlayState.create = function () {
     egaliteSound = game.add.audio('egalite');
     finTempsSound = game.add.audio('finTemps');
 
-    game.sound.setDecodedCallback([     
+    game.sound.setDecodedCallback([
         startSound,
-        tirSound, 
-        menuSound, 
-        winnerSound, 
-        decompteSound, 
-        finTempsSound, 
-        errorSound, 
+        tirSound,
+        menuSound,
+        winnerSound,
+        decompteSound,
+        finTempsSound,
+        errorSound,
         okSound,
         reloadSound,
         egaliteSound
-     ], PlayState.update, this);
-    
-    // players['bernard'] = new Player('bernard', step * 4, stepAngle, 0xffa800, new Vector(80,80));
-    // players['maxime'] = new Player('maxime', step * 12, stepAngle, 0xC64191, new Vector(780,80));
-    // players['olivier'] = new Player('olivier', step * -4, stepAngle, 0x00BFB2, new Vector(80,770));
-    // players['gaspard'] = new Player('gaspard', step * -12, stepAngle, 0xE0A890, new Vector(780,770));
+    ], PlayState.update, this);
 
-    // let left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-    // let right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
-    // left.onDown.add(() => {
-    //     players['maxime'].turn('left', true);
-    // });
-    // right.onDown.add(() => {
-    //     players['maxime'].turn('right', true);
-    // });
-    //
-    //  left.onUp.add(() => {
-    //      players['maxime'].shortMove = false;
-    //
-    // });
-    // right.onUp.add(() => {
-    //
-    //      players['maxime'].shortMove = false;
-    // });
 }
 
 PlayState.update = function () {
@@ -123,7 +101,6 @@ PlayState.update = function () {
         player.update();
     }
 
-
     for (let key in inputs) {
 
         let pad = inputs[key];
@@ -131,18 +108,18 @@ PlayState.update = function () {
         if (game.input.gamepad.supported && game.input.gamepad.active && pad.connected) {
 
             //GAUCHE
-            if (pad.justPressed(Phaser.Gamepad.XBOX360_DPAD_LEFT, 250) || pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1) {
+            if (pad.justPressed(Phaser.Gamepad.XBOX360_DPAD_LEFT, 250) || (pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1 && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > -0.99)) {
                 players[key].turn('left', false);
-            } else if (pad.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) || pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1) {
+            } else if (pad.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) || pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.99) {
                 players[key].turn('left', true);
             } else if (pad.justReleased(Phaser.Gamepad.XBOX360_DPAD_LEFT, 40)) {
                 players[key].shortMove = false;
             }
 
             //DROIT
-            if (pad.justPressed(Phaser.Gamepad.XBOX360_DPAD_RIGHT, 250) || pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) < -0.1) {
+            if (pad.justPressed(Phaser.Gamepad.XBOX360_DPAD_RIGHT, 250) || (pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1 && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < 0.99)) {
                 players[key].turn('right', false);
-            } else if (pad.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) || pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) < -0.1) {
+            } else if (pad.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) || pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.99) {
                 players[key].turn('right', true);
             } else if (pad.justReleased(Phaser.Gamepad.XBOX360_DPAD_RIGHT, 40)) {
                 players[key].shortMove = false;

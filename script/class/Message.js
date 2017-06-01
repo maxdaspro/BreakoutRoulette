@@ -20,9 +20,11 @@ class Message {
         this.speed = 1500;
     }
 
-    alert(msg, callback = null) {
-
+    update(){
         game.world.bringToTop(this.box);
+    }
+
+    alert(msg, callback = null) {
 
         this.box.scale.set(1);
 
