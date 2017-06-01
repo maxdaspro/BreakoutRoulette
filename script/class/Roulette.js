@@ -94,7 +94,7 @@ class Roulette {
             egaliteSound.play();
         }
         else {
-            msg = winner.name + ' winner !';
+            msg = winner.name + ' a gagné !';
             winnerSound.play();
         }
         this.message.alert(msg);
