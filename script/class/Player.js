@@ -143,6 +143,10 @@ class Player {
     checkScore(number) {
 
         this.number += number;
+
+        if(this.number < 0){
+            this.number = 0;
+        }
         if (this.number > this.findNumber) {
             errorSound.play();
         }
