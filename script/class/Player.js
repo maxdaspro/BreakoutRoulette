@@ -147,6 +147,10 @@ class Player {
      */
     checkScore(number) {
 
+        /**
+         * SAUVE TOUTES LES STATS ET FAIRE AVG POUR AFFICHAGE
+         */
+
         this.hits++;
         this.globalHits++;
 
