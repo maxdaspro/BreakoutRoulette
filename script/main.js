@@ -61,7 +61,6 @@ $(document).ready(function () {
         $(this).find('#play').on('click', () => {
 
             playerNames = [];
-
             inputs.each(function (index, input) {
                 let name = $(input).val();
 

@@ -32,8 +32,10 @@ PlayState.preload = function () {
     game.load.audio('ok', 'assets/audio/rhodesmas__coins-purchase-4_01.mp3');
     game.load.audio('reload', 'assets/audio/killkhan__reload-1_01.mp3');
     game.load.audio('egalite', 'assets/audio/noirenex__wrong-selection_01.mp3');
-    game.load.audio('breaking', 'assets/audio/homejrande__earth-demolition-hammer_01.mp3');
-    game.load.audio('breaking2', 'assets/audio/brick-hitting-wall_01.mp3');
+    game.load.audio('breaking', 'assets/audio/brick-hitting-wall_01.mp3');
+    game.load.audio('trolley', 'assets/audio/janevdmerwe1995__trolley-over-floor_01.mp3');
+    game.load.audio('trolley2', 'assets/audio/janevdmerwe1995__trolley-over-floor_02.mp3');
+    game.load.audio('click', 'assets/audio/masgame__mouse-click-sounds_01.aif');
 }
 
 PlayState.create = function () {
@@ -78,6 +80,9 @@ PlayState.create = function () {
     egaliteSound = game.add.audio('egalite');
     finTempsSound = game.add.audio('finTemps');
     breakingSound = game.add.audio('breaking');
+    trolleySound = game.add.audio('trolley');
+    trolleySound2 = game.add.audio('trolley2');
+    clickSound = game.add.audio('click');
 
     game.sound.setDecodedCallback([
         startSound,
@@ -90,7 +95,10 @@ PlayState.create = function () {
         okSound,
         reloadSound,
         egaliteSound,
-        breakingSound
+        breakingSound,
+        trolleySound,
+        trolleySound2,
+        clickSound
      ], PlayState.update, this);
 }
 
