@@ -6,7 +6,7 @@ class Message {
         this.box = game.add.physicsGroup();
 
         this.style = {
-            font: "40px Arial",
+            font: "120px Arial",
             fill: "#ffffff",
             align: "center",
             boundsAlignH: "middle",
@@ -24,9 +24,9 @@ class Message {
         game.world.bringToTop(this.box);
     }
 
-    alert(msg, callback = null) {
+    alert(msg, callback = null, persist = false) {
 
-        this.box.scale.set(1);
+        this.box.scale.set(0.2);
 
         this.text = game.add.text(0, 0, msg, this.style);
         this.text.setShadow(0, 0, 'rgba(100,100,100,0.8)', 20);
@@ -35,11 +35,16 @@ class Message {
         this.box.add(this.text);
 
         let twa = game.add.tween(this.box).to({alpha: 1}, this.speed, Phaser.Easing.linear, true, 500);
-        let twb = game.add.tween(this.box.scale).to({x: 3, y: 3}, this.speed, Phaser.Easing.linear, true, 500);
+        let twb = game.add.tween(this.box.scale).to({x: 1, y: 1}, this.speed, Phaser.Easing.linear, true, 500);
 
         twb.onComplete.add(() => {
-            this.text.destroy();
-            this.hideMessage();
+
+
+            if(!persist) {
+                console.log(persist);
+                this.text.destroy();
+                this.hideMessage();
+            }
             setTimeout(() => {
                 if(callback) {
                     callback();

@@ -97,7 +97,8 @@ class Roulette {
             msg = winner.name + ' a gagné !';
             winnerSound.play();
         }
-        this.message.alert(msg);
+
+        this.message.alert(msg, null, true);
 
         //Item explosion
         for (let i = 0; i < this.items.length; i++) {
