@@ -31,7 +31,6 @@ class Roulette {
             decompteSound.play();
             this.chrono.start(3, this.start.bind(this), 0);
         });
-        // this.generateItems();
     }
 
     update() {
@@ -95,7 +94,7 @@ class Roulette {
             egaliteSound.play();
         }
         else {
-            msg = winner.name + ' winner !';
+            msg = winner.name + ' a gagné !';
             winnerSound.play();
         }
         this.message.alert(msg);
@@ -158,7 +157,7 @@ class Roulette {
     }
 
     highlight(){
-        this.tweenTint(this.centerSprite, 0x0095FF, 0xFFFFFF, 500);
+        this.tweenTint(this.centerSprite, 0xFF0022, 0xFFFFFF, 500);
     }
 
     tweenTint(obj, startColor, endColor, time) {

@@ -97,6 +97,8 @@ PlayState.create = function () {
         trolleySound,
         trolleySound2
      ], PlayState.update, this);
+    
+    console.log(Phaser.Gamepad);
 }
 
 PlayState.update = function () {
