@@ -74,10 +74,12 @@ class Weapon {
     }
 
     hitItem(item, bulletSprite, circleSprite) {
+        breakingSound.volume = 0.5;
+        breakingSound.play();
         bulletSprite.kill();
         item.destroy();
         this.player.checkScore(item.number)
-        breakingSound.play();
+
     }
     hitCenter(roulette, bulletSprite) {
         bulletSprite.kill();

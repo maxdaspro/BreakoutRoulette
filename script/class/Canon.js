@@ -38,12 +38,12 @@ class Canon {
     turn(direction) {
         switch (direction.toLowerCase()) {
             case 'left':
-                trolleySound2.volume = 0.5;
+                trolleySound2.volume = 1;
                 trolleySound2.play();
                 this.setAngle(this.angle + this.stepAngle);
                 break;
             case 'right':
-                trolleySound2.volume = 0.5;
+                trolleySound2.volume = 1;
                 trolleySound2.play();
                 this.setAngle(this.angle - this.stepAngle);
                 break;
