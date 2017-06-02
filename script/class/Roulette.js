@@ -28,7 +28,8 @@ class Roulette {
         this.message = new Message(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
 
         this.message.alert('Prêts?', () => {
-            decompteSound.play();
+            //decompteSound.play();
+            raceSound.play();
             this.chrono.start(3, this.start.bind(this), 0);
         });
     }
@@ -40,10 +41,35 @@ class Roulette {
 
     start() {
 
-        startSound.volume = 0.4;
-        startSound.play();
 
-        this.message.alert('Level ' + this.level, () => {
+        /*startSound.volume = 0.4;
+        startSound.play();*/
+
+
+/*        this.message.alert('Level ' + this.level, () => {
+
+            menuSound.loopFull(0.4);
+            this.generateItems();
+
+            for (let key in players) {
+                players[key].number = 0;
+                players[key].level = this.level;
+                players[key].generateNumber();
+                players[key].enable()
+            }
+
+            this.chrono.start(20, this.end.bind(this), 0, {
+                triggers: [{
+                    ms: 20000,
+                    callback: function () {
+                        finTempsSound.volume = 0.1;
+                        finTempsSound.play();
+                    }
+                }]
+            });
+        });      */  
+
+        this.message.alert('Go !!!', () => {
 
             menuSound.loopFull(0.4);
             this.generateItems();
