@@ -13,8 +13,8 @@ class Player {
         this.score = 0;
         this.scoreBase = 200;
         this.hits = 0;
-        this.globalHits = 0;
         this.stats = 0;
+        this.statsProgress = [];
         this.level = 1;
         this.number = 0;
         this.findNumber = 0;
@@ -152,9 +152,6 @@ class Player {
          */
 
         this.hits++;
-        this.globalHits++;
-
-        console.log(this.globalHits);
 
         this.number += number;
 
@@ -166,15 +163,27 @@ class Player {
         }
 
         if (this.number >= this.findNumber) {
+
             this.level++;
+
             if (this.number === this.findNumber) {
-                this.score += Math.floor(this.scoreBase / this.hits);
+                this.score += Math.ceil(this.scoreBase / this.hits);
                 this.hits = 0;
                 okSound.play();
             }
+
             if (this.score > 0) {
-                this.stats = Math.floor((1 - (this.level / this.score)) * 100);
+
+                this.statsProgress.push(Math.ceil((1 - (this.level / this.score)) * 100));
+
+                let total = 0;
+                for(let i=0; i < this.statsProgress.length; i++){
+                    total += this.statsProgress[i];
+                }
+
+                this.stats = Math.round(total / this.statsProgress.length);
             }
+
             this.number = 0;
             this.generateNumber();
         }
