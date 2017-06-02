@@ -9,7 +9,7 @@ class InputEditor {
 
 
         this.chars = [];
-        for (let i = 65; i <= 90; i++) {
+        for (let i = 97; i <= 122; i++) {
             this.chars.push(String.fromCharCode(i));
         }
 
@@ -102,6 +102,7 @@ class InputEditor {
         }
         this.chain[this.stringIndex] = this.chars[this.charIndex];
         this.update();
+        this.updateCursor();
     }
 
     removeChar() {
@@ -123,6 +124,7 @@ class InputEditor {
         });
 
         this.update();
+        this.updateCursor();
     }
 
     //CURSOR
@@ -155,7 +157,7 @@ class InputEditor {
         if (this.chain[this.stringIndex] === null) {
             return;
         }
-        this.charIndex = this.chain[this.stringIndex].charCodeAt(0) - 65;
+        this.charIndex = this.chain[this.stringIndex].charCodeAt(0) - 97;
     }
 
     chainSize() {
