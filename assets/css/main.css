@@ -228,8 +228,8 @@ body {
 }
 
 #interface #modal {
-    width: 600px;
-    height: 680px;
+    width: 620px;
+    height: 700px;
     margin: auto;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 20px;
@@ -268,24 +268,79 @@ body {
     font-weight: bold;
     border: 1px solid darkgrey;
     border-radius: 10px;
-    width: 77%;
+    width: 85%;
     margin: auto;
 }
 
 #formulaire label{
     display: block;
-    color: #4e5451;
+    color: black;
     margin-bottom: 10px;
     margin-top: 20px;
 }
 
 #formulaire input[type=text] {
-    text-align: center;
-    font-size: 1.1em;
+    text-align: left;
+    text-indent: 14px;
+    font-size: 24px;
+    transform:scale(1,1);
     width: 180px;
+    font-weight: bold;
+    font-family: monospace;
+    letter-spacing: 1px;
 }
 #formulaire input[type=text]:disabled {
-    background-color: #D4C9C9;
+    background-color: #BCB2B2;
+}
+.checked {
+    display: block;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    background-image: url("../img/greenchecked.png");
+    z-index: 2000;
+    top: 63px;
+}
+.checked-1-2{
+    left: 160px;
+}
+.checked-3-4{
+    left: 160px;
+}
+.cursor {
+    display: none;
+    width: 14px;
+    height: 2px;
+    top: 87px;
+    left: 30px;
+    position: absolute;
+    background-color: black;
+    z-index: 2000;
+    visibility: hidden;
+    -webkit-animation-name: blinker;  
+    -webkit-animation-iteration-count: infinite;  
+    -webkit-animation-timing-function: cubic-bezier(.5, 0, 1, 1);
+    -webkit-animation-duration: .8s; 
+}
+@keyframes blinker {  
+  from { visibility: hidden; }
+  50% { visibility: hidden; }
+  to { visibility: visible; }
+}
+.manette{
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    background-image: url("../img/manette1.png");
+    z-index: 2000;
+    top: 15px;
+}
+.manette.connected{
+
+}
+.manette.disconnected{
+    background-position: 0px -40px;
 }
 #formulaire .block{
     display: inline-block;
@@ -294,7 +349,6 @@ body {
 .player{
     display: inline-block;
     width: 40%;
-    
     position:relative;
 }
 .button{
@@ -327,7 +381,7 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842',GradientType=0 ); /* IE6-9 */
 }
 #input-1{
-    border:3px solid #ffa800;
+    border:3px solid #ffa800 ;
     
 }
 #input-1:focus{
@@ -335,13 +389,21 @@ body {
     border:3px solid #ffa800;
     box-shadow: 0px 0px 20px #ffa800;
 }
+#input-1 .actived{
+    background-color: #ffa800 !important;
+    
+}
 #input-2{
-    border:3px solid #C64191;   
+    border:3px solid #C64191 ;   
 }
 #input-2:focus{
     outline-width: 0;
     border:3px solid #C64191;
     box-shadow: 0px 0px 20px #C64191;  
+}
+#input-2 .actived{
+    background-color: #C64191 !important;
+    
 }
 #input-3{
     border:3px solid #00BFB2;
@@ -351,6 +413,10 @@ body {
     border:3px solid #00BFB2;
     box-shadow: 0px 0px 20px #00BFB2;  
 }
+#input-3 .actived{
+    background-color: #00BFB2 !important;
+    
+}
 #input-4{
     border:3px solid #E0A890;
 }
@@ -359,7 +425,10 @@ body {
     border:3px solid #E0A890;
     box-shadow: 0px 0px 20px #E0A890;  
 }
-.input-player{
-    font-weight: bold;
+#input-4 .actived{
+    background-color: #E0A890 !important;
+    
 }
+
+
 
