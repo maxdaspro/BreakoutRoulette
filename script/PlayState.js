@@ -27,6 +27,8 @@ PlayState.preload = function () {
 
 PlayState.create = function () {
 
+    game.launched = true;
+
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     game.world.bounds.setTo(32, 32, GLOBAL.WIDTH - 64, GLOBAL.HEIGHT - 64);
@@ -50,11 +52,17 @@ PlayState.create = function () {
 
     // game.input.gamepad.start();
 
-    playerNames.forEach((name, index) => {
-        players[name] = new Player(name, angles[index], stepAngle, colors[index], scorePositions[index], scoreOutPuts[index], statsOutputs[index]);
+    // playerNames.forEach((name, index) => {
+    let index = 0;
+    for(let id in playerNames){
+        let name = playerNames[id];
 
-        inputs[name] = game.input.gamepad._gamepads[index];
-    });
+        players[id] = new Player(name, angles[index], stepAngle, colors[index], scorePositions[index], scoreOutPuts[index], statsOutputs[index]);
+
+        inputs[id] = game.input.gamepad._gamepads[index];
+
+        index++;
+    };
 
     startsound = game.add.audio('start');
 

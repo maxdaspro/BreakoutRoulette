@@ -292,6 +292,9 @@ body {
 #formulaire input[type=text]:disabled {
     background-color: #BCB2B2;
 }
+#formulaire input[type=text].ready{
+    color: #555;
+}
 .checked {
     display: block;
     width: 24px;
@@ -300,19 +303,14 @@ body {
     background-image: url("../img/greenchecked.png");
     z-index: 2000;
     top: 63px;
-}
-.checked-1-2{
-    left: 160px;
-}
-.checked-3-4{
     left: 160px;
 }
 .cursor {
-    display: none;
+    display: block;
     width: 14px;
     height: 2px;
-    top: 87px;
-    left: 30px;
+    top: 88px;
+    left: 29px;
     position: absolute;
     background-color: black;
     z-index: 2000;
@@ -354,6 +352,34 @@ body {
 .button{
     cursor: pointer;
     color:#EEE;
+    line-height: 30px;
+    width: 220px; 
+}
+.button.ready{
+    font-size: 1.2em; 
+    -webkit-animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    -webkit-animation-iteration-count: infinite;
+    
+}
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
 .button.gradian-blue{
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6db3f2+0,54a3ee+50,3690f0+51,1e69de+100;Blue+Gloss+%233 */
@@ -363,7 +389,7 @@ body {
     background: linear-gradient(to bottom, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 ); /* IE6-9 */
 }
-.button.gradian-blue:active{
+.button.gradian-blue-active, .button.gradian-blue:active{
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e69de+0,1e69de+0,3690f0+48,3690f0+48,54a3ee+50,6db3f2+100 */
     background: rgb(30,105,222); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(30,105,222,1) 0%, rgba(30,105,222,1) 0%, rgba(54,144,240,1) 48%, rgba(54,144,240,1) 48%, rgba(84,163,238,1) 50%, rgba(109,179,242,1) 100%); /* FF3.6-15 */
@@ -429,6 +455,5 @@ body {
     background-color: #E0A890 !important;
     
 }
-
 
 
