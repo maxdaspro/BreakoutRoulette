@@ -1,19 +1,31 @@
 <nav>
     <form action="post" id="formulaire">
         <div class="block">
-            <label>Joueur 1</label>
-            <input type="text" name="player-1" autofocus="true" value="bernard" required>
-            <label>Joueur 2</label>
-            <input type="text" name="player-2" value="olivier" required>
+            <div class="player">   
+                <label>Player 1</label>
+                <span class="manette disconnected"></span>
+                <input class="input-player" id="input-1" minlength="1" maxlength="9" type="text" name="player-1"  disabled required>
+            </div>
+            <div class="player"> 
+                <label>Player 2</label>
+                <span class="manette disconnected"></span>
+                <input class="input-player" id="input-2" minlength="1" maxlength="9" type="text" name="player-2"   disabled required>
+            </div>
         </div>
         <div class="block">
-            <label>Joueur 3</label>
-            <input type="text" name="player-3" value="max" required>
-            <label>Joueur 4</label>
-            <input type="text" name="player-4" disabled required>
+            <div class="player">   
+                <label>Player 3</label>
+                <span class="manette disconnected"></span>
+                <input  class="input-player" id="input-3" minlength="1" maxlength="9" type="text" name="player-3" disabled required>
+            </div>
+            <div class="player"> 
+                <label>Player 4</label>
+                <span class="manette disconnected"></span>
+                <input  class="input-player" id="input-4" minlength="1" maxlength="9" type="text" name="player-4" disabled  required>
+            </div>
         </div>
         <p>
-            <input type="button" class="button gradian-blue" id="play" value="Lancer"/>
+            <input type="button" class="button gradian-blue" id="play" value="Waiting.."/>
         </p>
     </form>
 </nav>

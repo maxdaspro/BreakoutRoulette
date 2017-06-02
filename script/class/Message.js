@@ -39,9 +39,7 @@ class Message {
 
         twb.onComplete.add(() => {
 
-
             if(!persist) {
-                console.log(persist);
                 this.text.destroy();
                 this.hideMessage();
             }
