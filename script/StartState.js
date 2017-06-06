@@ -1,15 +1,15 @@
 var StartState = {};
-let menuStartSound;
+
 
 StartState.preload = function () {
-    game.load.audio('menu', 'assets/audio/cheap-flash-game.mp3');
+    game.load.audio('menuStart', 'assets/audio/cheap-flash-game.mp3');
 }
 
 StartState.create = function () {
 
     console.log('StartState');
 
-    menuStartSound = game.add.audio('menu');
+    menuStartSound = game.add.audio('menuStart');
 
     game.sound.setDecodedCallback([
         menuStartSound
@@ -22,7 +22,7 @@ StartState.create = function () {
 
         let inputEditors = [];
         let globalReady = false;
-        menuStartSound.play();
+        menuStartSound.loopFull(0.4);
         $('#interface #content').load('template/menu.phtml', () => {
 
             let inputsHtml = $('#interface #formulaire input[name*=player]');
@@ -141,6 +141,7 @@ StartState.create = function () {
                 }
 
                 game.state.start('play');
+                menuStartSound.stop();
             }
 
             //Get players name

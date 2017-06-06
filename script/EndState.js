@@ -6,7 +6,7 @@ EndState.preload = function () {
 
 EndState.create = function () {
     console.log('EndState');
-
+    menuStartSound.loopFull(0.4);
     $('#interface #content').load('template/end.phtml', () => {
 
         document.getElementById("interface").classList.remove('hidden');
@@ -80,12 +80,15 @@ EndState.create = function () {
             switch (state) {
                 case 'play' :
                     document.getElementById("interface").classList.add('hidden');
+                    menuStartSound.stop();
                     break;
                 case 'start' :
                     document.getElementById("interface").classList.remove('hidden');
+                    menuStartSound.stop();
                     break;
             }
             game.state.start(state);
+
         }
     });
 }
