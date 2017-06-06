@@ -57,7 +57,7 @@ class Roulette {
                 players[key].enable()
             }
 
-            this.chrono.start(30, this.end.bind(this), 0, {
+            this.chrono.start(180, this.end.bind(this), 0, {
                 triggers: [{
                     ms: 20000,
                     callback: function () {
