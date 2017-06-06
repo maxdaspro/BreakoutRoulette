@@ -53,37 +53,37 @@ StartState.create = function () {
                     inputEditors.push(inputEditor);
 
                     gamepad.getButton(Phaser.Gamepad.XBOX360_DPAD_UP).onDown.add(function () {
-                        if (game.launched) return;
+                        // if (game.launched) return;
                         inputEditor.previousChar();
                     });
                     gamepad.getButton(Phaser.Gamepad.XBOX360_DPAD_DOWN).onDown.add(function () {
-                        if (game.launched) return;
+                        // if (game.launched) return;
                         inputEditor.nextChar();
                     });
                     gamepad.getButton(Phaser.Gamepad.BUTTON_0).onDown.add(function () {
-                        if (game.launched) return;
+                        // if (game.launched) return;
                         inputEditor.addChar();
                     });
                     gamepad.getButton(Phaser.Gamepad.BUTTON_2).onDown.add(function () {
-                        if (game.launched) return;
+                        // if (game.launched) return;
                         inputEditor.removeChar();
                     });
                     gamepad.getButton(Phaser.Gamepad.XBOX360_LEFT_BUMPER).onDown.add(function () {
-                        if (game.launched) return;
+                        // if (game.launched) return;
                         inputEditor.moveLeft();
                     });
                     gamepad.getButton(Phaser.Gamepad.XBOX360_RIGHT_BUMPER).onDown.add(function () {
-                        if (game.launched) return;
+                        // if (game.launched) return;
                         inputEditor.moveRight();
                     });
                     gamepad.getButton(Phaser.Gamepad.BUTTON_8).onDown.add(function () {
-                        if (game.launched) return;
+                        // if (game.launched) return;
                         inputEditor.cancel();
                         startCheck();
 
                     });
                     gamepad.getButton(Phaser.Gamepad.BUTTON_9).onDown.add(function () {
-                        if (game.launched) return;
+                        // if (game.launched) return;
 
                         inputEditor.valid();
 

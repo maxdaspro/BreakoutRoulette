@@ -42,7 +42,8 @@ PlayState.preload = function () {
 
 PlayState.create = function () {
 
-    game.launched = true;
+    // game.launched = true;
+    game.input.gamepad.start();
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
 

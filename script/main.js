@@ -10,7 +10,7 @@ GLOBAL.HALFHEIGHT = GLOBAL.HEIGHT / 2;
 
 var game = new Phaser.Game(GLOBAL.WIDTH, GLOBAL.HEIGHT, Phaser.AUTO, 'game');
 
-game.launched = false;
+// game.launched = false;
 game.state.add('start', StartState);
 game.state.add('play', PlayState);
 game.state.add('end', EndState);
@@ -38,4 +38,4 @@ for (let i = 1; i <= 4; i++) {
     );
 }
 
-game.state.start('end');
+game.state.start('start');
