@@ -31,7 +31,6 @@ StartState.create = function () {
                 });
             });
 
-
             game.input.gamepad.start();
 
             game.input.gamepad._gamepads.forEach((gamepad, index) => {
@@ -109,9 +108,7 @@ StartState.create = function () {
             });
 
             function launchGame() {
-                game.input.gamepad._gamepads.forEach((gamepad, index) => {
-                    gamepad.reset();
-                });
+                
                 document.getElementById("interface").classList.add('hidden');
 
                 playerNames = [];
