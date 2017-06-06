@@ -1,11 +1,15 @@
 var StartState = {};
 
 StartState.preload = function () {
-
+    game.load.audio('menu', 'assets/audio/cheap-flash-game.mp3');
 }
 
 StartState.create = function () {
     console.log('StartState');
+    menuSound = game.add.audio('menu');
+    game.sound.setDecodedCallback([
+        menuSound
+     ], PlayState.update, this);
 
     clearGamepadsEvents();
 
@@ -14,7 +18,7 @@ StartState.create = function () {
 
         let inputEditors = [];
         let globalReady = false;
-
+        menuSound.play();
         $('#interface #content').load('template/menu.phtml', () => {
 
             let inputsHtml = $('#interface #formulaire input[name*=player]');
