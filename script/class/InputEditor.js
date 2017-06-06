@@ -50,14 +50,6 @@ class InputEditor {
         this.input.value = str;
     }
 
-    nextChar() {
-        this.charIndex = this.charIndex < this.chars.length - 1 ? this.chars++ : 0;
-    }
-
-    previousChar() {
-        this.charIndex = this.charIndex > 0 ? this.chars-- : this.chars.length - 1;
-    }
-
     addChar() {
         this.chain[this.stringIndex] = this.chars[this.charIndex];
     }
@@ -71,7 +63,7 @@ class InputEditor {
 
         if (this.ready) return;
 
-        this.charIndex = this.charIndex < this.chars.length - 1 ? this.charIndex + 1 : 0;
+        this.charIndex = this.charIndex < this.chars.length - 1 ? this.charIndex + 1 : 1;
         this.chain[this.stringIndex] = this.chars[this.charIndex];
         this.update();
     }
@@ -80,14 +72,14 @@ class InputEditor {
 
         if (this.ready) return;
 
-        this.charIndex = this.charIndex > 0 ? this.charIndex - 1 : this.chars.length - 1;
+        this.charIndex = this.charIndex > 1 ? this.charIndex - 1 : this.chars.length - 1;
         this.chain[this.stringIndex] = this.chars[this.charIndex];
         this.update();
     }
 
     addChar() {
 
-        if (this.ready) return;
+        if (this.ready || this.chars[this.charIndex] === '') return;
 
         if (this.stringIndex >= this.maxLength - 1) {
             return;
@@ -133,9 +125,9 @@ class InputEditor {
         if (this.ready) return;
 
         if (this.stringIndex <= this.minLength - 1) {
-
             return;
         }
+
         this.stringIndex--;
         this.updateCharIndex();
         this.updateCursor();
@@ -157,14 +149,14 @@ class InputEditor {
         if (this.chain[this.stringIndex] === null) {
             return;
         }
-        this.charIndex = this.chain[this.stringIndex].charCodeAt(0) - 97;
+        this.charIndex = this.chain[this.stringIndex].charCodeAt(0) - 96;
     }
 
     chainSize() {
         let size = 0;
 
         for (let i = 0; i < this.chain.length; i++) {
-            if (this.chain[i] !== null) {
+            if (this.chain[i] !== null && this.chain[i] !== '') {
                 size++;
             }
         }
@@ -179,6 +171,8 @@ class InputEditor {
     //CHECKED
 
     valid() {
+
+        if(this.chainSize() < this.minLength) return;
 
         this.checked.classList.remove("hidden");
         this.ready = true;
