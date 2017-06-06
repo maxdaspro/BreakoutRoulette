@@ -9,7 +9,20 @@ let spacebar;
 let roulette;
 let players = {};
 let inputs = {};
-let startsound;
+let startSound;
+let tirSound;
+let menuSound;
+let winnerSound;
+let decompteSound;
+let errorSound;
+let okSound;
+let reloadSound;
+let egaliteSound;
+let finTempsSound;
+let breakingSound;
+let trolleySound;
+let trolleySound2;
+let raceSound;
 
 PlayState.preload = function () {
     // game.load.tilemap("map2", GLOBAL.DIR.IMAGE + "map2.json", null, Phaser.Tilemap.TILED_JSON);
@@ -71,7 +84,7 @@ PlayState.create = function () {
 
     // playerNames.forEach((name, index) => {
     let index = 0;
-    for(let id in playerNames){
+    for (let id in playerNames) {
         let name = playerNames[id];
 
         players[id] = new Player(name, angles[index], stepAngle, colors[index], scorePositions[index], scoreOutPuts[index], statsOutputs[index]);
@@ -79,7 +92,8 @@ PlayState.create = function () {
         inputs[id] = game.input.gamepad._gamepads[index];
 
         index++;
-    };
+    }
+    ;
 
     startSound = game.add.audio('start');
     tirSound = game.add.audio('tir');
@@ -111,7 +125,7 @@ PlayState.create = function () {
         trolleySound,
         trolleySound2,
         raceSound
-     ], PlayState.update, this);
+    ], PlayState.update, this);
 }
 
 PlayState.update = function () {
