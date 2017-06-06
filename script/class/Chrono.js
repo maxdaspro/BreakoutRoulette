@@ -57,7 +57,7 @@ class Chrono {
                 }
 
                 let val = (this.msLeft * 0.001).toFixed(this.precision);
-                if(val > 0) this.text.setText(val);
+                 this.text.setText(val > 0 ? val : '');
                 this.text.x = this.position.x - this.text.width / 2;
                 this.text.y = this.position.y - (this.text.height / 2) + 3;
             }
