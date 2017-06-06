@@ -41,8 +41,10 @@ $(document).ready(function () {
 
     let inputEditors = [];
     let globalReady = false;
+    $('#interface #content').load('template/restart.phtml', () => {
 
-    $('#interface #content').load('template/menu.phtml', () => {
+    });
+/*    $('#interface #content').load('template/menu.phtml', () => {
 
         let inputsHtml = $('#interface #formulaire input[name*=player]');
 
@@ -67,8 +69,6 @@ $(document).ready(function () {
         game.input.gamepad._gamepads.forEach((gamepad, index) =>{
 
             gamepad.onConnectCallback = function(){
-
-
 
                 let champ = inputsHtml[index];
                 champ.disabled = false;
@@ -180,5 +180,5 @@ $(document).ready(function () {
                launchGame();
             }
         })
-    });
+    });*/
 });
