@@ -172,7 +172,7 @@ class InputEditor {
 
     valid() {
 
-        if(this.chainSize() < this.minLength) return;
+        if (this.chainSize() < this.minLength) return;
 
         this.checked.classList.remove("hidden");
         this.ready = true;
@@ -186,5 +186,15 @@ class InputEditor {
         this.ready = false;
         this.cursor.style.display = "block";
         this.input.classList.remove("ready");
+    }
+
+    fill(value) {
+
+        for (let i = 0; i < value.length; i++) {
+
+            this.chain[this.stringIndex++] = value[i];
+        }
+        this.update();
+        this.updateCursor();
     }
 }

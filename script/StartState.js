@@ -51,6 +51,11 @@ StartState.create = function () {
 
                     inputEditors.push(inputEditor);
 
+                    if(playerNames[index] !== undefined) {
+
+                        inputEditor.fill(playerNames[index]);
+                    }
+
                     gamepad.getButton(Phaser.Gamepad.XBOX360_DPAD_UP).onDown.add(function () {
                         inputEditor.previousChar();
                     });
