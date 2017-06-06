@@ -20,11 +20,11 @@ class Message {
         this.speed = 1500;
     }
 
-    update(){
+    update() {
         game.world.bringToTop(this.box);
     }
 
-    alert(msg, callback = null, persist = false) {
+    alert(msg, callback = null, delay = 500) {
 
         this.box.scale.set(0.2);
 
@@ -38,17 +38,16 @@ class Message {
         let twb = game.add.tween(this.box.scale).to({x: 1, y: 1}, this.speed, Phaser.Easing.linear, true, 500);
 
         twb.onComplete.add(() => {
+            setTimeout(this.endAlert.bind(this, callback), delay)
+        });
+    }
 
-            if(!persist) {
-                this.text.destroy();
-                this.hideMessage();
-            }
-            setTimeout(() => {
-                if(callback) {
-                    callback();
-                }
-            }, 500);
-        }, this);
+    endAlert(callback) {
+        this.text.destroy();
+        this.hideMessage();
+        if (callback) {
+            callback();
+        }
     }
 
     hideMessage() {

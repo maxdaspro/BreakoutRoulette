@@ -81,7 +81,7 @@ class Roulette {
                 players[key].enable()
             }
 
-            this.chrono.start(180, this.end.bind(this), 0, {
+            this.chrono.start(5, this.end.bind(this), 0, {
                 triggers: [{
                     ms: 20000,
                     callback: function () {
@@ -124,7 +124,9 @@ class Roulette {
             winnerSound.play();
         }
 
-        this.message.alert(msg, null, true);
+        this.message.alert(msg, function () {
+            game.state.start('end');
+        }, 5000);
 
         //Item explosion
         for (let i = 0; i < this.items.length; i++) {

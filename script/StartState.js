@@ -108,7 +108,7 @@ StartState.create = function () {
             });
 
             function launchGame() {
-                
+
                 document.getElementById("interface").classList.add('hidden');
 
                 playerNames = [];
