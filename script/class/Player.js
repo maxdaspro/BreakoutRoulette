@@ -164,9 +164,8 @@ class Player {
 
         if (this.number >= this.findNumber) {
 
-            this.level++;
-
             if (this.number === this.findNumber) {
+                this.level++;
                 this.score += Math.ceil(this.scoreBase / this.hits);
                 this.hits = 0;
                 okSound.play();

@@ -57,7 +57,7 @@ class Roulette {
                 players[key].enable()
             }
 
-            this.chrono.start(180, this.end.bind(this), 0, {
+            this.chrono.start(30, this.end.bind(this), 0, {
                 triggers: [{
                     ms: 20000,
                     callback: function () {
@@ -81,15 +81,24 @@ class Roulette {
 
             if (!winner) {
                 winner = players[key];
-            } else if (players[key].score > winner.score) {
+            }
+            else if (players[key].level > winner.level) {
                 winner = players[key];
-            } else if (players[key].score === winner.score) {
-                equal++;
+                equal = 1;
+            }
+            else if (players[key].level === winner.level) {
+                if (players[key].score > winner.score){
+                    winner = players[key];
+                    equal = 1;
+                }
+                else if(players[key].score === winner.score){
+                    equal++;
+                }
             }
         }
 
         let msg = '';
-        if (Object.keys(players).length === equal) {
+        if (equal >= 2) {
             msg = 'Egalité !';
             egaliteSound.play();
         } else {
