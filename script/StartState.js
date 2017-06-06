@@ -7,6 +7,8 @@ StartState.preload = function () {
 StartState.create = function () {
     console.log('StartState');
 
+    clearGamepadsEvents();
+
     //Starting menu
     $(document).ready(function () {
 
@@ -35,77 +37,84 @@ StartState.create = function () {
 
             game.input.gamepad._gamepads.forEach((gamepad, index) => {
 
-                gamepad.onConnectCallback = function () {
-
-
-                    let champ = inputsHtml[index];
-                    champ.disabled = false;
-
-                    let manette = champ.parentNode.querySelector('.manette');
-                    manette.classList.remove("disconnected");
-
-                    let playButton = document.getElementById("play");
-
-                    let inputEditor = new InputEditor(champ);
-
-                    inputEditors.push(inputEditor);
-
-                    if(playerNames[index] !== undefined) {
-
-                        inputEditor.fill(playerNames[index]);
-                    }
-
-                    gamepad.getButton(Phaser.Gamepad.XBOX360_DPAD_UP).onDown.add(function () {
-                        inputEditor.previousChar();
-                    });
-                    gamepad.getButton(Phaser.Gamepad.XBOX360_DPAD_DOWN).onDown.add(function () {
-                        inputEditor.nextChar();
-                    });
-                    gamepad.getButton(Phaser.Gamepad.BUTTON_0).onDown.add(function () {
-                        inputEditor.addChar();
-                    });
-                    gamepad.getButton(Phaser.Gamepad.BUTTON_2).onDown.add(function () {
-                        inputEditor.removeChar();
-                    });
-                    gamepad.getButton(Phaser.Gamepad.XBOX360_LEFT_BUMPER).onDown.add(function () {
-                        inputEditor.moveLeft();
-                    });
-                    gamepad.getButton(Phaser.Gamepad.XBOX360_RIGHT_BUMPER).onDown.add(function () {
-                        inputEditor.moveRight();
-                    });
-                    gamepad.getButton(Phaser.Gamepad.BUTTON_8).onDown.add(function () {
-                        inputEditor.cancel();
-                        startCheck();
-
-                    });
-                    gamepad.getButton(Phaser.Gamepad.BUTTON_9).onDown.add(function () {
-
-                        inputEditor.valid();
-
-                        if (globalReady) {
-                            launchGame();
-                        }
-                        startCheck();
-                    });
-
-                    function startCheck() {
-                        let ready = true;
-
-                        for (var i = 0; i < inputEditors.length; i++) {
-                            ready &= inputEditors[i].ready;
-                        }
-                        if (ready) {
-                            playButton.value = "Press start";
-                            playButton.classList.add('ready');
-                        }
-                        else {
-                            playButton.value = "Waiting..";
-                            playButton.classList.remove('ready');
-                        }
-                        globalReady = ready;
+                if (gamepad.connected) {
+                    bindMenuControls(gamepad, index);
+                } else {
+                    gamepad.onConnectCallback = function(){
+                        bindMenuControls(gamepad, index);
                     }
                 }
             });
+
+            function bindMenuControls(gamepad, index) {
+
+                let champ = inputsHtml[index];
+
+                champ.disabled = false;
+
+                let manette = champ.parentNode.querySelector('.manette');
+                manette.classList.remove("disconnected");
+
+                let playButton = document.getElementById("play");
+
+                let inputEditor = new InputEditor(champ);
+
+                inputEditors.push(inputEditor);
+
+                if (playerNames[index] !== undefined) {
+
+                    inputEditor.fill(playerNames[index]);
+                }
+
+                gamepad.getButton(Phaser.Gamepad.XBOX360_DPAD_UP).onDown.add(function () {
+                    inputEditor.previousChar();
+                });
+                gamepad.getButton(Phaser.Gamepad.XBOX360_DPAD_DOWN).onDown.add(function () {
+                    inputEditor.nextChar();
+                });
+                gamepad.getButton(Phaser.Gamepad.BUTTON_0).onDown.add(function () {
+                    inputEditor.addChar();
+                });
+                gamepad.getButton(Phaser.Gamepad.BUTTON_2).onDown.add(function () {
+                    inputEditor.removeChar();
+                });
+                gamepad.getButton(Phaser.Gamepad.XBOX360_LEFT_BUMPER).onDown.add(function () {
+                    inputEditor.moveLeft();
+                });
+                gamepad.getButton(Phaser.Gamepad.XBOX360_RIGHT_BUMPER).onDown.add(function () {
+                    inputEditor.moveRight();
+                });
+                gamepad.getButton(Phaser.Gamepad.BUTTON_8).onDown.add(function () {
+                    inputEditor.cancel();
+                    startCheck();
+                });
+                gamepad.getButton(Phaser.Gamepad.BUTTON_9).onDown.add(function () {
+
+                    inputEditor.valid();
+
+                    if (globalReady) {
+                        launchGame();
+                    }
+                    startCheck();
+                });
+
+                function startCheck() {
+                    let ready = true;
+
+                    for (var i = 0; i < inputEditors.length; i++) {
+                        ready &= inputEditors[i].ready;
+                    }
+                    if (ready) {
+                        playButton.value = "Press start";
+                        playButton.classList.add('ready');
+                    }
+                    else {
+                        playButton.value = "Waiting..";
+                        playButton.classList.remove('ready');
+                    }
+                    globalReady = ready;
+                }
+            }
 
             function launchGame() {
 
