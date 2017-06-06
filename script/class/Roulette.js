@@ -43,33 +43,9 @@ class Roulette {
 
 
         /*startSound.volume = 0.4;
-        startSound.play();*/
+         startSound.play();*/
 
-
-/*        this.message.alert('Level ' + this.level, () => {
-
-            menuSound.loopFull(0.4);
-            this.generateItems();
-
-            for (let key in players) {
-                players[key].number = 0;
-                players[key].level = this.level;
-                players[key].generateNumber();
-                players[key].enable()
-            }
-
-            this.chrono.start(20, this.end.bind(this), 0, {
-                triggers: [{
-                    ms: 20000,
-                    callback: function () {
-                        finTempsSound.volume = 0.1;
-                        finTempsSound.play();
-                    }
-                }]
-            });
-        });      */  
-
-        this.message.alert('Go !!!', () => {
+        this.message.alert('Partez !', () => {
 
             menuSound.loopFull(0.4);
             this.generateItems();
@@ -81,7 +57,7 @@ class Roulette {
                 players[key].enable()
             }
 
-            this.chrono.start(180, this.end.bind(this), 0, {
+            this.chrono.start(30, this.end.bind(this), 0, {
                 triggers: [{
                     ms: 20000,
                     callback: function () {
@@ -106,25 +82,37 @@ class Roulette {
             if (!winner) {
                 winner = players[key];
             }
-            else if (players[key].score > winner.score) {
+            else if (players[key].level > winner.level) {
                 winner = players[key];
+                equal = 1;
             }
-            else if (players[key].score === winner.score) {
-                equal++;
+            else if (players[key].level === winner.level) {
+                if (players[key].score > winner.score){
+                    winner = players[key];
+                    equal = 1;
+                }
+                else if(players[key].score === winner.score){
+                    equal++;
+                }
             }
         }
 
         let msg = '';
-        if (Object.keys(players).length === equal) {
+        if (equal >= 2) {
             msg = 'Egalité !';
             egaliteSound.play();
-        }
-        else {
+        } else {
             msg = winner.name + ' a gagné !';
             winnerSound.play();
         }
 
-        this.message.alert(msg, null, true);
+        this.message.alert(msg, function () {
+
+            egaliteSound.stop();
+            winnerSound.stop();
+
+            game.state.start('end');
+        }, 5000);
 
         //Item explosion
         for (let i = 0; i < this.items.length; i++) {
@@ -170,28 +158,32 @@ class Roulette {
                 let index = (i + 1);
 
                 this.items[i][j] = new Item(
-                    index,                                      //line
+                    index, //line
                     Helper.randomValueIncl(this.min + this.lines - index, this.max - (i * 2)), //number
-                    'case' + index,                             //sprite name
-                    this.position,                              //position
-                    new Vector(53 * index, 0),                  //pivot
-                    this.stepAngle,                             //stepAngle
-                    this.stepAngle * j,                         //angle
-                    colors[i]                                   //color
+                    'case' + index, //sprite name
+                    this.position, //position
+                    new Vector(53 * index, 0), //pivot
+                    this.stepAngle, //stepAngle
+                    this.stepAngle * j, //angle
+                    colors[i] //color
                 );
             }
         }
     }
 
-    highlight(){
+    highlight() {
         this.tweenTint(this.centerSprite, 0xFF0033, 0xFFFFFF, 500);
     }
 
     tweenTint(obj, startColor, endColor, time) {
 
-        var colorBlend = {step: 0};
+        var colorBlend = {
+            step: 0
+        };
 
-        var colorTween = game.add.tween(colorBlend).to({step: 100}, time);
+        var colorTween = game.add.tween(colorBlend).to({
+            step: 100
+        }, time);
 
         colorTween.onUpdateCallback(function () {
 
