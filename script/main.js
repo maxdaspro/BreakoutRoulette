@@ -15,7 +15,7 @@ game.state.add('start', StartState);
 game.state.add('play', PlayState);
 game.state.add('end', EndState);
 
-let playerNames = {};
+let playerNames = [];
 let scoreOutPuts = [];
 let statsOutputs = [];
 
