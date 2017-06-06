@@ -69,7 +69,7 @@ class Roulette {
         //     });
         // });
 
-        this.message.alert('Go !!!', () => {
+        this.message.alert('Partez !', () => {
 
             menuSound.loopFull(0.4);
             this.generateItems();
