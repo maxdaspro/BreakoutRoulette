@@ -8,7 +8,7 @@ class InputEditor {
         this.maxLength = parseInt(this.input.getAttribute('maxlength'));
 
 
-        this.chars = [];
+        this.chars = [''];
         for (let i = 97; i <= 122; i++) {
             this.chars.push(String.fromCharCode(i));
         }
@@ -183,7 +183,7 @@ class InputEditor {
         this.checked.classList.remove("hidden");
         this.ready = true;
         this.cursor.style.display = "none";
-        this.input.classList.toggle("ready");
+        this.input.classList.add("ready");
     }
 
     cancel() {
@@ -191,6 +191,6 @@ class InputEditor {
         this.checked.classList.add("hidden");
         this.ready = false;
         this.cursor.style.display = "block";
-        this.input.classList.toggle("ready");
+        this.input.classList.remove("ready");
     }
 }
