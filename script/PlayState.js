@@ -35,6 +35,7 @@ PlayState.preload = function () {
     game.load.image("case3", GLOBAL.DIR.IMAGE + "case3.png");
     game.load.image("case4", GLOBAL.DIR.IMAGE + "case4.png");
     game.load.image("chronom", GLOBAL.DIR.IMAGE + "chrono.png");
+    game.load.image("explosion", GLOBAL.DIR.IMAGE + "explosion.png");
     game.load.audio('start', 'assets/audio/Air-Horn-SoundBible.com-964603082.mp3');
     game.load.audio('tir', 'assets/audio/jeckkech__projectile_01.mp3');
     game.load.audio('menu', 'assets/audio/8-Bit-Mayhem.mp3');
