@@ -87,11 +87,11 @@ class Roulette {
                 equal = 1;
             }
             else if (players[key].level === winner.level) {
-                if (players[key].score > winner.score){
+                if (players[key].score > winner.score) {
                     winner = players[key];
                     equal = 1;
                 }
-                else if(players[key].score === winner.score){
+                else if (players[key].score === winner.score) {
                     equal++;
                 }
             }
@@ -148,6 +148,14 @@ class Roulette {
         this.items = [];
 
         let colors = [0xE0A890, 0x00BFB2, 0xC64191, 0xffa800];
+
+        // let colors = [
+        //     0x2E3532, 0x383F3C, 0x424946,
+        //     0x508484, 0x5A8E8E, 0x649898,
+        //     0x4C1F1D, 0x562927, 0x603331,
+        //     0x69111C, 0x731B26, 0x7D2530,
+        //     0x484C38, 0x525642, 0x5D614D
+        // ];
 
         for (let i = 0; i < this.lines; i++) {
 
