@@ -27,7 +27,7 @@ class Roulette {
 
         this.message = new Message(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
 
-        this.message.alert('Prêts?', () => {
+        this.message.alert('Ready ?', () => {
             //decompteSound.play();
             raceSound.play();
             this.chrono.start(3, this.start.bind(this), 0);
@@ -45,7 +45,7 @@ class Roulette {
         /*startSound.volume = 0.4;
          startSound.play();*/
 
-        this.message.alert('Partez !', () => {
+        this.message.alert('Play !', () => {
 
             menuSound.loopFull(0.4);
             this.generateItems();
@@ -99,10 +99,10 @@ class Roulette {
 
         let msg = '';
         if (equal >= 2) {
-            msg = 'Egalité !';
+            msg = 'Equality !';
             egaliteSound.play();
         } else {
-            msg = winner.name + ' a gagné !';
+            msg = winner.name + ' wins !';
             winnerSound.play();
         }
 
