@@ -30,7 +30,7 @@ class Roulette {
         this.message.alert('Ready ?', () => {
             //decompteSound.play();
             raceSound.play();
-            this.chrono.start(3, this.start.bind(this), 0);
+            this.chrono.start(1, this.start.bind(this), 0);
         });
     }
 
@@ -153,9 +153,7 @@ class Roulette {
             0x363F46,
             0x3D4DB6,
             0x009587,
-
             0x795446,
-
             0xFF9700,
             0xFF5504,
             0x8B8B8B,

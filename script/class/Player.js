@@ -93,12 +93,22 @@ class Player {
 
             if (player !== this && !player.paused) {
 
+                let angle;
+
                 switch (direction.toLowerCase()) {
                     case 'left':
-                        result &= this.getLeftAngle() + this.stepAngle !== player.getLeftAngle();
+
+                        angle = this.getLeftAngle() + this.stepAngle;
+                        angle %= 360;
+
+                        result &= (angle !== player.getLeftAngle());
                         break;
                     case 'right':
-                        result &= this.getRightAngle() - this.stepAngle !== player.getRightAngle();
+
+                        angle = this.getRightAngle() - this.stepAngle;
+                        angle %= 360;
+
+                        result &= (angle !== player.getRightAngle());
                         break;
                 }
             }
