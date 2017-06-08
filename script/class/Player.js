@@ -152,9 +152,12 @@ class Player {
          */
 
         this.hits++;
-
         this.number += number;
-
+         if (number == 'I') { 
+            //number = 0;
+            this.number = this.findNumber;
+        }
+        
         if (this.number < 0) {
             this.number = 0;
         }
