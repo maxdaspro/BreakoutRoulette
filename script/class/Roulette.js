@@ -2,6 +2,12 @@ class Roulette {
 
     constructor(position) {
 
+        this.magicNumbers = {
+            score: {
+                number: -4,
+            }
+        };
+
         this.position = position;
 
         this.centerSprite = game.add.sprite(this.position.x, this.position.y, 'chronom');
@@ -148,9 +154,10 @@ class Roulette {
 
         this.items = [];
 
-       // let colors = [0xE0A890, 0x00BFB2, 0xC64191, 0xffa800];
+        // let colors = [0xE0A890, 0x00BFB2, 0xC64191, 0xffa800];
 
         let colors = [
+            0xFF0000,
             0x363F46,
             0x3D4DB6,
             0x009587,
@@ -166,7 +173,7 @@ class Roulette {
             0xEB1460
         ];
 
-        this.lines = Helper.randomValueIncl(1,4);
+        this.lines = Helper.randomValueIncl(1, 4);
 
         for (let i = 0; i < this.lines; i++) {
 
@@ -174,10 +181,7 @@ class Roulette {
 
             for (let j = 0; j < this.amount; j++) {
                 let index = (i + 1);
-								let number = Helper.randomValueIncl(this.min + this.lines - index, this.max - (i * 2));
-								if (number == -4) {
-                	number = 'I';
-                }
+                let number = Helper.randomValueIncl(this.min + this.lines - index, this.max - (i * 2));
 
                 this.items[i][j] = new Item(
                     index, //line
@@ -187,7 +191,7 @@ class Roulette {
                     new Vector(53 * index, 0), //pivot
                     this.stepAngle, //stepAngle
                     this.stepAngle * j, //angle
-                    colors[number + 3] //color
+                    colors[number + Math.abs(this.min)] //color
                     // colors[i] //color
                 );
             }

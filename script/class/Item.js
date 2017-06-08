@@ -39,6 +39,10 @@ class Item {
         this.text.angle = 90;
         this.text.anchor.setTo(0.5);
 
+        if(this.number === roulette.magicNumbers.score.number){
+            this.text.setText('-');
+        }
+
         this.container = game.add.group();
         this.container.add(this.text);
 
