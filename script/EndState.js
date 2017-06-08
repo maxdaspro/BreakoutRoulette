@@ -88,7 +88,6 @@ EndState.create = function () {
                     break;
             }
             game.state.start(state);
-
         }
     });
 }

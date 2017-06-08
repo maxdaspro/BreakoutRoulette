@@ -158,8 +158,8 @@ class Roulette {
 
             0xFF9700,
             0xFF5504,
-            0x8B8B8B,//
-            0xf19670,//
+            0x8B8B8B,
+            0x44AF69,
             0xe16552,
             0xc94a53,
             0xbe5168,

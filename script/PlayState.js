@@ -55,6 +55,8 @@ PlayState.preload = function () {
 }
 
 PlayState.create = function () {
+    
+    console.log(game.input.gamepad);
 
     game.input.gamepad.start();
 
