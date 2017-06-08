@@ -99,7 +99,7 @@ class Roulette {
 
         let msg = '';
         if (equal >= 2) {
-            msg = 'Equality !';
+            msg = 'Draw !';
             egaliteSound.play();
         } else {
             msg = winner.name + ' wins !';
@@ -147,15 +147,25 @@ class Roulette {
 
         this.items = [];
 
-        let colors = [0xE0A890, 0x00BFB2, 0xC64191, 0xffa800];
+       // let colors = [0xE0A890, 0x00BFB2, 0xC64191, 0xffa800];
 
-        // let colors = [
-        //     0x2E3532, 0x383F3C, 0x424946,
-        //     0x508484, 0x5A8E8E, 0x649898,
-        //     0x4C1F1D, 0x562927, 0x603331,
-        //     0x69111C, 0x731B26, 0x7D2530,
-        //     0x484C38, 0x525642, 0x5D614D
-        // ];
+        let colors = [
+            0x363F46,
+            0x3D4DB6,
+            0x009587,
+
+            0x795446,
+
+            0xFF9700,
+            0xFF5504,
+            0x8B8B8B,//
+            0xf19670,//
+            0xe16552,
+            0xc94a53,
+            0xbe5168,
+            0xa34974,
+            0xEB1460
+        ];
 
         for (let i = 0; i < this.lines; i++) {
 
@@ -164,16 +174,17 @@ class Roulette {
             for (let j = 0; j < this.amount; j++) {
 
                 let index = (i + 1);
-
+                let number = Helper.randomValueIncl(this.min + this.lines - index, this.max - (i * 2));
                 this.items[i][j] = new Item(
                     index, //line
-                    Helper.randomValueIncl(this.min + this.lines - index, this.max - (i * 2)), //number
+                    number, //number
                     'case' + index, //sprite name
                     this.position, //position
                     new Vector(53 * index, 0), //pivot
                     this.stepAngle, //stepAngle
                     this.stepAngle * j, //angle
-                    colors[i] //color
+                    colors[number + 3] //color
+                    // colors[i] //color
                 );
             }
         }

@@ -17,55 +17,55 @@ class Item {
 
         let colorText = '#FFF';
 
-        let colors = [
-                    0x484C38, 0x525642, 0x5D614D,                   
-                    0x508484, 0x5A8E8E, 0x649898,
-                    0x2E3532, 0x383F3C, 0x424946,
-                    0x4C1F1D,
-                    0x7D2530, 0x731B26, 0x69111C
-                    ];
-
-        switch (this.number) {
-            case -3:
-                this.sprite.tint = colors[0];
-                break;
-            case -2:
-                this.sprite.tint = colors[1];
-                break;
-            case -1:
-                this.sprite.tint = colors[2];
-                break;
-            case 0:
-                this.sprite.tint = colors[3];
-                break;
-            case 1:
-                this.sprite.tint = colors[4];
-                break;
-            case 2:
-                this.sprite.tint = colors[5];
-                break;
-            case 3:
-                this.sprite.tint = colors[6];
-                break;
-            case 4:
-                this.sprite.tint = colors[7];
-                break;
-            case 5:
-                this.sprite.tint = colors[8];
-                break;
-            case 6:
-                this.sprite.tint = colors[9];
-                break;
-            case 7:
-                this.sprite.tint = colors[10];
-                break;
-            case 8:
-                this.sprite.tint = colors[11];
-                break;
-            case 9:
-                this.sprite.tint = colors[12];
-                break;
-        }
+        // let colors = [
+        //             0x484C38, 0x525642, 0x5D614D,
+        //             0x508484, 0x5A8E8E, 0x649898,
+        //             0x2E3532, 0x383F3C, 0x424946,
+        //             0x4C1F1D,
+        //             0x7D2530, 0x731B26, 0x69111C
+        //             ];
+        //
+        // switch (this.number) {
+        //     case -3:
+        //         this.sprite.tint = colors[0];
+        //         break;
+        //     case -2:
+        //         this.sprite.tint = colors[1];
+        //         break;
+        //     case -1:
+        //         this.sprite.tint = colors[2];
+        //         break;
+        //     case 0:
+        //         this.sprite.tint = colors[3];
+        //         break;
+        //     case 1:
+        //         this.sprite.tint = colors[4];
+        //         break;
+        //     case 2:
+        //         this.sprite.tint = colors[5];
+        //         break;
+        //     case 3:
+        //         this.sprite.tint = colors[6];
+        //         break;
+        //     case 4:
+        //         this.sprite.tint = colors[7];
+        //         break;
+        //     case 5:
+        //         this.sprite.tint = colors[8];
+        //         break;
+        //     case 6:
+        //         this.sprite.tint = colors[9];
+        //         break;
+        //     case 7:
+        //         this.sprite.tint = colors[10];
+        //         break;
+        //     case 8:
+        //         this.sprite.tint = colors[11];
+        //         break;
+        //     case 9:
+        //         this.sprite.tint = colors[12];
+        //         break;
+        // }
 
         game.physics.arcade.enable(this.sprite);
 
