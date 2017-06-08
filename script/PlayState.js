@@ -55,6 +55,8 @@ PlayState.preload = function () {
 }
 
 PlayState.create = function () {
+    
+    $('#toucheAide').load('template/aideTouchePlay.phtml');
 
     game.input.gamepad.start();
 
