@@ -5,6 +5,8 @@ EndState.preload = function () {
 }
 
 EndState.create = function () {
+
+   
     console.log('EndState');
     menuStartSound.loopFull(0.4);
     $('#interface #content').load('template/end.phtml', () => {
