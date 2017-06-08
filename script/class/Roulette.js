@@ -15,9 +15,10 @@ class Roulette {
 
         this.chrono = new Chrono(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
 
-        this.lines = 4;
+        //this.lines = 3;
+        //this.lines = Helper.randomValue(1,4);
         this.amount = 16;
-        this.min = -3;
+        this.min = -4;
         this.max = 9;
         this.stepAngle = 360 / this.amount;
 
@@ -165,14 +166,19 @@ class Roulette {
             0xEB1460
         ];
 
+        this.lines = Helper.randomValueIncl(1,4);
+
         for (let i = 0; i < this.lines; i++) {
 
             this.items[i] = [];
 
             for (let j = 0; j < this.amount; j++) {
-
                 let index = (i + 1);
-                let number = Helper.randomValueIncl(this.min + this.lines - index, this.max - (i * 2));
+								let number = Helper.randomValueIncl(this.min + this.lines - index, this.max - (i * 2));
+								if (number == -4) {
+                	number = 'I';
+                }
+
                 this.items[i][j] = new Item(
                     index, //line
                     number, //number
