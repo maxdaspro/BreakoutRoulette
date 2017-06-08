@@ -189,7 +189,6 @@ body {
     top:0;
     width:432px;
     height:864px;
-    // border-left: 10px solid #FFF;
     background: url("../img/textureWood.png");
     background-position: -200px 0;
     font-family:  Arial, sans-serif;
@@ -204,20 +203,36 @@ body {
     width:380px;
     text-align: left;
     border-collapse: collapse;
+    text-align: center;
+    font-weight: bold;
 }
 #stats table tr{
 
 }
-#stats table th{
-    background-color: #D14D7D;
-    color:white;
-}
 #stats table th,#stats table td{
-    border: 1px solid #FFF;
-    color: #FFF;
+    border: 1px solid #ece4db;
+    color: #ece4db;
     padding:10px;
+    
+}
+#stats table th{
+    color:#ece4db;
+    text-shadow: 2px -2px #000;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
+#stats-p1{
+    background-color: rgba(255,168,0,.5);
+}
+#stats-p2{
+    background-color: rgba(198,65,145,.5);
+}
+#stats-p3{
+    background-color: rgba(0,191,178,.5);
+}
+#stats-p4{
+    background-color: rgba(224,168,144,.5);
+}
 /*INTERFACE */
 #interface{
     background: url("../img/map.png");
@@ -459,5 +474,15 @@ body {
     background-color: #E0A890 !important;
     
 }
-
-
+.player .manette:not(.disconnected) + #input-1{
+    box-shadow: 0px 0px 20px #ffa800;
+}
+.player .manette:not(.disconnected) + #input-2{
+    box-shadow: 0px 0px 20px #C64191;
+}
+.player .manette:not(.disconnected) + #input-3{
+    box-shadow: 0px 0px 20px #00BFB2;
+}
+.player .manette:not(.disconnected) + #input-4{
+    box-shadow: 0px 0px 20px #E0A890;
+}
