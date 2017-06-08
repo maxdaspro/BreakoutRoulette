@@ -497,9 +497,17 @@ body {
 }
 #toucheAide dl dt{
     // border: 1px solid green;
+    text-align: center;
+    margin-left: -300px;
 }
 #toucheAide dl dd{
     // border: 1px solid grey;
     margin-top: -35px;
-    margin-left: 100px;
+    margin-left: 120px;
+}
+#ou{
+    display: inline-block;
+    margin: 10px;
+    margin-top: -25px;
+    // border: 1px solid black;
 }
