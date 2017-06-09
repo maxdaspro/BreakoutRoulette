@@ -184,6 +184,8 @@ class Player {
         }
         if (this.number > this.findNumber) {
             errorSound.play();
+            this.canon.sprite.tint = 0xD9141D;
+            setTimeout(this.enable.bind(this), 1000);
         }
 
         if (this.number >= this.findNumber) {
@@ -193,6 +195,8 @@ class Player {
                 this.score += Math.ceil(this.scoreBase / this.hits);
                 this.hits = 0;
                 okSound.play();
+                this.canon.sprite.tint = 0x27BF1C;
+                setTimeout(this.enable.bind(this), 1000);
             }
 
             if (this.score > 0) {
