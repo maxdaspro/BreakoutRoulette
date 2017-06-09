@@ -8,6 +8,10 @@ const GLOBAL = {
 GLOBAL.HALFWIDTH = GLOBAL.WIDTH / 2;
 GLOBAL.HALFHEIGHT = GLOBAL.HEIGHT / 2;
 
+let playerNames = [];
+let scoreOutPuts = [];
+let statsOutputs = [];
+
 var game = new Phaser.Game(GLOBAL.WIDTH, GLOBAL.HEIGHT, Phaser.AUTO, 'game');
 
 game.state.add('start', StartState);
@@ -15,7 +19,6 @@ game.state.add('play', PlayState);
 game.state.add('end', EndState);
 game.state.start('start');
 
-let playerNames = [];
 // let scoreOutPuts = [];
 // let statsOutputs = [];
 

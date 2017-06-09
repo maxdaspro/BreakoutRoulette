@@ -142,8 +142,37 @@ StartState.create = function () {
                     }
                 }
 
-                game.state.start('play');
-                menuStartSound.stop();
+                $('#scores').load('template/scores.phtml', () => {
+                    for (let i = 1; i <= 4; i++) {
+                        scoreOutPuts.push(
+                            {
+                                name: document.querySelector('#scores #scores-p' + i + ' .name'),
+                                number: document.querySelector('#scores #scores-p' + i + ' .number'),
+                                findNumber: document.querySelector('#scores #scores-p' + i + ' .findNumber'),
+                                level: document.querySelector('#scores #scores-p' + i + ' .level'),
+                            }
+                        );
+                    }
+                    $('#stats').load('template/stats.phtml', () => {
+                        for (let i = 1; i <= 4; i++) {
+                            statsOutputs.push(
+                                {
+                                    name: document.querySelector('#stats #stats-p' + i + ' .name'),
+                                    level: document.querySelector('#stats #stats-p' + i + ' .level'),
+                                    score: document.querySelector('#stats #stats-p' + i + ' .score'),
+                                    stats: document.querySelector('#stats #stats-p' + i + ' .stats'),
+                                }
+                            );
+                        }
+                        $('#toucheAide').load('template/aideTouchePlay.phtml', () => {
+                            game.state.start('play');
+                            menuStartSound.stop();         
+                        });
+                    });
+                });
+
+
+
             }
 
             //Get players name

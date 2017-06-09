@@ -23,8 +23,7 @@ let breakingSound;
 let trolleySound;
 let trolleySound2;
 let raceSound;
-let scoreOutPuts = [];
-let statsOutputs = [];
+
 
 PlayState.preload = function () {
     // game.load.tilemap("map2", GLOBAL.DIR.IMAGE + "map2.json", null, Phaser.Tilemap.TILED_JSON);
@@ -55,78 +54,8 @@ PlayState.preload = function () {
     game.load.audio('breaking2', 'assets/audio/brick-hitting-wall_01.mp3');
     game.load.audio('race', 'assets/audio/race-countdown.mp3');
 
-    $('#scores').load('template/scores.phtml', () => {
-        for (let i = 1; i <= 4; i++) {
-            scoreOutPuts.push(
-                {
-                    name: document.querySelector('#scores #scores-p' + i + ' .name'),
-                    number: document.querySelector('#scores #scores-p' + i + ' .number'),
-                    findNumber: document.querySelector('#scores #scores-p' + i + ' .findNumber'),
-                    level: document.querySelector('#scores #scores-p' + i + ' .level'),
-                }
-            );
-        }
-    });
-
-    $('#stats').load('template/stats.phtml', () => {
-        for (let i = 1; i <= 4; i++) {
-            statsOutputs.push(
-                {
-                    name: document.querySelector('#stats #stats-p' + i + ' .name'),
-                    level: document.querySelector('#stats #stats-p' + i + ' .level'),
-                    score: document.querySelector('#stats #stats-p' + i + ' .score'),
-                    stats: document.querySelector('#stats #stats-p' + i + ' .stats'),
-                }
-            );
-        }
-    });
-
-    $('#toucheAide').load('template/aideTouchePlay.phtml');
-
 }
 
-PlayState.sortScore = function () {
-
-    let scores = [];
-
-    let scoreP1 = document.querySelector('#stats-p1'); 
-    let scoreP2 = document.querySelector('#stats-p2'); 
-    let scoreP3 = document.querySelector('#stats-p3'); 
-    let scoreP4 = document.querySelector('#stats-p4'); 
-
-    scores.push(scoreP1);
-    scores.push(scoreP2);
-    scores.push(scoreP3);
-    scores.push(scoreP4);
-
-    scores.sort((p1, p2)=>{
-
-        let l1 = parseInt(p1.querySelector('.level').innerText);
-        let l2 = parseInt(p2.querySelector('.level').innerText);
-        let s1 = parseInt(p1.querySelector('.score').innerText);
-        let s2 = parseInt(p2.querySelector('.score').innerText);
-
-        if(l1 === l2){
-            return s1 < s2;
-        }else{
-            return l1 < l2;
-        }
-
-    });
-
-    // console. log(scores)
-
-    let frag = document.createDocumentFragment();
-    let tableContent = document.querySelector('#stats #table tbody');
-
-    // console.log(tableContent)
-
-    for (var i = 0; i < scores.length; i++) {
-        frag.appendChild(scores[i]);
-    }
-    tableContent.innerHTML = '';
-    tableContent.appendChild(frag);
-}
 
 PlayState.create = function () {
 
@@ -281,3 +210,45 @@ PlayState.end = function () {
 
 }
 
+PlayState.sortScore = function () {
+
+    let scores = [];
+
+    let scoreP1 = document.querySelector('#stats-p1'); 
+    let scoreP2 = document.querySelector('#stats-p2'); 
+    let scoreP3 = document.querySelector('#stats-p3'); 
+    let scoreP4 = document.querySelector('#stats-p4'); 
+
+    scores.push(scoreP1);
+    scores.push(scoreP2);
+    scores.push(scoreP3);
+    scores.push(scoreP4);
+
+    scores.sort((p1, p2)=>{
+
+        let l1 = parseInt(p1.querySelector('.level').innerText);
+        let l2 = parseInt(p2.querySelector('.level').innerText);
+        let s1 = parseInt(p1.querySelector('.score').innerText);
+        let s2 = parseInt(p2.querySelector('.score').innerText);
+
+        if(l1 === l2){
+            return s1 < s2;
+        }else{
+            return l1 < l2;
+        }
+
+    });
+
+    // console. log(scores)
+
+    let frag = document.createDocumentFragment();
+    let tableContent = document.querySelector('#stats #table tbody');
+
+    // console.log(tableContent)
+
+    for (var i = 0; i < scores.length; i++) {
+        frag.appendChild(scores[i]);
+    }
+    tableContent.innerHTML = '';
+    tableContent.appendChild(frag);
+}
