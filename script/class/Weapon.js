@@ -56,7 +56,6 @@ class Weapon {
     }
 
     update() {
-
         let bullets = this.getBullets();
 
         for (let i = 0; i < bullets.length; i++) {
@@ -88,6 +87,7 @@ class Weapon {
         item.destroy();
         item.hit();
     }
+
     hitCenter(roulette, bulletSprite) {
         bulletSprite.kill();
         roulette.highlight()
