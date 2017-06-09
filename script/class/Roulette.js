@@ -265,17 +265,21 @@ class Roulette {
 
     bonusFreeze(player) {
         console.log('bonus freeze');
+        //console.log(this.player)
     }
 
     bonusSelfFreeze(player) {
         console.log('bonus freeze');
+        //console.log(this.player)
     }
 
     bonusRotate() {
         console.log('bonus rotate');
+        //console.log(this.player)
     }
 
     bonusScore(player) {
         console.log('bonus score');
+        //console.log(this.player)
     }
 }

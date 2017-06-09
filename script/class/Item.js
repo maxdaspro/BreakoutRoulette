@@ -86,7 +86,7 @@ class Item {
 
     hit() {
         if (this.bonus !== null) {
-            console.log(typeof this.bonus);
+            //console.log(typeof this.bonus);
             this.bonus();
         }
     }
