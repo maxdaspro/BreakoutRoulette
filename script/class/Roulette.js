@@ -46,7 +46,10 @@ class Roulette {
 
         this.level = 1;
 
+        this.lines = 0;
         this.items = [];
+
+        this.isRotating = false;
 
         this.message = new Message(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
 
@@ -183,7 +186,10 @@ class Roulette {
             0xc94a53,
             0xbe5168,
             0xa34974,
-            0xEB1460
+            0xEB1460,
+            0x4A6E8F,
+            0x874A8F,
+            0x8F4A8E
         ];
 
         function getMagicNumbers(amount = 0) {
@@ -199,8 +205,8 @@ class Roulette {
             return mns;
         }
 
-
-        this.lines = Helper.randomValueIncl(1, 4);
+        // this.lines = Helper.randomValueIncl(1, 4);
+        this.lines = 4;
 
         let magicNumbers = getMagicNumbers(this.lines);
 
@@ -265,22 +271,59 @@ class Roulette {
     }
 
     bonusFreeze(player) {
-        console.log('bonus freeze');
-        //console.log(this.player)
+
+        if(roulette.isRotating)return;
+
+        for (let key in players) {
+            if (players[key] !== player) {
+                players[key].freeze();
+            }
+        }
+        if(player !== null) {
+            // roulette.message.alert(player.name + 'is hot !');
+        }
     }
 
     bonusSelfFreeze(player) {
-        console.log('bonus freeze');
-        //console.log(this.player)
+
+        if(roulette.isRotating)return;
+
+        player.freeze();
+        // roulette.message.alert(player.name +'is cold !');
     }
 
-    bonusRotate() {
+    bonusRotate(player) {
         console.log('bonus rotate');
-        //console.log(this.player)
+        console.log(roulette);
+        roulette.bonusFreeze(null);
+        roulette.isRotating = true;
+        let nb = 25;
+        function rotate() {
+            for (let j = 0; j < roulette.lines; j++) {
+                let circleLine = roulette.items[j];
+                for (let i = 0; i < circleLine.length; i++) {
+                    let item = circleLine[i];
+                    item.sprite.angle += item.stepAngle;
+                    item.container.angle += item.stepAngle;
+
+                    item.hitbox.children.forEach(hitbox => {
+                        hitbox.angle += item.stepAngle;
+                    });
+                }
+            }
+            if(nb--) {
+                setTimeout(rotate, 50);
+            }
+            else{
+                roulette.isRotating = false;
+            }
+        }
+        rotate();
+        // roulette.message.alert('Crazy Time !!!');
     }
 
     bonusScore(player) {
         console.log('bonus score');
-        //console.log(this.player)
+        // roulette.message.alert(player.name +'Level Up !');
     }
 }

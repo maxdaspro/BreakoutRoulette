@@ -157,28 +157,22 @@ class Player {
      */
     checkScore(number) {
 
+
+
         /**
          * SAUVE TOUTES LES STATS ET FAIRE AVG POUR AFFICHAGE
          */
 
+        if (number === -4 || number === -5 || number === -7) {
+            return;
+        }
+
         this.hits++;
         this.number += number;
 
-        if (number == -4) {
-            this.freeze();
-        }
-        if (number == -5) {
-            this.selfFreeze();
-        }
         if (number == -6) {
             this.number = this.findNumber;
         }
-        if (number == -7) {
-            this.rotate();
-        }
-
-
-        
         if (this.number < 0) {
             this.number = 0;
         }
@@ -237,16 +231,8 @@ class Player {
     }
 
     freeze() {
-        console.log('freeze all')
-    }    
-
-    selfFreeze() {
         this.canon.sprite.tint = 0x92CCF4;
         this.paused = true;
         setTimeout(this.enable.bind(this), 3000);
-    }    
-
-    rotate() {
-        console.log('rotate');
     }
 }

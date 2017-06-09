@@ -84,10 +84,10 @@ class Item {
         }
     }
 
-    hit() {
+    hit(player) {
         if (this.bonus !== null) {
             //console.log(typeof this.bonus);
-            this.bonus();
+            this.bonus(player);
         }
     }
 

@@ -25,10 +25,6 @@ class Weapon {
         // this.emitter = game.add.emitter(50, 50, 100);
         //
         // this.emitter.makeParticles('explosion');
-
-        this.emitter = game.add.emitter(50, 50, 100);
-
-        this.emitter.makeParticles('explosion');
     }
 
 
@@ -78,14 +74,14 @@ class Weapon {
 
     hitItem(item, bullet, bulletSprite, circleSprite) {
 
-        this.particleBurst(bullet.position);
+        PlayState.particleBurst(bullet.position, 'explosion', 100);
 
         breakingSound.volume = 0.5;
         breakingSound.play();
         bulletSprite.kill();
         this.player.checkScore(item.number)
         item.destroy();
-        item.hit();
+        item.hit(this.player);
     }
 
     hitCenter(roulette, bulletSprite) {
@@ -93,16 +89,5 @@ class Weapon {
         roulette.highlight()
         roulette.generateItems()
         reloadSound.play();
-    }
-
-    particleBurst(position) {
-        this.emitter.x = position.x;
-        this.emitter.y = position.y;
-
-        this.emitter.start(true, 100, null, 20);
-
-        //  And 2 seconds later we'll destroy the emitter
-        // game.time.events.add(200, this.destroyEmitter, this);
-
     }
 } 

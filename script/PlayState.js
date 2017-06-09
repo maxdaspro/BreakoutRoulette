@@ -53,12 +53,10 @@ PlayState.preload = function () {
     game.load.audio('breaking', 'assets/audio/homejrande__earth-demolition-hammer_01.mp3');
     game.load.audio('breaking2', 'assets/audio/brick-hitting-wall_01.mp3');
     game.load.audio('race', 'assets/audio/race-countdown.mp3');
-
 }
 
 
 PlayState.create = function () {
-
 
     game.input.gamepad.start();
 
@@ -131,6 +129,20 @@ PlayState.create = function () {
         trolleySound2,
         raceSound
     ], PlayState.update, this);
+
+    this.emitters = {};
+    this.emitters['explosion'] = game.add.emitter(0, 0, 100);
+    this.emitters['explosion'].makeParticles('explosion');
+}
+
+PlayState.particleBurst = function (position, name, range = 100) {
+    this.emitters[name].x = position.x;
+    this.emitters[name].y = position.y;
+    this.emitters[name].start(true, range, null, 20);
+
+    //  And 2 seconds later we'll destroy the emitter
+    // game.time.events.add(200, this.destroyEmitter, this);
+
 }
 
 PlayState.update = function () {
@@ -214,10 +226,10 @@ PlayState.sortScore = function () {
 
     let scores = [];
 
-    let scoreP1 = document.querySelector('#stats-p1'); 
-    let scoreP2 = document.querySelector('#stats-p2'); 
-    let scoreP3 = document.querySelector('#stats-p3'); 
-    let scoreP4 = document.querySelector('#stats-p4'); 
+    let scoreP1 = document.querySelector('#stats-p1');
+    let scoreP2 = document.querySelector('#stats-p2');
+    let scoreP3 = document.querySelector('#stats-p3');
+    let scoreP4 = document.querySelector('#stats-p4');
 
     scores.push(scoreP1);
     scores.push(scoreP2);
