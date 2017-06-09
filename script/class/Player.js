@@ -163,9 +163,16 @@ class Player {
 
         this.hits++;
         this.number += number;
-         if (number === roulette.magicNumbers.score.number){
-            //number = 0;
-            this.number = this.findNumber;
+        if (number === roulette.magicNumbers.score.number){
+            let bonusNumber = Helper.randomValueIncl(0,1);      
+            switch (bonusNumber) {
+                case 0:
+                    this.number = this.findNumber;
+                    break;
+                case 1:
+                    this.freeze();
+                    break;
+            }
         }
         
         if (this.number < 0) {
@@ -219,5 +226,11 @@ class Player {
     disable() {
         this.paused = true;
         this.canon.locked();
+    }
+
+    freeze() {
+        this.canon.sprite.tint = 0x92CCF4;
+        this.paused = true;
+        setTimeout(this.enable.bind(this), 3000);
     }
 }

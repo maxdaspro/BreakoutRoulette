@@ -21,8 +21,6 @@ class Roulette {
 
         this.chrono = new Chrono(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
 
-        //this.lines = 3;
-        //this.lines = Helper.randomValue(1,4);
         this.amount = 16;
         this.min = -4;
         this.max = 9;
@@ -47,10 +45,6 @@ class Roulette {
     }
 
     start() {
-
-
-        /*startSound.volume = 0.4;
-         startSound.play();*/
 
         this.message.alert('Play !', () => {
 
