@@ -9,6 +9,30 @@ Math.degrees = function (radians) {
     return radians * 180 / Math.PI;
 };
 var Helper = {
+        inArray: function (value, arr) {
+
+            let found = false;
+
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] === value) {
+                    found = true;
+                    break;
+                }
+            }
+            return found;
+        },
+        inObject: function (value, arr) {
+
+            let found = false;
+
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] === value) {
+                    found = true;
+                    break;
+                }
+            }
+            return found;
+        },
         randomValue: function (min, max) {
             return Math.floor(Math.random() * (max - min) + min);
         },

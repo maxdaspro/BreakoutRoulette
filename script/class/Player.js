@@ -163,17 +163,6 @@ class Player {
 
         this.hits++;
         this.number += number;
-        if (number === roulette.magicNumbers.score.number){
-            let bonusNumber = Helper.randomValueIncl(0,1);      
-            switch (bonusNumber) {
-                case 0:
-                    this.number = this.findNumber;
-                    break;
-                case 1:
-                    this.freeze();
-                    break;
-            }
-        }
         
         if (this.number < 0) {
             this.number = 0;

@@ -2,10 +2,28 @@ class Roulette {
 
     constructor(position) {
 
+        // Bonus numbers
         this.magicNumbers = {
-            score: {
+            freeze: {
                 number: -4,
-            }
+                content: 'F',
+                callback: this.bonusFreeze
+            },
+            selfFreeze: {
+                number: -5,
+                content: 'X',
+                callback: this.bonusSelfFreeze
+            },
+            score: {
+                number: -6,
+                content: 'S',
+                callback: this.bonusScore
+            },
+            rotate: {
+                number: -7,
+                content: 'R',
+                callback: this.bonusRotate
+            },
         };
 
         this.position = position;
@@ -22,7 +40,7 @@ class Roulette {
         this.chrono = new Chrono(new Vector(GLOBAL.HALFWIDTH, GLOBAL.HALFHEIGHT));
 
         this.amount = 16;
-        this.min = -4;
+        this.min = -3;
         this.max = 9;
         this.stepAngle = 360 / this.amount;
 
@@ -167,15 +185,44 @@ class Roulette {
             0xEB1460
         ];
 
+        function getMagicNumbers(amount = 0) {
+            let mns = [];
+            let cpt = 0;
+            while (mns.length < amount && cpt < 20) {
+                let n = Helper.randomValueIncl(-7, -4);
+                if (!Helper.inArray(n, mns)) {
+                    mns.push(n);
+                }
+                cpt++;
+            }
+            return mns;
+        }
+
+
         this.lines = Helper.randomValueIncl(1, 4);
+
+        let magicNumbers = getMagicNumbers(this.lines);
+
+        let numbers = [];
+
+        for (let i = 0; i < this.lines; i++) {
+            let index = (i + 1);
+            numbers[i] = [];
+            for (let j = 0; j < this.amount; j++) {
+                numbers[i].push(Helper.randomValueIncl(this.min + this.lines - index, this.max - (i * 2)));
+            }
+            numbers[i][Helper.randomValueIncl(0, 15)] = magicNumbers[i];
+        }
 
         for (let i = 0; i < this.lines; i++) {
 
             this.items[i] = [];
 
             for (let j = 0; j < this.amount; j++) {
+
                 let index = (i + 1);
-                let number = Helper.randomValueIncl(this.min + this.lines - index, this.max - (i * 2));
+
+                let number = numbers[i][j]
 
                 this.items[i][j] = new Item(
                     index, //line
@@ -185,7 +232,7 @@ class Roulette {
                     new Vector(53 * index, 0), //pivot
                     this.stepAngle, //stepAngle
                     this.stepAngle * j, //angle
-                    colors[number + Math.abs(this.min)] //color
+                    colors[number + Math.abs(this.min - 4)] //color
                     // colors[i] //color
                 );
             }
@@ -214,5 +261,21 @@ class Roulette {
         obj.tint = startColor;
 
         colorTween.start();
+    }
+
+    bonusFreeze(player) {
+        console.log('bonus freeze');
+    }
+
+    bonusSelfFreeze(player) {
+        console.log('bonus freeze');
+    }
+
+    bonusRotate() {
+        console.log('bonus rotate');
+    }
+
+    bonusScore(player) {
+        console.log('bonus score');
     }
 }

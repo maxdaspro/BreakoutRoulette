@@ -11,6 +11,8 @@ class Item {
         this.stepAngle = stepAngle;
         this.angle = angle + (this.stepAngle * 0.5);
 
+        this.bonus = null;
+
         this.sprite = game.add.sprite(this.position.x, this.position.y, type);
 
         this.sprite.tint = color;
@@ -39,9 +41,14 @@ class Item {
         this.text.angle = 90;
         this.text.anchor.setTo(0.5);
 
-        if(this.number === roulette.magicNumbers.score.number){
-            this.text.setText('-');
+
+        for (let key in roulette.magicNumbers) {
+            if (this.number === roulette.magicNumbers[key].number) {
+                this.text.setText(roulette.magicNumbers[key].content);
+                this.bonus = roulette.magicNumbers[key].callback;
+            }
         }
+
 
         this.container = game.add.group();
         this.container.add(this.text);
@@ -74,6 +81,13 @@ class Item {
             // Helper.Phaser.setCircle(hitSprite, hitSprite.width * 0.5);
 
             this.hitbox.add(hitSprite);
+        }
+    }
+
+    hit() {
+        if (this.bonus !== null) {
+            console.log(typeof this.bonus);
+            this.bonus();
         }
     }
 
