@@ -183,7 +183,7 @@ body {
 }
 
 /*STATS*/
-#stats{
+#sideBar{
     position: absolute;
     left:872px;
     top:0;
@@ -193,9 +193,6 @@ body {
     background-position: -200px 0;
     font-family:  Arial, sans-serif;
     font-size: 1.4em;
-}
-#stats h1{
-    margin-left:32px;
 }
 #stats table{
     margin-top:32px;

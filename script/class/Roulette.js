@@ -60,6 +60,7 @@ class Roulette {
     update() {
         this.chrono.update();
         this.message.update();
+        PlayState.sortScore();
     }
 
     start() {
