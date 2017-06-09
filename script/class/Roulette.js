@@ -2,13 +2,14 @@ class Roulette {
 
     constructor(position) {
 
-        this.magicNumbers = {
-            score: {
-                number: -4,
-            }
-        };
+        this.magicNumbers = -4;
 
         this.position = position;
+
+        this.bonus = [
+            this.bonusFreeze,
+            this.bonusRotate
+        ];
 
         this.centerSprite = game.add.sprite(this.position.x, this.position.y, 'chronom');
         this.centerSprite.anchor.setTo(0.5);
@@ -24,7 +25,7 @@ class Roulette {
         //this.lines = 3;
         //this.lines = Helper.randomValue(1,4);
         this.amount = 16;
-        this.min = -4;
+        this.min = -3;
         this.max = 9;
         this.stepAngle = 360 / this.amount;
 
@@ -175,13 +176,32 @@ class Roulette {
 
         this.lines = Helper.randomValueIncl(1, 4);
 
+        let randNumber = Helper.randomValueIncl(0, (this.lines * 16) - 1);
+        let numbers = [];
+        let cpt = 0;
+        for (let i = 0; i < this.lines; i++) {
+            let index = (i + 1);
+            numbers[i] = [];
+            for (let j = 0; j < this.amount; j++) {
+
+                if (cpt++ === randNumber) {
+                    numbers[i].push(this.magicNumbers);
+                }
+                else {
+                    numbers[i].push(Helper.randomValueIncl(this.min + this.lines - index, this.max - (i * 2)));
+                }
+            }
+        }
+
         for (let i = 0; i < this.lines; i++) {
 
             this.items[i] = [];
 
             for (let j = 0; j < this.amount; j++) {
+
                 let index = (i + 1);
-                let number = Helper.randomValueIncl(this.min + this.lines - index, this.max - (i * 2));
+
+                let number = numbers[i][j]
 
                 this.items[i][j] = new Item(
                     index, //line
@@ -191,7 +211,7 @@ class Roulette {
                     new Vector(53 * index, 0), //pivot
                     this.stepAngle, //stepAngle
                     this.stepAngle * j, //angle
-                    colors[number + Math.abs(this.min)] //color
+                    colors[number + Math.abs(this.min - 1)] //color
                     // colors[i] //color
                 );
             }
@@ -220,5 +240,13 @@ class Roulette {
         obj.tint = startColor;
 
         colorTween.start();
+    }
+
+    bonusFreeze() {
+        console.log('bonus freeze');
+    }
+
+    bonusRotate() {
+        console.log('bonus rotate');
     }
 }

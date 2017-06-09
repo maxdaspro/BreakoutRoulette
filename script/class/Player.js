@@ -163,7 +163,8 @@ class Player {
 
         this.hits++;
         this.number += number;
-         if (number === roulette.magicNumbers.score.number){
+
+        if (number === roulette.magicNumbers){
             //number = 0;
             this.number = this.findNumber;
         }
