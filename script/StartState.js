@@ -21,6 +21,7 @@ StartState.create = function () {
     $(document).ready(function () {
 
         $('#toucheAide').load('template/aideToucheStart.phtml');
+        
         let inputEditors = [];
         let globalReady = false;
         menuStartSound.loopFull(0.4);
