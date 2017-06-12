@@ -13,7 +13,7 @@ StartState.create = function () {
 
     game.sound.setDecodedCallback([
         menuStartSound
-     ], StartState.update, this);
+    ], StartState.update, this);
 
     clearGamepadsEvents();
 
@@ -21,7 +21,7 @@ StartState.create = function () {
     $(document).ready(function () {
 
         $('#toucheAide').load('template/aideToucheStart.phtml');
-        
+
         let inputEditors = [];
         let globalReady = false;
         menuStartSound.loopFull(0.4);
@@ -50,7 +50,7 @@ StartState.create = function () {
                 if (gamepad.connected) {
                     bindMenuControls(gamepad, index);
                 } else {
-                    gamepad.onConnectCallback = function(){
+                    gamepad.onConnectCallback = function () {
                         bindMenuControls(gamepad, index);
                     }
                 }
@@ -142,36 +142,13 @@ StartState.create = function () {
                     }
                 }
 
-                $('#scores').load('template/scores.phtml', () => {
-                    for (let i = 1; i <= 4; i++) {
-                        scoreOutPuts.push(
-                            {
-                                name: document.querySelector('#scores #scores-p' + i + ' .name'),
-                                number: document.querySelector('#scores #scores-p' + i + ' .number'),
-                                findNumber: document.querySelector('#scores #scores-p' + i + ' .findNumber'),
-                                level: document.querySelector('#scores #scores-p' + i + ' .level'),
-                            }
-                        );
-                    }
-                    $('#stats').load('template/stats.phtml', () => {
-                        for (let i = 1; i <= 4; i++) {
-                            statsOutputs.push(
-                                {
-                                    name: document.querySelector('#stats #stats-p' + i + ' .name'),
-                                    level: document.querySelector('#stats #stats-p' + i + ' .level'),
-                                    score: document.querySelector('#stats #stats-p' + i + ' .score'),
-                                    stats: document.querySelector('#stats #stats-p' + i + ' .stats'),
-                                }
-                            );
-                        }
-                        $('#toucheAide').load('template/aideTouchePlay.phtml', () => {
-                            game.state.start('play');
-                            menuStartSound.stop();         
-                        });
+                $('#stats').load('template/stats.phtml', () => {
+
+                    $('#toucheAide').load('template/aideTouchePlay.phtml', () => {
+                        game.state.start('play');
+                        menuStartSound.stop();
                     });
                 });
-
-
 
             }
 

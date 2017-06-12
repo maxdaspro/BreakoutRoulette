@@ -80,7 +80,7 @@ class Roulette {
                 players[key].enable()
             }
 
-            this.chrono.start(180, this.end.bind(this), 0, {
+            this.chrono.start(5, this.end.bind(this), 0, {
                 triggers: [{
                     ms: 20000,
                     callback: function () {
@@ -206,7 +206,7 @@ class Roulette {
         }
 
         // this.lines = Helper.randomValueIncl(1, 4);
-        this.lines = 4;
+        this.lines = 3;
 
         let magicNumbers = getMagicNumbers(this.lines);
 
@@ -295,7 +295,7 @@ class Roulette {
     bonusRotate(player) {
         console.log('bonus rotate');
         console.log(roulette);
-        roulette.bonusFreeze(null);
+        // roulette.bonusFreeze(null);
         roulette.isRotating = true;
         let nb = 25;
         function rotate() {
