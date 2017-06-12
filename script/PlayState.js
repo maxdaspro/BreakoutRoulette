@@ -37,6 +37,7 @@ PlayState.preload = function () {
     game.load.image("case4", GLOBAL.DIR.IMAGE + "case4.png");
     game.load.image("chronom", GLOBAL.DIR.IMAGE + "chrono.png");
     game.load.image("explosion", GLOBAL.DIR.IMAGE + "explosion.png");
+    game.load.image("wrongway", GLOBAL.DIR.IMAGE + "wrongway.png");
     game.load.audio('start', 'assets/audio/Air-Horn-SoundBible.com-964603082.mp3');
     game.load.audio('tir', 'assets/audio/jeckkech__projectile_01.mp3');
     game.load.audio('menu', 'assets/audio/8-Bit-Mayhem.mp3');
@@ -243,45 +244,45 @@ PlayState.end = function () {
 
 }
 
-PlayState.sortScore = function () {
-
-    let scores = [];
-
-    let scoreP1 = document.querySelector('#stats-p1');
-    let scoreP2 = document.querySelector('#stats-p2');
-    let scoreP3 = document.querySelector('#stats-p3');
-    let scoreP4 = document.querySelector('#stats-p4');
-
-    scores.push(scoreP1);
-    scores.push(scoreP2);
-    scores.push(scoreP3);
-    scores.push(scoreP4);
-
-    scores.sort((p1, p2)=>{
-
-        let l1 = parseInt(p1.querySelector('.level').innerText);
-        let l2 = parseInt(p2.querySelector('.level').innerText);
-        let s1 = parseInt(p1.querySelector('.score').innerText);
-        let s2 = parseInt(p2.querySelector('.score').innerText);
-
-        if(l1 === l2){
-            return s1 < s2;
-        }else{
-            return l1 < l2;
-        }
-
-    });
-
-    // console. log(scores)
-
-    let frag = document.createDocumentFragment();
-    let tableContent = document.querySelector('#stats #table tbody');
-
-    // console.log(tableContent)
-
-    for (var i = 0; i < scores.length; i++) {
-        frag.appendChild(scores[i]);
-    }
-    tableContent.innerHTML = '';
-    tableContent.appendChild(frag);
-}
+// PlayState.sortScore = function () {
+//
+//     let scores = [];
+//
+//     let scoreP1 = document.querySelector('#stats-p1');
+//     let scoreP2 = document.querySelector('#stats-p2');
+//     let scoreP3 = document.querySelector('#stats-p3');
+//     let scoreP4 = document.querySelector('#stats-p4');
+//
+//     scores.push(scoreP1);
+//     scores.push(scoreP2);
+//     scores.push(scoreP3);
+//     scores.push(scoreP4);
+//
+//     scores.sort((p1, p2)=>{
+//
+//         let l1 = parseInt(p1.querySelector('.level').innerText);
+//         let l2 = parseInt(p2.querySelector('.level').innerText);
+//         let s1 = parseInt(p1.querySelector('.score').innerText);
+//         let s2 = parseInt(p2.querySelector('.score').innerText);
+//
+//         if(l1 === l2){
+//             return s1 < s2;
+//         }else{
+//             return l1 < l2;
+//         }
+//
+//     });
+//
+//     // console. log(scores)
+//
+//     let frag = document.createDocumentFragment();
+//     let tableContent = document.querySelector('#stats #table tbody');
+//
+//     // console.log(tableContent)
+//
+//     for (var i = 0; i < scores.length; i++) {
+//         frag.appendChild(scores[i]);
+//     }
+//     tableContent.innerHTML = '';
+//     tableContent.appendChild(frag);
+// }

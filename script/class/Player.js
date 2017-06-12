@@ -20,7 +20,6 @@ class Player {
         this.findNumber = 0;
         this.position = position;
 
-
         this.min = 9;
         this.max = 27;
 
@@ -39,9 +38,24 @@ class Player {
         this.shortMove = false;
 
         this.paused = true;
+
+        this.xGroup = game.add.group();
+        this.wrongWay = game.add.sprite(0, 0, "wrongway");
+        this.wrongWay.angle = 90;
+        this.wrongWay.anchor.setTo(0.5);
+        // x.angle = this.angle + (this.stepAngle * 0.5);
+        this.xGroup.add(this.wrongWay);
+        this.xGroup.x = GLOBAL.HALFWIDTH;
+        this.xGroup.y = GLOBAL.HALFHEIGHT;
+        this.xGroup.pivot.x = 375;
+        this.xGroup.pivot.y = 0;
+        this.xGroup.angle = this.angle + this.stepAngle * 0.5;
+        this.xGroup.alpha = 0;
     }
 
     update() {
+
+        this.canon.text.setText(this.findNumber - this.number);
 
         this.timer += game.time.physicsElapsed * 1000;
 
@@ -83,7 +97,37 @@ class Player {
             this.canon.turn(direction)
             this.angle = this.canon.angle;
         }
+        this.xGroup.angle = this.angle + this.stepAngle * 0.5;
     }
+
+    // processScore() {
+    //
+    //     let target = null;
+    //
+    //     for (let i = roulette.lines - 1; i >= 0; i--) {
+    //         let lines = roulette.items[i];
+    //
+    //         for (let j = 0; j < lines.length; j++) {
+    //             let item = lines[j];
+    //
+    //             if (this.getLeftAngle() - this.stepAngle * 0.5 === item.angle && item.sprite.alive) {
+    //                 item.text.setText(item.number);
+    //                 if(target === null) {
+    //                     target = item;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //
+    //     if(target !== null){
+    //
+    //         if(target.number >= -3) {
+    //             // console.log(target.number);
+    //
+    //             target.text.setText(this.findNumber - target.number);
+    //         }
+    //     }
+    // }
 
     canMove(direction) {
         let result = true;
@@ -91,7 +135,8 @@ class Player {
         for (let key in players) {
             let player = players[key];
 
-            if (player !== this && !player.paused) {
+            // if (player !== this && !player.paused) {
+            if (player !== this) {
 
                 let angle;
 
@@ -198,7 +243,7 @@ class Player {
                 this.statsProgress.push(Math.ceil((1 - (this.level / this.score)) * 100));
 
                 let total = 0;
-                for(let i=0; i < this.statsProgress.length; i++){
+                for (let i = 0; i < this.statsProgress.length; i++) {
                     total += this.statsProgress[i];
                 }
 
@@ -234,5 +279,14 @@ class Player {
         this.canon.sprite.tint = 0x92CCF4;
         this.paused = true;
         setTimeout(this.enable.bind(this), 3000);
+    }
+
+    showWrongWay() {
+        this.xGroup.angle = this.angle + this.stepAngle * 0.5;
+        this.xGroup.alpha = 0.9;
+    }
+
+    hideWrongWay() {
+        this.xGroup.alpha = 0;
     }
 }

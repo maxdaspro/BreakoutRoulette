@@ -12,7 +12,7 @@ let playerNames = [];
 let scoreOutPuts = [];
 let statsOutputs = [];
 
-var game = new Phaser.Game(GLOBAL.WIDTH, GLOBAL.HEIGHT, Phaser.AUTO, 'game');
+var game = new Phaser.Game(GLOBAL.WIDTH, GLOBAL.HEIGHT, Phaser.AUTO, 'game', true);
 
 game.state.add('start', StartState);
 game.state.add('play', PlayState);

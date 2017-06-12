@@ -58,12 +58,13 @@ class Roulette {
             raceSound.play();
             this.chrono.start(1, this.start.bind(this), 0);
         });
+
     }
 
     update() {
         this.chrono.update();
         this.message.update();
-        PlayState.sortScore();
+        this.wrongWay();
     }
 
     start() {
@@ -80,7 +81,7 @@ class Roulette {
                 players[key].enable()
             }
 
-            this.chrono.start(5, this.end.bind(this), 0, {
+            this.chrono.start(180, this.end.bind(this), 0, {
                 triggers: [{
                     ms: 20000,
                     callback: function () {
@@ -157,6 +158,9 @@ class Roulette {
 
     generateItems() {
 
+        // this.lines = Helper.randomValueIncl(1, 4);
+        this.lines = 4;
+
         this.destroyItems();
 
         for (let key in players) {
@@ -205,10 +209,8 @@ class Roulette {
             return mns;
         }
 
-        // this.lines = Helper.randomValueIncl(1, 4);
-        this.lines = 3;
 
-        let magicNumbers = getMagicNumbers(this.lines);
+        let magicNumbers = getMagicNumbers(1);
 
         let numbers = [];
 
@@ -218,8 +220,10 @@ class Roulette {
             for (let j = 0; j < this.amount; j++) {
                 numbers[i].push(Helper.randomValueIncl(this.min + this.lines - index, this.max - (i * 2)));
             }
-            numbers[i][Helper.randomValueIncl(0, 15)] = magicNumbers[i];
+            // numbers[i][Helper.randomValueIncl(0, 15)] = magicNumbers[i];
         }
+
+        numbers[Helper.randomValueIncl(0, this.lines - 1)][Helper.randomValueIncl(0, 15)] = magicNumbers[0];
 
         for (let i = 0; i < this.lines; i++) {
 
@@ -247,6 +251,7 @@ class Roulette {
     }
 
     highlight() {
+        // game.camera.shake(0.001,600);
         this.tweenTint(this.centerSprite, 0xFF0033, 0xFFFFFF, 500);
     }
 
@@ -272,21 +277,21 @@ class Roulette {
 
     bonusFreeze(player) {
 
-        if(roulette.isRotating)return;
+        if (roulette.isRotating)return;
 
         for (let key in players) {
             if (players[key] !== player) {
                 players[key].freeze();
             }
         }
-        if(player !== null) {
+        if (player !== null) {
             // roulette.message.alert(player.name + 'is hot !');
         }
     }
 
     bonusSelfFreeze(player) {
 
-        if(roulette.isRotating)return;
+        if (roulette.isRotating)return;
 
         player.freeze();
         // roulette.message.alert(player.name +'is cold !');
@@ -298,6 +303,7 @@ class Roulette {
         // roulette.bonusFreeze(null);
         roulette.isRotating = true;
         let nb = 25;
+
         function rotate() {
             for (let j = 0; j < roulette.lines; j++) {
                 let circleLine = roulette.items[j];
@@ -311,15 +317,39 @@ class Roulette {
                     });
                 }
             }
-            if(nb--) {
+            if (nb--) {
                 setTimeout(rotate, 50);
             }
-            else{
+            else {
                 roulette.isRotating = false;
             }
         }
+
         rotate();
         // roulette.message.alert('Crazy Time !!!');
+    }
+
+    wrongWay() {
+
+        for (let key in players) {
+            let player = players[key];
+            let angle = player.getLeftAngle();
+
+            for(let k in players){
+                let p = players[k];
+                if(p !== player){
+                    let a = p.getLeftAngle();
+                    let angleI = angle + this.stepAngle;
+                    angleI = angleI === 360 ? 0 : angleI;
+
+                    if(angleI === a){
+                        player.showWrongWay()
+                    }else {
+                        player.hideWrongWay()
+                    }
+                }
+            }
+        }
     }
 
     bonusScore(player) {

@@ -148,7 +148,7 @@ StartState.create = function () {
                         game.state.start('play');
                         menuStartSound.stop();
                     });
-                });
+                });5
 
             }
 

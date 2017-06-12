@@ -38,6 +38,9 @@ class Item {
             boundsAlignV: "top"
         });
 
+        this.text.stroke = '#000000';
+        this.text.strokeThickness = 1;
+
         this.text.angle = 90;
         this.text.anchor.setTo(0.5);
 

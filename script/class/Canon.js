@@ -24,14 +24,44 @@ class Canon {
         this.sprite.pivot.x = 375;
         this.sprite.pivot.y = 0;
         this.sprite.angle = this.angle;
-
         this.sprite.body.bounce.setTo(1, 1);
 
+
+        this.point = Helper.Phaser.drawPoint(this.position, 0x000000, 12);
+        this.point.alpha = 0.6;
+        this.point.x = this.position.x;
+        this.point.y = this.position.y;
+        this.point.pivot.x = 377;
+        this.point.pivot.y = 0;
+        this.point.angle = this.angle;
+
+        this.text = game.add.text(0, 0, '0', {
+            font: "14px Arial",
+            fill: '#FFF',
+            align: "left",
+            boundsAlignH: "left",
+            boundsAlignV: "top"
+        });
+
+        this.text.anchor.setTo(0.5)
+        this.text.angle = this.angle * -1;
+
+        this.container = game.add.group();
+        this.container.enableBody = true;
+        this.container.physicsBodyType = Phaser.Physics.ARCADE;
+
+        this.container.add(this.text);
+        this.container.x = this.position.x;
+        this.container.y = this.position.y + 3;
+        this.container.pivot.x = 377;
+        this.container.pivot.y = 0;
+        this.container.angle = this.angle;
+
         this.weapon = new Weapon(this.sprite, color, this.player);
+
     }
 
     update() {
-
         this.weapon.update();
     }
 
@@ -53,6 +83,9 @@ class Canon {
     setAngle(angle) {
         this.angle = angle % 360;
         this.sprite.angle = this.angle + 0.0000001;
+        this.container.angle = this.angle + 0.0000001;
+        this.text.angle = this.angle * -1;
+        this.point.angle = this.angle + 0.0000001;
     }
 
     shoot() {

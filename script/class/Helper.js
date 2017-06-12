@@ -259,7 +259,7 @@ var Helper = {
                 })
                 return groups;
             },
-            drawPoint: function (position, color = 0xFFDD00, radius = 4) {
+            drawPoint: function (position, color = 0xFF0000, radius = 2) {
                 let graphics = game.add.graphics(position.x, position.y);
                 graphics.beginFill(color);
                 graphics.drawCircle(0, 0, radius * 2);
