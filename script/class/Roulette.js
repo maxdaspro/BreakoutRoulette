@@ -136,7 +136,7 @@ class Roulette {
             winnerSound.stop();
 
             game.state.start('end');
-        }, 5000);
+        }, 10000);
 
         //Item explosion
         for (let i = 0; i < this.items.length; i++) {
