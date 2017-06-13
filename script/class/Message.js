@@ -17,14 +17,14 @@ class Message {
         this.box.y = this.position.y;
         this.box.alpha = 0;
 
-        this.speed = 1500;
+        this.speed = 850;
     }
 
     update() {
         game.world.bringToTop(this.box);
     }
 
-    alert(msg, callback = null, delay = 500) {
+    alert(msg, callback = null, delay = 400) {
 
         this.box.scale.set(0.2);
 

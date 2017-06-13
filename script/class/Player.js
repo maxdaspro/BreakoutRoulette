@@ -235,7 +235,7 @@ class Player {
                 this.score += Math.ceil(this.scoreBase / this.hits);
                 this.hits = 0;
                 okSound.play();
-                this.canon.sprite.tint = 0x6BD425;
+                this.canon.sprite.tint = 0x81F003;
                 setTimeout(this.enable.bind(this), 800);
                 PlayState.shake.shake(5, this.canon.container);
             }

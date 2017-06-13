@@ -285,7 +285,7 @@ class Roulette {
             }
         }
         if (player !== null) {
-            // roulette.message.alert(player.name + 'is hot !');
+            roulette.message.alert(player.name + ' is hot !');
         }
     }
 
@@ -294,7 +294,7 @@ class Roulette {
         if (roulette.isRotating)return;
 
         player.freeze();
-        // roulette.message.alert(player.name +'is cold !');
+        roulette.message.alert(player.name +' is cold !');
     }
 
     bonusRotate(player) {
@@ -326,7 +326,7 @@ class Roulette {
         }
 
         rotate();
-        // roulette.message.alert('Crazy Time !!!');
+        roulette.message.alert('Crazy Time !');
     }
 
     wrongWay() {
@@ -354,6 +354,6 @@ class Roulette {
 
     bonusScore(player) {
         console.log('bonus score');
-        // roulette.message.alert(player.name +'Level Up !');
+        roulette.message.alert(player.name +' Level Up !');
     }
 }
