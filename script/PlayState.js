@@ -59,6 +59,10 @@ PlayState.preload = function () {
 
 PlayState.create = function () {
 
+    /* Use it like: */
+    this.shake = new Phaser.Plugin.Shake(game);
+    game.plugins.add(this.shake);
+
     game.input.gamepad.start();
 
     clearGamepadsEvents();

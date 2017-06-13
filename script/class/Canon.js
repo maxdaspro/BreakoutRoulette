@@ -27,11 +27,11 @@ class Canon {
         this.sprite.body.bounce.setTo(1, 1);
 
 
-        this.point = Helper.Phaser.drawPoint(this.position, 0x000000, 12);
+        this.point = Helper.Phaser.drawPoint(this.position, 0x000000, 11);
         this.point.alpha = 0.6;
         this.point.x = this.position.x;
         this.point.y = this.position.y;
-        this.point.pivot.x = 377;
+        this.point.pivot.x = 376;
         this.point.pivot.y = 0;
         this.point.angle = this.angle;
 
@@ -53,7 +53,7 @@ class Canon {
         this.container.add(this.text);
         this.container.x = this.position.x;
         this.container.y = this.position.y + 3;
-        this.container.pivot.x = 377;
+        this.container.pivot.x = 376;
         this.container.pivot.y = 0;
         this.container.angle = this.angle;
 

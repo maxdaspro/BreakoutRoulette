@@ -223,8 +223,9 @@ class Player {
         }
         if (this.number > this.findNumber) {
             errorSound.play();
-            // this.canon.sprite.tint = 0xD9141D;
-            setTimeout(this.enable.bind(this), 1000);
+            this.canon.sprite.tint = 0xE9190F;
+            setTimeout(this.enable.bind(this), 800);
+            PlayState.shake.shake(5, this.canon.container);
         }
 
         if (this.number >= this.findNumber) {
@@ -234,8 +235,9 @@ class Player {
                 this.score += Math.ceil(this.scoreBase / this.hits);
                 this.hits = 0;
                 okSound.play();
-                // this.canon.sprite.tint = 0x27BF1C;
-                // setTimeout(this.enable.bind(this), 1000);
+                this.canon.sprite.tint = 0x6BD425;
+                setTimeout(this.enable.bind(this), 800);
+                PlayState.shake.shake(5, this.canon.container);
             }
 
             if (this.score > 0) {
