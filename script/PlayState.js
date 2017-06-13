@@ -208,9 +208,9 @@ PlayState.update = function () {
             if (pad.isDown(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER)) {
                 players[key].shoot();
             }
-            pad.getButton(Phaser.Gamepad.BUTTON_0).onDown.add(function () {
+            if (pad.isDown(Phaser.Gamepad.BUTTON_0)){
                 players[key].shoot();
-            });
+            };
         }
     }
 }

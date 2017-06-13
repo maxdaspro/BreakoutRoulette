@@ -97,7 +97,6 @@ class Player {
             this.canon.turn(direction)
             this.angle = this.canon.angle;
         }
-        this.xGroup.angle = this.angle + this.stepAngle * 0.5;
     }
 
     // processScore() {
@@ -201,8 +200,6 @@ class Player {
      * @param {[type]} number [description]
      */
     checkScore(number) {
-
-
 
         /**
          * SAUVE TOUTES LES STATS ET FAIRE AVG POUR AFFICHAGE

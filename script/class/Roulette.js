@@ -56,7 +56,7 @@ class Roulette {
         this.message.alert('Ready ?', () => {
             //decompteSound.play();
             raceSound.play();
-            this.chrono.start(1, this.start.bind(this), 0);
+            this.chrono.start(3, this.start.bind(this), 0);
         });
 
     }
@@ -335,6 +335,8 @@ class Roulette {
             let player = players[key];
             let angle = player.getLeftAngle();
 
+            player.hideWrongWay()
+
             for(let k in players){
                 let p = players[k];
                 if(p !== player){
@@ -344,8 +346,6 @@ class Roulette {
 
                     if(angleI === a){
                         player.showWrongWay()
-                    }else {
-                        player.hideWrongWay()
                     }
                 }
             }

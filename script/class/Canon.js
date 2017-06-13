@@ -82,6 +82,7 @@ class Canon {
 
     setAngle(angle) {
         this.angle = angle % 360;
+        this.player.xGroup.angle = this.angle + this.stepAngle * 0.5;
         this.sprite.angle = this.angle + 0.0000001;
         this.container.angle = this.angle + 0.0000001;
         this.text.angle = this.angle * -1;
